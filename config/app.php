@@ -178,6 +178,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        //Barryvdh\DomPDF\ServiceProvider::class,
+       // Collective\Html\HtmlServiceProvider::class,
+
 
     ],
 
@@ -229,6 +232,11 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+       // 'PDF' => Barryvdh\DomPDF\Facade::class,
+       // 'Form' => Collective\Html\FormFacade::class,
+       // 'Html' => Collective\Html\HtmlFacade::class,
+
+
 
     ],
 

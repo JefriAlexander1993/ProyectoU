@@ -15,10 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->select('id', 'name', 'email')->get();
 
-
-        return view('frond.users.index', compact('users'));
+        return view('frond.users.index');
 
     }
 
