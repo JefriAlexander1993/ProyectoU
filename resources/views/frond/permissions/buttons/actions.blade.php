@@ -1,14 +1,24 @@
-<div class="row">
-<div class="col-xs-4">
-	<a href="#" data-toggle="modal" data-target="#myformpermissionsedit"  class="btn btn-default  btn-xs"><i class="fas fa-edit"></i></a>
-</div>
-<div class="col-xs-4">
-	<a href="" class="btn btn-primary  btn-xs"><i class="fas fa-eye""></i></a>
-</div>
-<div class="col-xs-4">
-<form action="" method="POST"> 
-{{csrf_field()}} <!--Toque para que sea eliminado por la aplicacion-->
-<input type="hidden" name="_method" value="DELETE"><button class="btn  btn-danger  btn-xs"><i class="fas fa-trash-alt" ></i></button>	
-</form>
-</div>
-</div>
+<div class="td-actions text-right">
+	<div class="row">
+		<div class="col-sm-4">
+			<a href="#" id="edit" value="" data-toggle="modal" data-target="#myformpermissionsedit"  type="button" rel="tooltip" class="btn btn-info btn-round "><i class="fas fa-edit"></i></a>
+		</div>
+
+
+		<div class="col-sm-4">
+			<a href=""  type="button" rel="tooltip" class="btn btn-secunday btn-round "><i class="fas fa-eye""></i></a>
+		</div>
+
+
+
+		<div class="col-sm-4">
+		<form action="" method="POST"> 
+		{{csrf_field()}} <!--Toque para que sea eliminado por la aplicacion-->
+		<input type="hidden" name="_method" value="DELETE">
+		    <button type="button" rel="tooltip" class="btn  btn-danger btn-round">
+                    <i class="fas fa-trash-alt" ></i>
+                </button
+		</form>
+		</div>
+	</div>
+</div

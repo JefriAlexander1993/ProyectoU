@@ -1,29 +1,32 @@
- <div class="modal fade" id="myformusers" role="dialog" style="padding: 100px 0px 70px 0px;">
-    <div class="modal-dialog">
-    
-	      <!-- Modal content-->
-	      <div class="modal-content" style="width:400px;height:400px;margin-left:100px">
-	        <div class="modal-header" style="background:#26B99A;">
-	          <button type="button" class="close " data-dismiss="modal">&times;</button>
-	          <h2 class="modal-title" align="center" style="color:#fff"><STRONG>CREAR USUARIO.</STRONG></h2>
-	        </div>
-	        <div class="modal-body">
-				 <form class="form-horizontal" method="POST" action="{{ route('users.store') }}">
+ <div class="modal fade" id="myformusers" role="dialog" style="padding: 40px 30px 0px 0px;">
+
+	    <div class="row">
+            <div class="col-md-6">
+              <div class="card"  style="width:500px;height:500px;margin-left:500px">
+                <div class="card-header card-header-primary">
+                	     <button type="button" class="close " data-dismiss="modal">&times;</button>
+                  <h4 class="card-title">Editar usuario</h4>
+                  <p class="card-category">Complete your profile</p>
+                </div>
+                <div class="card-body">
+             		 <form class="form-horizontal" method="POST" action="{{ route('users.store') }}">
 					                        {{ csrf_field() }}
-					 <img id="profile-img" style="display:block;margin:auto" class="profile-img-card" src="{{asset('images/logo.gif')}}" />
-	     
+			
 				        <div class="row">
 				       		<div class="col-sm-12"> 
 				       		    <div class="form-group">	
-							        <input type="text" required class="form-control" maxlength="20" placeholder="Pepito peréz" name="name" title="Nombre del usuario">	
+				       		    	<label class="bmd-label-floating">Nombres</label>
+							        <input type="text" required class="form-control" maxlength="20"  name="name" title="Nombre del usuario">	
 							       
 				    		    </div>
 						    </div>
 						</div>    
+                   
 						 <div class="row">
 				       		<div class="col-sm-12"> 
 				       		    <div class="form-group">
-							        <input type="email" id="email" required class="form-control" placeholder="Ejemplo@example.com" name="email" title="Correo electronico">	
+				       		    	<label class="bmd-label-floating">Email</label>
+							        <input type="email" id="email" required class="form-control"  name="email" title="Correo electronico">	
 
 				       		    	  <i class="mdi mdi-check-circle-outline"></i>	
 							       
@@ -33,26 +36,50 @@
 						<div class="row">
 				       		<div class="col-sm-12"> 
 				       		    <div class="form-group">
-				       		    	  <i class="mdi mdi-check-circle-outline"></i>	
-							        <input  id="password" type="password" required class="form-control" placeholder="*******" name="password" title="Contraseña">	
+				       		   <label class="bmd-label-floating">Constraseña</label>
+							        <input  id="password" type="password" required class="form-control"  name="password" title="Contraseña">	
 							       
 				    		    </div>
 						    </div>
 						</div>
-			
-						 <div class="row">
+                 
+                  	 <div class="row">
 							<div class="col-sm-12">    
 							    <div class="form-group">
 								      <button type="submit" class="btn btn-success submit-btn btn-block">Agregar</button>
 								</div>
 							</div>
-						</div>		
-				</form>
-	 
-	        </div>
+						</div>	
+    
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+<!--
+              <div class="col-md-6">
+              <div class="card card-profile" >
+                <div class="card-avatar">
+                  <a href="#pablo">
+                    <img class="img" src="../assets/img/faces/marc.jpg" />
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="card-category">CEO / Co-Founder</h6>
+                  <h4 class="card-title">Alec Thompson</h4>
+                  <p class="card-description">
+                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                  </p>
+                  <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                </div>
+              </div>
+            </div>
+        
 	     </div>
       
-    </div>
+-->
  </div>
+  </div>
 
-
+			
+			

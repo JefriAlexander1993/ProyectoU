@@ -1,31 +1,39 @@
-@extends('layouts.master')
+@extends('layouts.template')
 
 @section('content')
-             <br>
-<div class="container">
-  <div class="row">
-        <div class="col-md-12 ">
-              <div class="panel-heading">
-                      <h4><strong>LISTA DE ROLES</strong>&nbsp;<a href="" data-toggle="modal" data-target="#myformroles" class="btn btn-success  btn-sm"><i class="fas fa-plus-square" ></i></a></h4>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div  class="card-header card-header-success">
+                  <h4 class="card-title "><strong>LISTA DE ROLES</strong><a style="padding-top:0%;"  data-toggle="modal" data-target="#myformroles" class="btn btn-success  btn-round btn-sm"><i class="fa fa-plus-square" ></i></a></h4>
+             
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table  id="roles" name="roles"  class="table  table-hover">
+                      <thead class=" text-primary">
+                            <tr>
+                                            <th class="text-center">Id</th>
+                                            <th class="text-center">Nombre</th>
+                                            <th class="text-center">Apodo</th>
+                                            <th class="text-center">Descripción</th>
+                                            <th class="text-center">Fecha de creación</th>
+                                            <th class="text-center">Acción</th>  
+                             </tr>
+                     </thead>
+                      
+                    </table>
+                  </div>
+                </div>
               </div>
-                       <div class="panel-body">    
-                                <table id="roles" class="table table-striped table-hover">
-                                        <thead>
-                                          <tr>
-                                            <th >Id</th>
-                                            <th >Nombre</th>
-                                            <th >Apodo</th>
-                                            <th >Descripción</th>
-                                            <th >Fecha de creación</th>
-                                          	<th >Acción</th>
-                                          </tr>
-                                        </thead>      
-                                </table>
-                      </div>
-               
-        </div>
-   </div>
-</div>
+            </div>
+          </div>
+
+
+
+
+
 @include('frond.roles.models.form')   
 @include('frond.roles.models.formedit')   
     
