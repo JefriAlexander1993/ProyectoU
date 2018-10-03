@@ -85,7 +85,7 @@
                                 <i class="fas fa-info-circle"></i>
                                   <p>Ayuda</p>
                                 </a>
-                                <a class="dropdown-item" href="{{route('permissions.index')}}">
+                                <a  data-toggle="modal" data-target="#myModal" class="dropdown-item" href="{{route('permissions.index')}}">
                                   <i class="fas fa-power-off"></i>
                                   <p>Cerrar sessión</p>
                                 </a>
@@ -94,6 +94,8 @@
                         
            </div>
          </li>   
+
+
 
                     
           <!-- your sidebar here -->

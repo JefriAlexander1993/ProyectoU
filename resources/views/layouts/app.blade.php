@@ -11,8 +11,7 @@
     <title>J&C PROGRAMMING</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/fontawesome/css/fontawesome.min.css')}}">
+
 </head>
 <body>
     <div id="app">
@@ -44,8 +43,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a data-toggle="modal" data-target="#myModallogin">Login</a></li>
-                            <li><a data-toggle="modal" data-target="#myModalregister">Register</a></li>
+                            <li><a href="{{route('login')}}">Login</a></li>
+                            <li><a href="{{route('register')}}">Register</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
@@ -77,6 +76,5 @@
         @include('frond.models.model_register')
     </div>
 
-         <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

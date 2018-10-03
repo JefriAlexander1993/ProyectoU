@@ -33,3 +33,7 @@ Route::get('users', 'UserController@index')->name('users.index');
 Route::get('roles', 'RoleController@index')->name('roles.index');	
 Route::get('permissions', 'PermissionController@index')->name('permissions.index');	
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
