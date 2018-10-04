@@ -122,8 +122,7 @@
         <div  class="container-fluid">
           @yield('content')
 
-         @include('frond.models.model')
-
+     @include('frond.models.model')
         </div>
       </div>
 
@@ -153,6 +152,10 @@
   </div>
   <!--   Core JS Files   -->
   <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
+  <script src="{{asset('js/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+  <script src="{{ asset('js/datatable.js') }}"></script>
+
   <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
   <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
   <script src="https://unpkg.com/default-passive-events"></script>
@@ -169,10 +172,8 @@
   <script src="{{asset('assets/js/material-dashboard.js?v=2.1.0´')}}"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="{{asset('assets/demo/demo.js')}}"></script>
-  <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
-  <script src="{{ asset('js/datatable.js') }}"></script>
-    <script src="{{ asset('js/document.js') }}"></script>
+
+
 
 
 

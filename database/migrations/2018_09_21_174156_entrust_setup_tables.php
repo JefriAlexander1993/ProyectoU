@@ -17,6 +17,7 @@ class EntrustSetupTables extends Migration
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -31,6 +32,7 @@ class EntrustSetupTables extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
 
             $table->primary(['user_id', 'role_id']);
+            $table->softDeletes();
         });
 
         // Create table for storing permissions
@@ -39,6 +41,7 @@ class EntrustSetupTables extends Migration
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -51,7 +54,7 @@ class EntrustSetupTables extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')
                 ->onUpdate('cascade')->onDelete('cascade');
-
+            $table->softDeletes();
             $table->primary(['permission_id', 'role_id']);
         });
     }
@@ -63,7 +66,7 @@ class EntrustSetupTables extends Migration
      */
     public function down()
     {
-        Schema::drop('permission_role');
+       Schema::drop('permission_role');
         Schema::drop('permissions');
         Schema::drop('role_user');
         Schema::drop('roles');

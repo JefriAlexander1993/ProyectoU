@@ -19,21 +19,20 @@ Auth::routes();
 
 //Rutas 
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('products', 'ProductController@index')->name('products.index');//
-Route::get('clients', 'ClientController@index')->name('clients.index');//
-Route::get('lots', 'LotController@index')->name('lots.index');//
-Route::get('sales', 'SaleController@index')->name('sales.index');
-Route::get('credits', 'CreditController@index')->name('credits.index');//
-Route::get('raw_materials', 'RawMaterialController@index')->name('raw_material.index');//
-Route::get('spendings', 'SpendingController@index')->name('spendings.index');//
-Route::get('warranties', 'WarrantyController@index')->name('warranties.index');
-Route::get('purchases', 'PurchaseController@index')->name('purchases.index');
-Route::get('users', 'UserController@index')->name('users.index');	
-Route::get('roles', 'RoleController@index')->name('roles.index');	
-Route::get('permissions', 'PermissionController@index')->name('permissions.index');	
+Route::get('/home', 'Backend\HomeController@index')->name('home');
+Route::Resource('products', 'Backend\ProductController');
+Route::Resource('clients', 'Backend\ClientController');
+Route::Resource('credits', 'Backend\CreditController');
+Route::Resource('lots', 'Backend\LotController');
+Route::Resource('raw_materials', 'Backend\RawMaterialController');
+Route::Resource('sales', 'Backend\SaleController');
+Route::Resource('spendings', 'Backend\SpendingController');
+Route::Resource('warranties', 'Backend\WarrantyController');
+Route::Resource('purchases', 'Backend\PurchaseController');
+Route::Resource('users', 'Backend\UserController');
 
+// users-roles-permissions
 
-Auth::routes();
+Route::Resource('roles', 'Backend\RoleController');
+Route::Resource('permissions', 'Backend\PermissionController');
 
-Route::get('/home', 'HomeController@index')->name('home');

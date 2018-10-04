@@ -1,20 +1,27 @@
 <?php
 
-namespace App\Models;
-
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Zizaco\Entrust\EntrustPermission;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Permission extends EntrustPermission
+class Type extends Model
 {
+
+	protected $table = 'types';
+
 	use SoftDeletes; //Implementamos 
 
     protected $dates = ['deleted_at']; 
-    
-     protected $fillable = [
-        'id','name','display_name','descripcion','created_at'
+
+
+    protected $fillable = [
+        'name', 'email', 'password',
     ];
+
+
+    public function product() {
+		  return $this->hasOne('App\Product');
+	}
 }

@@ -1,7 +1,7 @@
 <div class="td-actions text-right">
 	<div class="row">
 		<div class="col-sm-4">
-		<a href="#" id="edit" value="{{route('users.edit', $users->id)}}" value="" data-toggle="modal" data-target="#myformusersedit"  type="button" rel="tooltip" class="btn btn-info btn-round "><i class="fas fa-edit"></i></a>
+		<a href="#" id="edit" value="" value="" data-toggle="modal" data-target="#myformusersedit"  type="button" rel="tooltip" class="btn btn-info btn-round "><i class="fas fa-edit"></i></a>
 		</div>
 
 

@@ -7,7 +7,7 @@
               <div class="card">
                 <div  class="card-header card-header-success">
                   <h4 class="card-title "><strong>LISTA DE PERMISOS</strong><a style="padding-top:0%;"  data-toggle="modal" data-target="#myformpermissions" class="btn btn-success  btn-round btn-sm"><i class="fa fa-plus-square" ></i></a></h4>
-             
+ 
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -29,7 +29,6 @@
               </div>
             </div>
           </div>
-
 
 
 

@@ -18,63 +18,32 @@ use Illuminate\Http\Request;
 
 Route::get('clients/all', function () {
 	
-	 return datatables()->eloquent(App\Client::query())->addColumn('btn','frond.actions')->rawColumns(['btn'])->toJson();
+	 return datatables()->eloquent(App\Models\Client::query())->addColumn('btn','frond.actions')->rawColumns(['btn'])->toJson();
 		
 });
 
 Route::get('products/all', function () {
 	
-	 return datatables()->eloquent(App\Product::query())->toJson();
+	 return datatables()->eloquent(App\Models\Product::query())->toJson();
 		
 });
 
-Route::get('credits/all', function () {
-	
-	 return datatables()->eloquent(App\Credit::query())->toJson();
-		
-});
-
-Route::get('lots/all', function () {
-	
-	 return datatables()->eloquent(App\Lot::query())->toJson();
-		
-});
-
-
-Route::get('raw_materials/all', function () {
-	
-	 return datatables()->eloquent(App\Raw_material::query())->toJson();
-		
-});
 
 Route::get('sales/all', function () {
 	
-	 return datatables()->eloquent(App\Sale::query())->toJson();
-		
-});
-
-
-Route::get('spendings/all', function () {
-	
-	 return datatables()->eloquent(App\Spending::query())->toJson();
-		
-});
-
-Route::get('warrantys/all', function () {
-	
-	 return datatables()->eloquent(App\Warranty::query())->toJson();
+	 return datatables()->eloquent(App\Models\Sale::query())->toJson();
 		
 });
 
 Route::get('purchases/all', function () {
 	
-	 return datatables()->eloquent(App\Purchase::query())->toJson();
+	 return datatables()->eloquent(App\Models\Purchase::query())->toJson();
 		
 });
 
 Route::get('users/all', function () {
 	
-	return datatables()->eloquent(App\User::query())->addColumn('btn','frond.users.buttons.actions')->rawColumns(['btn'])->toJson();
+	return datatables()->eloquent(App\Models\User::query())->addColumn('btn','frond.users.buttons.actions')->rawColumns(['btn'])->toJson();
 		
 });
 Route::get('roles/all', function () {
@@ -93,18 +62,3 @@ Route::get('permissions/all', function () {
 
 //  Se crea una api
 
-Route::apiResource('products', 'ProductController');
-Route::apiResource('clients', 'ClientController');
-Route::apiResource('credits', 'CreditController');
-Route::apiResource('lots', 'LotController');
-Route::apiResource('raw_materials', 'RawMaterialController');
-Route::apiResource('sales', 'SaleController');
-Route::apiResource('spendings', 'SpendingController');
-Route::apiResource('warranties', 'WarrantyController');
-Route::apiResource('purchases', 'PurchaseController');
-Route::apiResource('users', 'UserController');
-
-// users-roles-permissions
-
-Route::apiResource('roles', 'RoleController');
-Route::apiResource('permisions', 'RoleController');
