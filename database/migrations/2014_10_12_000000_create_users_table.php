@@ -20,9 +20,11 @@ class CreateUsersTable extends Migration
             $table->integer('nuip')->nullable();
             $table->string('gender')->nullable();
             $table->string('address')->nullable();
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('email')->unique()->nullable();
+            $table->string('password')->nullable();
+            $table->string('file',128)->nullable();
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

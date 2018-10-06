@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
-use App\Product;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,8 +14,11 @@ class ProductController extends Controller
     
     public function index()
     {
+    
         return view('frond.products.index');
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -25,7 +28,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product;
+        $product->name= $request->name;
+        $product->save();
+
+        return redirect()->view('frond.products.index');
+        
     }
 
 
@@ -35,9 +43,13 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product = find($id);
+
+        return view('frond.products.edit',compact('product'));
+
+        
     }
 
     /**
@@ -47,9 +59,17 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update($id, Request $request)
     {
-        //
+          $product = find($id);
+          $product->name= $request->name;
+
+          $product->save();
+
+            return redirect()->view('frond.products.index');
+
+
+        
     }
 
     /**
@@ -60,6 +80,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+               $product = find($id);
+               $product->restore();
+
      
     
     }

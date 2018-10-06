@@ -2753,7 +2753,7 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #ffffff;
-  background:linear-gradient(60deg, #288c6c, #4ea752);
+  background-color: #4caf50;
   border-color: #4caf50;
   box-shadow: none;
 }
@@ -3413,7 +3413,7 @@ tbody.collapse.show {
   color: #212529;
   text-align: left;
   list-style: none;
-  background-color: transparent;
+  background-color: #ffffff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
@@ -4877,12 +4877,12 @@ tbody.collapse.show {
 .page-item.active .page-link {
   z-index: 1;
   color: #ffffff;
-  background:linear-gradient(60deg, #288c6c, #4ea752);
-  border-color: #fff;
+  background-color: #2196f3;
+  border-color: #2196f3;
 }
 
 .page-item.disabled .page-link {
-  color: #fff;
+  color: #6c757d;
   pointer-events: none;
   cursor: auto;
   background-color: transparent;
@@ -6659,7 +6659,6 @@ button.bg-dark:focus {
 .align-items-end {
   align-items: flex-end !important;
 }
-
 
 .align-items-center {
   align-items: center !important;
@@ -16237,7 +16236,7 @@ a .material-icons {
 label {
   font-size: 14px;
   line-height: 1.42857;
-  color: #fff;
+  color: #AAAAAA;
   font-weight: 400;
 }
 
@@ -18670,7 +18669,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition {
-  background-color: transparent;
+  background-color: #1a2035;
 }
 
 .dark-edition .btn,
@@ -19520,7 +19519,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .sidebar[data-color="purple"] li.active>a {
-  background: linear-gradient(60deg, #288c6c, #4ea752);
+  background: linear-gradient(60deg, #7b1fa2, #913f9e);
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
 }
 
@@ -19576,7 +19575,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .sidebar .logo .simple-text {
-  color: #fff;
+  color: #a9afbbd1;
   font-weight: 300;
 }
 
@@ -19668,7 +19667,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .card .card-body {
-  color: #fff;
+  color: #8b92a9;
 }
 
 .dark-edition .card .card-body .card-category+.card-title {
@@ -19729,7 +19728,7 @@ Copyright (c) 2015 Daniel Eden
 .dark-edition .card.bg-info,
 .dark-edition .card.card-rotate.bg-info .front,
 .dark-edition .card.card-rotate.bg-info .back {
-  background: linear-gradient(60deg, #288c6c, #4ea752);
+  background: linear-gradient(60deg, #029eb1, #25b1c3);
 }
 
 .dark-edition .card .card-header-primary .card-icon,
@@ -19738,7 +19737,7 @@ Copyright (c) 2015 Daniel Eden
 .dark-edition .card.bg-primary,
 .dark-edition .card.card-rotate.bg-primary .front,
 .dark-edition .card.card-rotate.bg-primary .back {
-  background:linear-gradient(60deg, #288c6c, #4ea752);
+  background: linear-gradient(60deg, #7b1fa2, #913f9e);
 }
 
 .dark-edition .primary-link {
@@ -19794,7 +19793,7 @@ Copyright (c) 2015 Daniel Eden
 .dark-edition .table>thead>tr>td,
 .dark-edition .table>tbody>tr>td,
 .dark-edition .table>tfoot>tr>td {
-  color: #fff;
+  color: #8b92a9;
   border-color: rgba(180, 180, 180, 0.1);
 }
 
@@ -19902,7 +19901,7 @@ Copyright (c) 2015 Daniel Eden
 
 .dark-edition .form-control,
 .is-focused .dark-edition .form-control {
-  background-image: linear-gradient(to top, #288c6c 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(180, 180, 180, 0.1) 1px, rgba(180, 180, 180, 0) 1px);
+  background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(180, 180, 180, 0.1) 1px, rgba(180, 180, 180, 0) 1px);
 }
 
 .dark-edition .form-control:invalid {
@@ -21044,7 +21043,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 
 .dark-edition .dropdown:not(.show-dropdown) .dropdown-menu .dropdown-item,
 .dark-edition .dropdown:not(.show-dropdown) .dropdown-menu li>a {
-  color: #fff;
+  color: #606477;
   -webkit-transition: all 150ms linear, color, box-shadow 0ms;
   -moz-transition: all 150ms linear, color, box-shadow 0ms;
   -o-transition: all 150ms linear, color, box-shadow 0ms;
@@ -21059,7 +21058,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 .dark-edition .dropdown:not(.show-dropdown) .dropdown-menu li>a:focus,
 .dark-edition .dropdown:not(.show-dropdown) .dropdown-menu li>a:active {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
-  background: linear-gradient(60deg, #288c6c, #4ea752);
+  background: linear-gradient(60deg, #7b1fa2, #913f9e);
   color: #fff;
 }
 

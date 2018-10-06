@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Role;
+use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,11 +15,12 @@ class RoleController extends Controller
      */
     public function index()
     {
-        
+
+
         return view('frond.roles.index');
     }
 
- 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -37,28 +38,6 @@ class RoleController extends Controller
         $role->save();
 
         return redirect()->route('roles.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Role $role)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Role $role)
-    {
-        //
     }
 
     /**

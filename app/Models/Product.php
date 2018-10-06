@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
 
-   protected $table = 'products';
+    protected $table = 'products';
     use SoftDeletes; //Implementamos 
 
     protected $dates = ['deleted_at']; 
 
-     protected $fillable = [
+    protected $fillable = [
         'id', 'code', 'date','name','size','brand','quantity','iva','unit_price','sale_price','stockmin',
     ];
 
@@ -31,10 +31,6 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Purchase');
     }
-
-
-
-
 
 
 }

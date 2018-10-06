@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
   <link href="{{asset('assets/css/material-dashboard.css?v=2.1.0')}}" rel="stylesheet" />
-  <link href="{{asset('css/dataTables.bootstrap4.min.css')}}" rel="stylesheet"> 
+  <link href="{{asset('css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/all.min.css')}}">
    <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/fontawesome.min.css')}}">
 
@@ -39,20 +39,22 @@
               <p>Inicio</p>
             </a>
           </li>
+
+
        <li class="nav-item active  ">
            <div class="dropdown">
-           
-                        <a class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  <i class="fas fa-unlock-alt"></i> 
+
+                        <a class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  <i class="fas fa-unlock-alt"></i>
                            <p>Administración</p>
                         </a>
-                  
+
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                       
+
                                 <a class="dropdown-item" href="{{route('users.index')}}">
                                 <i class="fas fa-user"></i>
                                   <p>Usuario</p>
                                 </a>
-                           
+
                                 <a class="dropdown-item" href="{{route('roles.index')}}">
                                 <i class="fas fa-user-tie"></i>
                                   <p>Roles</p>
@@ -62,25 +64,26 @@
                                   <p>Permisos</p>
                                 </a>
                         </div>
-                
-                        
+
+
            </div>
-         </li>    
+         </li>
+
 
             <li class="nav-item active  ">
            <div class="dropdown">
-           
+
                         <a class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-cogs"></i>
                            <p>Opciones</p>
                         </a>
-                  
+
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                       
+
                                 <a class="dropdown-item" href="{{route('users.index')}}">
                             <i class="far fa-address-card"></i>
                                   <p>Perfil</p>
                                 </a>
-                           
+
                                 <a class="dropdown-item" href="{{route('roles.index')}}">
                                 <i class="fas fa-info-circle"></i>
                                   <p>Ayuda</p>
@@ -90,14 +93,14 @@
                                   <p>Cerrar sessión</p>
                                 </a>
                         </div>
-                
-                        
+
+
            </div>
-         </li>   
+         </li>
 
 
 
-                    
+
           <!-- your sidebar here -->
         </ul>
       </div>
@@ -106,12 +109,12 @@
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
-          
-     
+
+
           <div class="collapse navbar-collapse" style="margin-left:920px">
             <ul class="navbar-nav">
-          
-              
+
+
               <!-- your navbar here -->
             </ul>
           </div>
@@ -122,7 +125,7 @@
         <div  class="container-fluid">
           @yield('content')
 
-     @include('frond.models.model')
+
         </div>
       </div>
 
@@ -153,25 +156,21 @@
   <!--   Core JS Files   -->
   <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
   <script src="{{asset('js/jquery.dataTables.min.js') }}"></script>
-  <script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
-  <script src="{{ asset('js/datatable.js') }}"></script>
+  <script src="{{asset('js/dataTables.bootstrap4.min.js') }}"></script>
+  <script src="{{asset('js/datatable.js') }}"></script>
 
   <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
   <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
-  <script src="https://unpkg.com/default-passive-events"></script>
+
   <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
-  <!-- Place this tag in your head or just before your close body tag. -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chartist JS -->
-  <script src="{{asset('assets/js/plugins/chartist.min.js')}}"></script>
-  <!--  Notifications Plugin    -->
-  <script src="{{asset('assets/js/plugins/bootstrap-notify.js')}}"></script>
+
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('assets/js/material-dashboard.js?v=2.1.0´')}}"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="{{asset('assets/demo/demo.js')}}"></script>
+  <script src="{{asset('js/document.js')}}"></script>
+  <script src="{{asset('js/sweetalert.min.js')}}"></script>
+
 
 
 

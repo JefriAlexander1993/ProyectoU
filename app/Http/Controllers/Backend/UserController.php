@@ -15,14 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-     
-
         return view('frond.users.index');
-
     }
-
-
- 
 
     /**
      * Store a newly created resource in storage.
@@ -32,39 +26,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
          //$user = User::create($request->all());
-        
-        $user= new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password= $request->password;
-        $user->save();
-        
-             return redirect()->route('users.index');
+      if($request->ajax()){
+            User::create($request->all());
+              return response()->json([
+                "mensaje"=>"El usuario fue creado."
+              ]);
+      }
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-    
-    }
 
     /**
      * Update the specified resource in storage.
@@ -75,11 +47,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-
           $user= User::find($id);
           $user->fill($request->all())->save();
-          return redirect()->route('users.index');
-   
+            return response()->json(["mensaje"=>"Actualizar"]);
+
     }
 
     /**
@@ -90,6 +61,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user= User::findOrFail($id)->delete();
+        return response()->json(["mensaje"=>"Borrado"]);
     }
 }

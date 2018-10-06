@@ -1,4 +1,4 @@
-   
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,7 +17,7 @@
   <!-- CSS Files -->
   <link href="{{asset('assets/css/material-kit.css?v=2.0.4')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{{asset('assets/demo/demo.css"')}} rel="stylesheet" />
+  <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet" />
 
 </head>
 
@@ -25,8 +25,8 @@
   <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
-          Material Kit </a>
+          <a>Material Kit </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -36,12 +36,12 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
-
-                        <!-- Authentication Links -->
+                       <!-- Authentication Links -->
                         @guest
                             <li><a  style="color: darkgray" class="nav-link"  href="{{route('login')}}"><strong><u>Login</u></strong></a></li>
-                            <li><a   style="color: darkgray" class="nav-link" href="{{route('register')}}"><strong><u>Registro</u></strong></a></li>
+                            <li><a   style="color: darkgray" class="nav-link" href="{{route('register')}}"><strong><u>Registro</u></strong></a>
                         @else
+
                             <li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -59,10 +59,13 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                 </div>   
+                                 </div>
                                 </ul>
                             </li>
                         @endguest
+
+
+
                     </ul>
 
       </div>
