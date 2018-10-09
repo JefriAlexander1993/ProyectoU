@@ -28,7 +28,11 @@ class UserController extends Controller
     {
          //$user = User::create($request->all());
       if($request->ajax()){
-            User::create($request->all());
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->save();
               return response()->json([
                 "mensaje"=>"El usuario fue creado."
               ]);

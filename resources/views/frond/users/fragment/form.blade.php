@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-              <label class="bmd-label-floating">Nombres</label>
+              <label class="bmd-label-floating"><strong>Nombres</strong></label>
             <input type="text" required class="form-control" maxlength="20" id="idname" name="idname" title="Nombre del usuario">
             </div>
       </div>
@@ -15,7 +15,7 @@
   <div class="row">
       <div class="col-sm-12">
           <div class="form-group">
-            <label class="bmd-label-floating">Email</label>
+            <label class="bmd-label-floating"><strong>Email</strong></label>
           <input type="email" id="idemail" required class="form-control"  name="idemail" title="Correo electronico">
               <i class="mdi mdi-check-circle-outline"></i>
 
@@ -25,7 +25,7 @@
   <div class="row">
     <div class="col-sm-12">
         <div class="form-group">
-       <label class="bmd-label-floating">Constraseña</label>
+       <label class="bmd-label-floating"><strong>Constraseña</strong></label>
         <input  id="idpassword" name="idpassword" type="password" required class="form-control"  name="password" title="Contraseña">
         </div>
     </div>

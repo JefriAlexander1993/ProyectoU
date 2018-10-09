@@ -10,19 +10,16 @@ class Product extends Model
 {
 
     protected $table = 'products';
-    use SoftDeletes; //Implementamos 
+    use SoftDeletes; //Implementamos
 
-    protected $dates = ['deleted_at']; 
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'id', 'code', 'date','name','size','brand','quantity','iva','unit_price','sale_price','stockmin',
+        'id', 'code', 'date','name','size','brand','quantity','iva','unit_price','sale_price','stockmin','sale_id','purchase_id',
+        'quotation_id'
     ];
 
 
-	public function provider()
-    {
-        return $this->belongsToMany('App\Provider');
-    }
     public function sale()
     {
         return $this->belongsToMany('App\Sale');
@@ -30,6 +27,22 @@ class Product extends Model
     public function purchase()
     {
         return $this->belongsToMany('App\Purchase');
+    }
+    public function zise()
+    {
+        return $this->hasOne('App\Zise');
+    }
+    public function type()
+    {
+        return $this->hasOne('App\Type');
+    }
+    public function quotation()
+    {
+        return $this->belongsToMany('App\Quotation');
+    }
+    public function brand()
+    {
+        return $this->hasOne('App\Brand');
     }
 
 

@@ -16,7 +16,6 @@ class RoleController extends Controller
     public function index()
     {
 
-
         return view('frond.roles.index');
     }
 
@@ -29,15 +28,20 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $role = new Role;
 
+      if($request->ajax()){
+        $role = new Role;
         $role->name = $request->name;
         $role->display_name = $request->display_name;
         $role->description = $request->description;
 
         $role->save();
 
-        return redirect()->route('roles.index');
+              return response()->json([
+                "mensaje"=>"El usuario fue creado."
+              ]);
+      }
+
     }
 
     /**
@@ -47,9 +51,11 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
-        //
+      $role= Role::find($id);
+        $role->fill($request->all())->save();
+        return response()->json(["mensaje"=>"Actualizar"]);
     }
 
     /**
@@ -58,8 +64,9 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
-        //
+      $role= Role::findOrFail($id)->delete();
+      return response()->json(["mensaje"=>"Borrado"]);
     }
 }

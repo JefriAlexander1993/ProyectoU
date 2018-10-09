@@ -44,17 +44,17 @@ Route::get('purchases/all', function () {
 Route::get('users/all', function () {
 
 
-	return datatables()->eloquent(App\Models\User::query())->toJson();
+	return datatables()->eloquent(App\Models\User::query())->addColumn('btn','frond.users.fragment.actions')->rawColumns(['btn'])->toJson();
 
 });
 Route::get('roles/all', function () {
 
-	 return datatables()->eloquent(App\Role::query())->toJson();
+	 return datatables()->eloquent(App\Role::query())->addColumn('btn','frond.roles.fragment.actions')->rawColumns(['btn'])->toJson();
 
 });
 Route::get('permissions/all', function () {
 
-	 return datatables()->eloquent(App\Permission::query())->toJson();
+	 return datatables()->eloquent(App\Permission::query())->addColumn('btn','frond.permissions.fragment.actions')->rawColumns(['btn'])->toJson();
 
 });
 

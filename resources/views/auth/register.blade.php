@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/fontawesome.min.css')}}">
   <!-- CSS Files -->
-  <link href="{{asset('assets/css/material-kit.css?v=2.0.4')}}" rel="stylesheet" />
+  <link href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{{asset('assets/demo/demo.css"')}} rel="stylesheet" />
+  <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet" />
 </head>
 
 <body class="login-page sidebar-collapse">
@@ -32,16 +32,16 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-  
+
     </div>
   </nav>
-  <div class="page-header header-filter" style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
-    <div class="container">
+  <div class="page-header header-filter" >
+    <div class="container" style="margin-top:120px">
       <div class="row">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
           <div class="card card-login">
-        
-     
+
+
               <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                                   {{ csrf_field() }}
               <div class="card-header card-header-primary text-center">
@@ -61,7 +61,7 @@
                                                                           <i class="fas fa-user"></i>
                                                                         </span>
                                                                       </div>
-                                              <input id="name" type="text"  title="Pepito perez" class="form-control" name="name" value="{{ old('name') }}" required autofocus placeholder="Nombre del usuario">
+                                              <input id="name" type="text" maxlength="15"  title="Pepito perez" class="form-control" name="name" value="{{ old('name') }}" required autofocus placeholder="Nombre del usuario">
                                                           @if ($errors->has('name'))
                                                               <span class="help-block">
                                                                   <strong>{{ $errors->first('name') }}</strong>
@@ -75,7 +75,7 @@
                                         </div>
                                </div>
                     </div>
-     
+
 
                     <div class="row">
                         <div class="col-sm-12">
@@ -99,16 +99,16 @@
                                       </div>
                                     </div>
                                </div>
-                    </div>   
-              
+                    </div>
+
                     <div class="row">
-                      <div class="col-sm-12">                           
-                                <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}"> 
+                      <div class="col-sm-12">
+                                <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                         <div class="input-group-prepend">
                                                                       <span class="input-group-text">
                                                                         <i class="fas fa-key"></i>
                                                                       </span>
-                                                         </div>                         
+                                                         </div>
                                                <input id="password" title ="**********" type="password" class="form-control" name="password"  placeholder="Contraseña" required>
 
 
@@ -117,13 +117,13 @@
                                                                 <strong>{{ $errors->first('password') }}</strong>
                                                             </span>
                                                         @endif
-                                                
+
                                 </div>
                         </div>
                      </div>
-                 
+
                      <div class="row">
-                      <div class="col-sm-12">   
+                      <div class="col-sm-12">
                               <div class="input-group">
                                         <div class="input-group-prepend">
                                                                     <span class="input-group-text">
@@ -137,22 +137,22 @@
                                             </span>
                                           </div>
                               </div>
-                          </div>    
-                   </div>     
-                           
-       
+                          </div>
+                   </div>
+
+
                     <div class="row">
-                    <div class="col-sm-12"> 
-                              <div class="form-group text-center" style="margin-left:18px"> 
+                    <div class="col-sm-12">
+                              <div class="form-group text-center" style="margin-left:18px">
                                     <button  type="submit" class="btn btn-primary submit-btn btn-block">Registrar</button>
-                              </div>  
+                              </div>
                                 <div class="text-block text-center my-3">
                                     <span class="text-small font-weight-semibold">Ya tengo y cuenta ?</span>
                                     <a href="{{route('login')}}" class="text-black text-small">Login</a>
                                 </div>
-                            </div> 
+                            </div>
                      </div>
-              
+
             </form>
           </div>
         </div>
@@ -168,7 +168,7 @@
                 J&C PROGRAMMING
               </a>
             </li>
-          
+
           </ul>
         </nav>
         <div class="copyright float-right">
@@ -179,7 +179,7 @@
         </div>
       </div>
     </footer>
-  
+
   <!--   Core JS Files   -->
   <script  type="text/javascript" src="{{asset('assets/js/core/jquery.min.js')}}"></script>
   <script src="{{asset('assets/js/core/popper.min.js')}}" type="text/javascrip" ></script>

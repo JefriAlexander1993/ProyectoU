@@ -27,7 +27,13 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      if($request->ajax()){
+       $permission =  Permission::create($request->all());
+       $permission->save();
+              return response()->json([
+                "mensaje"=>"El permiso fue creado."
+              ]);
+      }
     }
 
     /**
@@ -37,9 +43,11 @@ class PermissionController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, $id)
     {
-        //
+        $permission= Permission::find($id);
+        $permission->fill($request->all())->save();
+        return response()->json(["mensaje"=>"Actualizar"]);
     }
 
     /**
@@ -48,8 +56,9 @@ class PermissionController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy($id)
     {
-        //
+      $permission= Permission::findOrFail($id)->delete();
+      return response()->json(["mensaje"=>"Borrado"]);
     }
 }

@@ -1,73 +1,79 @@
-
-
 $(document).ready(function() {
-    listUsers();
-         });
+  usersList();
+  clientsList();
+  salesList();
+  productsList();
+  rolesList();
+  permissionsList();
+      });
+
 
 
 // Datatable de Clientes
- $(document).ready(function() {
-           var table =    $('#clients').removeAttr('width').DataTable({
-                      scrollY:        "300px",
-                      scrollX:        true,
-                      scrollCollapse: true,
-                      paging:         true,
-                      columnDefs: [
-                          { width: 70, targets: 13 }
-                      ],
-                      fixedColumns: true,
 
-                      language: {
-                        "sProcessing":     "Procesando...",
-                        "sLengthMenu":     "Mostrar _MENU_ Registros",
-                        "sZeroRecords":    "No se encontraron resultados",
-                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix":    "",
-                        "sSearch":         "Buscar:",
-                        "sUrl":            "",
-                        "sInfoThousands":  ",",
-                        "sLoadingRecords": "Cargando...",
-                        "oPaginate": {
-                            "sFirst":    "Primero",
-                            "sLast":     "Último",
-                            "sNext":     "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "oAria": {
-                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                                  }
-                              },
+function clientsList() {
+  var table =    $('#clients').removeAttr('width').DataTable({
+             scrollY:        "300px",
+             scrollX:        true,
+             scrollCollapse: true,
+             paging:         true,
+             columnDefs: [
+                 { width: 70, targets: 13 }
+             ],
+             fixedColumns: true,
 
-                   "autoWidth": true,
-                   "serverSide":true,
-                   "ajax": "api/clients/all",
-                    "columns":[
-                        {data:'id'},
-                        {data:'nuip_nit'},
-                        {data:'names'},
-                        {data:'surnames'},
-                        {data:'type_document'},
-                        {data:'company'},
-                        {data:'address'},
-                        {data:'phone'},
-                        {data:'cell_phone'},
-                        {data:'fax'},
-                        {data:'email'},
-                        {data:'city'},
-                        {data:'departament'},
-                        {data:'btn'},
-                              ]
-              });
-              });
+             language: {
+               "sProcessing":     "Procesando...",
+               "sLengthMenu":     "Mostrar _MENU_ Registros",
+               "sZeroRecords":    "No se encontraron resultados",
+               "sEmptyTable":     "Ningún dato disponible en esta tabla",
+               "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+               "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+               "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+               "sInfoPostFix":    "",
+               "sSearch":         "Buscar:",
+               "sUrl":            "",
+               "sInfoThousands":  ",",
+               "sLoadingRecords": "Cargando...",
+               "oPaginate": {
+                   "sFirst":    "Primero",
+                   "sLast":     "Último",
+                   "sNext":     "Siguiente",
+                   "sPrevious": "Anterior"
+               },
+               "oAria": {
+                   "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                   "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                         }
+                     },
+
+          "autoWidth": true,
+          "serverSide":true,
+          "ajax": "api/clients/all",
+           "columns":[
+               {data:'id'},
+               {data:'nuip_nit'},
+               {data:'names'},
+               {data:'surnames'},
+               {data:'type_document'},
+               {data:'company'},
+               {data:'address'},
+               {data:'phone'},
+               {data:'cell_phone'},
+               {data:'fax'},
+               {data:'email'},
+               {data:'city'},
+               {data:'departament'},
+               {data:'btn'},
+                     ]
+     });
+
+}
 
 
 // Datatable de productos
 
-             $(document).ready(function() {
+  function productsList() {
               $('#products').DataTable(
               {  language: {
                         "sProcessing":     "Procesando...",
@@ -101,50 +107,50 @@ $(document).ready(function() {
 
                               ]
               });
-              });
+}
 
 
 // Datatable de ventas
-     $(document).ready(function() {
-              $('#sales').DataTable(
-              {  language: {
-                        "sProcessing":     "Procesando...",
-                        "sLengthMenu":     "Mostrar _MENU_ registros",
-                        "sZeroRecords":    "No se encontraron resultados",
-                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix":    "",
-                        "sSearch":         "Buscar:",
-                        "sUrl":            "",
-                        "sInfoThousands":  ",",
-                        "sLoadingRecords": "Cargando...",
-                        "oPaginate": {
-                            "sFirst":    "Primero",
-                            "sLast":     "Último",
-                            "sNext":     "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "oAria": {
-                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                                  }
-                              },
-                    "serverSide":true,
-                    "ajax": "api/sales/all",
-                    "columns":[
-                        {data:'id'},
-                        //{data:'name'},
+function salesList() {
+  $('#sales').DataTable(
+  {  language: {
+            "sProcessing":     "Procesando...",
+            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sZeroRecords":    "No se encontraron resultados",
+            "sEmptyTable":     "Ningún dato disponible en esta tabla",
+            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix":    "",
+            "sSearch":         "Buscar:",
+            "sUrl":            "",
+            "sInfoThousands":  ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                      }
+                  },
+        "serverSide":true,
+        "ajax": "api/sales/all",
+        "columns":[
+            {data:'id'},
+            //{data:'name'},
 
-                              ]
-              });
-              });
-
+                  ]
+  });
+}
 
 
 // Datatable de usuarios
-function listUsers(){
+function  usersList(){
+
   var table=   $('#users').DataTable({
 
             language: {
@@ -177,42 +183,18 @@ function listUsers(){
                     {data:'id'},
                     {data:'name'},
                     {data:'email'},
-                    {
-                      data:null,
-                      defaultContent:"<div class='td-actions text-right'><div class='row'><div class='col-sm-4'><button type='button'  class='editar btn btn-info btn-lg '><i class='far fa-hand-pointer'></i></button></div>	<div class='col-sm-4'><button type='button' class='ver btn btn-secunday btn-lg'><i class='fas fa-eye'></i></button></div>	<div class='col-sm-4'><button type='button' class='eliminar btn btn-danger btn-lg' onclick='eliminarUsers()' ><i class='fas fa-trash-alt' ></i></button></div></div></div></div>"
-
-                    },
-
-
-                          ]
+                    {data:'btn'},
+                  ]
           });
-
           data_edit("#users tbody", table);
           data_show("#users tbody", table);
           data_delete("#users tbody", table);
-
 }
-
-
-
-
-
-              var modificar = function(){
-                $("#formuser").on("submit", function(e){
-                  alert("se guardo.");
-
-                  e.preventDefault();
-                  var frm=$(this).serialize();
-                  console.log(frm);
-
-                });
-              }
-
               //Estrae la información de la tabla para editar.
 
               var data_edit =  function(tbody , table){
 
-              $(tbody).on("click", "button.editar", function(){
+              $(tbody).on("click", "#editUser", function(){
                 var data= table.row($(this).parents("tr")).data();
                 var iduser =$("#idusuarioedit").val(data.id);
                 var name=$("#name").val(data.name);
@@ -226,7 +208,8 @@ function listUsers(){
 
               var data_show =  function(tbody , table){
 
-              $(tbody).on("click", "button.ver", function(){
+              $(tbody).on("click", "#showUser", function(){
+
                 var data= table.row($(this).parents("tr")).data();
                     var  name =$("#showname").val(data.name);
                     var  email =$("#showemail").val(data.email);
@@ -240,7 +223,7 @@ function listUsers(){
 
               var data_delete =  function(tbody , table){
 
-              $(tbody).on("click", "button.eliminar", function(){
+              $(tbody).on("click", "#deleteUser", function(){
 
                 var data= table.row($(this).parents("tr")).data();
                   var iduser =$("#idusuarioedit").val(data.id);
@@ -250,15 +233,13 @@ function listUsers(){
 
                 // Estrae el id del usuario de una columan especifica para editar
 
-
-
               // Hacer esconder una etiqueta.
               function esconde_div(){
                  var elemento = document.getElementById("usersvisible");
                  elemento.style.display = 'none';
               }
 
-              //Limpiar los campos
+              //Limpiar los campos cuando cambio de botón
               $(document).ready(function() {
               $('#create-form').on('click', function() {
                 var name=$("#name").val('');
@@ -276,6 +257,7 @@ function listUsers(){
               }
             );
             });
+
             $(document).ready(function() {
             $('#edit-form').on('click', function() {
               var name=$("#name").val('');
@@ -285,64 +267,109 @@ function listUsers(){
             );
             });
 
+            //Limpiar los campos cuando cambio de botón role
+            $(document).ready(function() {
+            $('#create-form').on('click', function() {
+              var name=$("#nameRole").val('');
+              var display_name=$("#display_nameRole").val('');
+              var description=$("#descriptionRole").val('');
+
+            }
+          );
+          });
+
+          $(document).ready(function() {
+          $('#show-form').on('click', function() {
+            var name=$("#showRolename").val('');
+            var display_name=$("#showRoledisplay_name").val('');
+            var description=$("#showRoledescription").val('');
+            }
+          );
+          });
+
+          $(document).ready(function() {
+          $('#edit-form').on('click', function() {
+          var name=  $("#nameRoleEdit").val('');
+          var display_name =  $("#display_nameRoleEdit").val('');
+          var description=  $("#descriptionRoleEdit").val('');
+
+            }
+          );
+          });
+
 
 
      // Datatable de roles
-     $(document).ready(function() {
-        var tablerole=  $('#roles').DataTable({
 
-                language: {
-                        "sProcessing":     "Procesando...",
-                        "sLengthMenu":     "Mostrar _MENU_ registros",
-                        "sZeroRecords":    "No se encontraron resultados",
-                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix":    "",
-                        "sSearch":         "Buscar:",
-                        "sUrl":            "",
-                        "sInfoThousands":  ",",
-                        "sLoadingRecords": "Cargando...",
-                        "oPaginate": {
-                            "sFirst":    "Primero",
-                            "sLast":     "Último",
-                            "sNext":     "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "oAria": {
-                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                                  }
-                              },
-                    "serverSide":true,
-                    "ajax": "api/roles/all",
-                    "columns":[
-                        {data:'id'},
-                        {data:'name'},
-                        {data:'display_name'},
-                        {data:'description'},
-                        {data:'created_at'},
-                        {
-                          data:null,
-                          defaultContent:"<div class='td-actions text-right'><div class='row'><div class='col-sm-4'><button type='button'  class='editar btn btn-info btn-lg '><i class='far fa-hand-pointer'></i></button></div>	<div class='col-sm-4'><button type='button' class='ver btn btn-secunday btn-lg'><i class='fas fa-eye'></i></button></div>	<div class='col-sm-4'><button type='button' class='eliminar btn btn-danger  btn-lg' data-toggle='modal' data-target='#modalEliminar' ><i class='fas fa-trash-alt' ></i></button></div></div></div></div>"
+   function rolesList(){
 
-                        },
-                              ]
-              });
-              data_editRole("#roles tbody", tablerole);
-              data_showRole("#roles tbody", tablerole);
-              });
+         var tablerole=  $('#roles').DataTable({
+
+                 language: {
+                         "sProcessing":     "Procesando...",
+                         "sLengthMenu":     "Mostrar _MENU_ registros",
+                         "sZeroRecords":    "No se encontraron resultados",
+                         "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                         "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                         "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                         "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                         "sInfoPostFix":    "",
+                         "sSearch":         "Buscar:",
+                         "sUrl":            "",
+                         "sInfoThousands":  ",",
+                         "sLoadingRecords": "Cargando...",
+                         "oPaginate": {
+                             "sFirst":    "Primero",
+                             "sLast":     "Último",
+                             "sNext":     "Siguiente",
+                             "sPrevious": "Anterior"
+                         },
+                         "oAria": {
+                             "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                             "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                   }
+                               },
+                     "serverSide":true,
+                     "ajax": "api/roles/all",
+                     "columns":[
+                         {data:'id'},
+                         {data:'name'},
+                         {data:'display_name'},
+                         {data:'description'},
+                         {data:'created_at'},
+                         {data:'btn'},
+
+                       ],
+               });
+               data_editRole("#roles tbody", tablerole);
+               data_showRole("#roles tbody", tablerole);
+               data_deleteRole("#roles tbody", tablerole);
+       }
+
+
+       var data_deleteRole =  function(tbody , tablerole){
+
+       $(tbody).on("click", "#deleteRole", function(){
+
+         var data= tablerole.row($(this).parents("tr")).data();
+           var idrole =$("#idrole").val(data.id);
+            id =$("#idrole").val();
+
+
+
+       });
+       }
 
               // Carga datos a la vista en el formulario para editar
 
-              var data_editRole =  function(tbody , table){
+              var data_editRole =  function(tbody , tablerole){
 
-              $(tbody).on("click", "button.editar", function(){
-                var data= table.row($(this).parents("tr")).data();
-                var name=$("#namerole").val(data.name);
-                var display_name=$("#display_name").val(data.display_name);
-                var description=$("#description").val(data.description);
+              $(tbody).on("click", "#editRole", function(){
+                var data= tablerole.row($(this).parents("tr")).data();
+                var name=$("#idrole").val(data.id);
+                var name=$("#nameRoleEdit").val(data.name);
+                var display_name=$("#display_nameRoleEdit").val(data.display_name);
+                var description=$("#descriptionRoleEdit").val(data.description);
 
               });
               }
@@ -350,13 +377,13 @@ function listUsers(){
 
               //Estrae la información de la tabla para ver.
 
-              var data_showRole =  function(tbody , table){
+              var data_showRole =  function(tbody , tablerole){
 
-              $(tbody).on("click", "button.ver", function(){
-                var data= table.row($(this).parents("tr")).data();
-                    var  name =$("#showname").val(data.name);
-                    var  display_name =$("#showdisplay_name").val(data.display_name);
-                    var  description =$("#showdescription").val(data.description);
+              $(tbody).on("click", "#showRole", function(){
+                var data= tablerole.row($(this).parents("tr")).data();
+                    var  name =$("#showRolename").val(data.name);
+                    var  display_name =$("#showRoledisplay_name").val(data.display_name);
+                    var  description =$("#showRoledescription").val(data.description);
                   });
                 }
 
@@ -393,46 +420,84 @@ function listUsers(){
 
 
      // Datatable de permisos
-     $(document).ready(function() {
-         $('#permissions').DataTable({
+function permissionsList(){
+var tablePermission =  $('#permissions').DataTable({
 
-                language: {
-                        "sProcessing":     "Procesando...",
-                        "sLengthMenu":     "Mostrar _MENU_ registros",
-                        "sZeroRecords":    "No se encontraron resultados",
-                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix":    "",
-                        "sSearch":         "Buscar:",
-                        "sUrl":            "",
-                        "sInfoThousands":  ",",
-                        "sLoadingRecords": "Cargando...",
-                        "oPaginate": {
-                            "sFirst":    "Primero",
-                            "sLast":     "Último",
-                            "sNext":     "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "oAria": {
-                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                                  }
-                              },
-                    "serverSide":true,
-                    "ajax": "api/permissions/all",
-                    "columns":[
-                        {data:'id'},
-                        {data:'name'},
-                        {data:'display_name'},
-                        {data:'description'},
-                        {data:'created_at'},
-                        {
-                          data:null,
-                          defaultContent:"<div class='td-actions text-right'><div class='row'><div class='col-sm-4'><button type='button'  class='editar btn btn-info btn-lg '><i class='far fa-hand-pointer'></i></button></div>	<div class='col-sm-4'><button type='button' class='ver btn btn-secunday btn-lg'><i class='fas fa-eye'></i></button></div>	<div class='col-sm-4'><button type='button' class='eliminar btn btn-danger  btn-lg' data-toggle='modal' id='btn-confirm' data-target='#modalEliminar' ><i class='fas fa-trash-alt' ></i></button></div></div></div></div>"
+         language: {
+                 "sProcessing":     "Procesando...",
+                 "sLengthMenu":     "Mostrar _MENU_ registros",
+                 "sZeroRecords":    "No se encontraron resultados",
+                 "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                 "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                 "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                 "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                 "sInfoPostFix":    "",
+                 "sSearch":         "Buscar:",
+                 "sUrl":            "",
+                 "sInfoThousands":  ",",
+                 "sLoadingRecords": "Cargando...",
+                 "oPaginate": {
+                     "sFirst":    "Primero",
+                     "sLast":     "Último",
+                     "sNext":     "Siguiente",
+                     "sPrevious": "Anterior"
+                 },
+                 "oAria": {
+                     "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                     "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                           }
+                       },
+             "serverSide":true,
+             "ajax": "api/permissions/all",
+             "columns":[
+                 {data:'id'},
+                 {data:'name'},
+                 {data:'display_name'},
+                 {data:'description'},
+                 {data:'created_at'},
+                 {data:'btn'},
+                       ]
+       });
+data_editPermission("#permissions tbody", tablePermission);
+data_showPermission("#permissions tbody", tablePermission);
+data_deletePermission("#permissions tbody", tablePermission);
+}
 
-                        },
-                              ]
-              });
-              });
+
+var data_editPermission =  function(tbody , tablePermission){
+
+$(tbody).on("click", "#editPermission", function(){
+
+  var datap= tablePermission.row($(this).parents("tr")).data();
+  var idp =$("#idpermisoedit").val(datap.id);
+  var name =$("#namepermissionedit").val(datap.name);
+  var display_name =$("#display_namepermissionedit").val(datap.display_name);
+  var description =$("#descriptionpermissionedit").val(datap.description);
+
+});
+}
+//Estrae la información de la tabla para ver.
+
+var data_showPermission =  function(tbody , tablePermission){
+
+$(tbody).on("click", "#showPermission", function(){
+
+  var data= tablePermission.row($(this).parents("tr")).data();
+      var  name =$("#shownamepermission").val(data.name);
+      var  display_name =$("#showdisplay_namepermission").val(data.display_name);
+      var  description =$("#showdescriptionpermission").val(data.description);
+    });
+  }
+
+  var data_deletePermission =  function(tbody , tablePermission){
+
+  $(tbody).on("click", "#deletePermission", function(){
+
+    var data= tablePermission.row($(this).parents("tr")).data();
+      var idrole =$("#idpermisoedit").val(data.id);
+       id =$("#idpermisoedit").val();
+
+
+
+  });
+  }

@@ -10,17 +10,19 @@ class Purchase extends Model
 {
 	protected $table = 'purchase';
 
-    use SoftDeletes; //Implementamos 
+    use SoftDeletes; //Implementamos
 
-    protected $dates = ['deleted_at']; 
+    protected $dates = ['deleted_at'];
 
          protected $fillable = [
-       		 'id','totalPurchase','users_id',
+       		 'id','totalPurchase','users_id','product_id'
     ];
 
      public function user() {
-		  return $this->hasOne('App\User');
-	}
-
+		  return $this->belongsToMany('App\User');
+		 }
+		 public function product() {
+		 return $this->belongsToMany('App\Product');
+		}
 
 }

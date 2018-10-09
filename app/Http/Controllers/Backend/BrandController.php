@@ -15,7 +15,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        return view('frond.brands.index');
     }
 
     /**

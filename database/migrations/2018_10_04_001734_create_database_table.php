@@ -39,6 +39,7 @@ class CreateDatabaseTable extends Migration
      Schema::create('types', function (Blueprint $table) {
                  $table->increments('id');
                  $table->string('name')->unique();
+                 $table->string('characteristics')->nullable();
                  $table->integer('product_id')->unsigned();
                  $table->foreign('product_id')->references('id')->on('products');
                  $table->softDeletes();
@@ -51,6 +52,7 @@ class CreateDatabaseTable extends Migration
      Schema::create('brands', function (Blueprint $table) {
                  $table->increments('id');
                  $table->string('name')->unique();
+                 $table->string('characteristics')->nullable();
                  $table->integer('product_id')->unsigned();
                  $table->foreign('product_id')->references('id')->on('products');
                  $table->softDeletes();
@@ -74,7 +76,7 @@ class CreateDatabaseTable extends Migration
   Schema::create('comments', function (Blueprint $table) {
                  $table->increments('id');
                  $table->string('name');
-
+                 $table->mediumtext('body');
                  $table->integer('user_id')->unsigned()->nullable();
                  $table->foreign('user_id')->references('id')->on('users');
                  $table->softDeletes();
@@ -105,45 +107,42 @@ class CreateDatabaseTable extends Migration
                  $table->string('name');
                  $table->string('email');
                  $table->mediumtext('body');
-
-                 $table->integer('user_id')->unsigned()->nullable();
-                 $table->foreign('user_id')->references('id')->on('users');
                  $table->softDeletes();
                  $table->timestamps();
 
         });
 
+  Schema::create('users_quotations', function (Blueprint $table) {
+                      $table->increments('id');
+                      $table->float('costTotal');
+                      $table->integer('user_id')->unsigned();
+                      $table->integer('quotation_id')->unsigned();
+                      $table->foreign('user_id')->references('id')->on('users')
+                          ->onUpdate('cascade')->onDelete('cascade');
+                      $table->foreign('quotation_id')->references('id')->on('quotations')
+                          ->onUpdate('cascade')->onDelete('cascade');
+                      $table->softDeletes();
+                      $table->timestamps();
 
+              });
 
-                 /*--------------------------PROVEEDORES------------------------------------*/
-    Schema::create('providers', function (Blueprint $table) {
+    Schema::create('products_quotations', function (Blueprint $table) {
+                            $table->increments('id');
+                            $table->float('costTotal');
+                            $table->integer('product_id')->unsigned();
+                            $table->integer('quotation_id')->unsigned();
+                            $table->foreign('product_id')->references('id')->on('products')
+                                ->onUpdate('cascade')->onDelete('cascade');
+                            $table->foreign('quotation_id')->references('id')->on('quotations')
+                                ->onUpdate('cascade')->onDelete('cascade');
+                            $table->softDeletes();
+                            $table->timestamps();
 
-            $table->increments('id');
-            $table->integer('nit')->unique();
-            $table->string('nameprovider')->unique();
-            $table->string('namerepresentative');
-            $table->string('address')->nullable();
-            $table->string('phone');
-            $table->string('email')->nullable();
-            $table->text('observation')->nullable();
-            $table->softDeletes();
-            $table->timestamps();
-        });
-
-    /*--------------------------ARTICULO_PROVEEDOR------------------------------------*/
-    Schema::create('product_provider', function (Blueprint $table) {
-
-        $table->increments('id');
-        $table->integer('product_id')->unsigned();
-        $table->integer('provider_id')->unsigned();
-        $table->foreign('product_id')->references('id')->on('products')
-            ->onUpdate('cascade')->onDelete('cascade');
-        $table->foreign('provider_id')->references('id')->on('providers')
-            ->onUpdate('cascade')->onDelete('cascade');
-        // $table->primary(['articulo_id', 'proveedor_id']);
-        $table->softDeletes();
-        $table->timestamps();
     });
+
+
+
+
     /*--------------------------CLIENTES------------------------------------*/
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');

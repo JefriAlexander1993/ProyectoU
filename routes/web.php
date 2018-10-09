@@ -30,6 +30,9 @@ Route::Resource('sales', 'Backend\SaleController');
 
 Route::Resource('purchases', 'Backend\PurchaseController');
 Route::Resource('users', 'Backend\UserController');
+Route::Resource('brands', 'Backend\BrandController');
+Route::Resource('commentaries', 'Backend\CommentaryController');
+
 
 // users-roles-permissions
 

@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Client extends Model
 {
-	use SoftDeletes; //Implementamos 
+	use SoftDeletes; //Implementamos
 
-    protected $dates = ['deleted_at']; 
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'id','nuip','name','phone','address','email','purchase',
+        'id','nuip','name','phone','address','email',
     ];
 }
