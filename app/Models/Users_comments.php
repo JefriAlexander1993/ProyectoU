@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Users_comments extends Model
 {
-  
+
    protected $table = 'users_comments';
 
-   use SoftDeletes; //Implementamos 
+   use SoftDeletes; //Implementamos
 
-    protected $dates = ['deleted_at']; 
+    protected $dates = ['deleted_at'];
 
          protected $fillable = [
-       		 'id','body','users_id','comment_id',
+       		 'id','email','body','users_id','comment_id',
     ];
 
 

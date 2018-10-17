@@ -14489,7 +14489,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   position: relative;
   height: calc(100vh - 75px);
   overflow: auto;
-  width: 260px;
+  width: 215px;
   z-index: 4;
   padding-bottom: 30px;
 }
@@ -18429,6 +18429,7 @@ Copyright (c) 2015 Daniel Eden
       -moz-transform: rotate(-135deg);
     }
   }
+
   @keyframes bottombar-back {
     0% {
       bottom: 6px;
@@ -19555,6 +19556,7 @@ Copyright (c) 2015 Daniel Eden
 .dark-edition .sidebar {
   background: #38338B;
   opacity: .94;
+  width:215px;
 }
 
 .dark-edition .sidebar[data-background-color="black"] .nav li:not(.active) a,

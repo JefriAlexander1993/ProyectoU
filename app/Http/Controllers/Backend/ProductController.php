@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -11,10 +12,10 @@ class ProductController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
-    
+
         return view('frond.products.index');
     }
 
@@ -28,29 +29,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Product;
-        $product->name= $request->name;
-        $product->save();
+      if($request->ajax()){
+           $product =  Product::create($request->all());
+        if($request->file('file')){
+          $photo =Storage::disk('public')->put('image', $request->file('file'));
+          $product->fill(['file'=>asset($photo)])->save();
 
-        return redirect()->view('frond.products.index');
-        
+        }
+
+              return response()->json([
+                "mensaje"=>"Fue creado."
+              ]);
+      }
+
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $product = find($id);
-
-        return view('frond.products.edit',compact('product'));
-
-        
-    }
 
     /**
      * Update the specified resource in storage.
@@ -61,15 +55,12 @@ class ProductController extends Controller
      */
     public function update($id, Request $request)
     {
-          $product = find($id);
-          $product->name= $request->name;
-
-          $product->save();
-
-            return redirect()->view('frond.products.index');
+      $product= Product::find($id);
+      $product->fill($request->all())->save();
+      return response()->json(["mensaje"=>"Actualizar"]);
 
 
-        
+
     }
 
     /**
@@ -80,10 +71,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-               $product = find($id);
-               $product->restore();
-
-     
-    
+      $product=Product::findOrFail($id)->delete();
+      return response()->json(["mensaje"=>"Borrado"]);
     }
 }

@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 
 class PermissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +35,7 @@ class PermissionController extends Controller
        $permission =  Permission::create($request->all());
        $permission->save();
               return response()->json([
-                "mensaje"=>"El permiso fue creado."
+                "mensaje"=>"Fue creado."
               ]);
       }
     }

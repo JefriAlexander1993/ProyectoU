@@ -15,7 +15,7 @@ class Product extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'id', 'code', 'date','name','size','brand','quantity','iva','unit_price','sale_price','stockmin','sale_id','purchase_id',
+        'id', 'code', 'date','name','description','file','size','brand','iva','unit_price','sale_price','stockmin','sale_id','purchase_id',
         'quotation_id'
     ];
 

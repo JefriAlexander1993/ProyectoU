@@ -5,6 +5,10 @@ $(document).ready(function() {
   productsList();
   rolesList();
   permissionsList();
+  commentsList();
+  role_userList();
+  role_permissionList();
+
       });
 
 
@@ -13,16 +17,8 @@ $(document).ready(function() {
 
 function clientsList() {
   var table =    $('#clients').removeAttr('width').DataTable({
-             scrollY:        "300px",
-             scrollX:        true,
-             scrollCollapse: true,
-             paging:         true,
-             columnDefs: [
-                 { width: 70, targets: 13 }
-             ],
-             fixedColumns: true,
 
-             language: {
+           language: {
                "sProcessing":     "Procesando...",
                "sLengthMenu":     "Mostrar _MENU_ Registros",
                "sZeroRecords":    "No se encontraron resultados",
@@ -51,19 +47,11 @@ function clientsList() {
           "serverSide":true,
           "ajax": "api/clients/all",
            "columns":[
-               {data:'id'},
-               {data:'nuip_nit'},
-               {data:'names'},
-               {data:'surnames'},
-               {data:'type_document'},
-               {data:'company'},
-               {data:'address'},
+               {data:'nuip'},
+               {data:'name'},
                {data:'phone'},
-               {data:'cell_phone'},
-               {data:'fax'},
+               {data:'address'},
                {data:'email'},
-               {data:'city'},
-               {data:'departament'},
                {data:'btn'},
                      ]
      });
@@ -102,8 +90,13 @@ function clientsList() {
                     "serverSide":true,
                     "ajax": "api/products/all",
                     "columns":[
-                        {data:'id'},
+
+                        {data:'code'},
                         {data:'name'},
+                        {data:'description'},
+                        {data:'unit_price'},
+                        {data:'sale_price'},
+                        {data:'btn'},
 
                               ]
               });
@@ -498,6 +491,205 @@ $(tbody).on("click", "#showPermission", function(){
        id =$("#idpermisoedit").val();
 
 
+
+  });
+  }
+
+  // Datatable de comentarios
+  function commentsList() {
+    $('#commentaries').DataTable(
+    {  language: {
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":     "Último",
+                  "sNext":     "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    },
+          "serverSide":true,
+          "ajax": "api/commentaries/all",
+          "columns":[
+              {data:'id'},
+              {data:'name'},
+              {data:'email'},
+              {data:'body'},
+              {data:'btn'},
+
+                    ]
+    });
+  }
+  // Datatable de role_user
+  function role_userList() {
+  var tableroleuser =  $('#users_roles').DataTable({
+
+    language: {
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":     "Último",
+                  "sNext":     "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    },
+          "serverSide":true,
+          "ajax": "api/users_roles/all",
+          "columns":[
+              {data:'id'},
+              {data:'user_id'},
+              {data:'role_id'},
+              {data:'btn'},
+
+                    ]
+    });
+    data_editasignacionrole("#users_roles tbody",  tableroleuser);
+    data_showasignacionrole("#users_roles tbody",  tableroleuser);
+    data_deleteasignacionrole("#users_roles tbody",  tableroleuser);
+  }
+
+  //Estrae la información de la tabla para editar asignación.
+
+  var data_editasignacionrole =  function(tbody , tableroleuser){
+
+  $(tbody).on("click", "#editrole_User", function(){
+
+    var data= tableroleuser.row($(this).parents("tr")).data();
+    var id =$("#iduroleasigancionedit").val(data.id);
+    var user_id =$("#user_idedit").val(data.user_id);
+    var role_id=$("#role_idedit").val(data.role_id);
+
+  });
+  }
+
+  //Estrae la información de la tabla para ver.
+
+  var data_showasignacionrole =  function(tbody , tableroleuser ){
+  $(tbody).on("click", "#showrole_User", function(){
+    var data= tableroleuser.row($(this).parents("tr")).data();
+        var  name =$("#showiduser").val(data.user_id);
+        var  email =$("#showidrole").val(data.role_id);
+  });
+  }
+
+  // Estrae el id del usuario de una columan especifica para eliminar
+
+  var data_deleteasignacionrole =  function(tbody , tableroleuser){
+
+  $(tbody).on("click", "#deleterole_User", function(){
+    var data= tableroleuser.row($(this).parents("tr")).data();
+      var id =$("#iduroleasigancionedit").val(data.id);
+
+  });
+  }
+
+
+
+
+  // Datatable de role_user
+  function  role_permissionList() {
+    var  tablerolepermission =$('#role_permission').DataTable(
+        {
+            language: {
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":     "Último",
+                  "sNext":     "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    },
+          "serverSide":true,
+          "ajax": "api/roles_permissions/all",
+          "columns":[
+              {data:'id'},
+              {data:'role_id'},
+              {data:'permission_id'},
+              {data:'btn'},
+
+                    ]
+    });
+    data_editasignacionpermission("#role_permission tbody",  tablerolepermission);
+    data_showasignacionpermission("#role_permission tbody",  tablerolepermission);
+    data_deleteasignacionpermission("#role_permission tbody",  tablerolepermission);
+  }
+
+  var data_editasignacionpermission =  function(tbody ,  tablerolepermission){
+
+  $(tbody).on("click", "#editrolepermission", function(){
+
+    var data=  tablerolepermission.row($(this).parents("tr")).data();
+    var id =$("#idasignacionpermissionedit").val(data.id);
+
+    var user_id =$("#permission_idedit").val(data.permission_id);
+    var role_id=$("#role_idedit").val(data.role_id);
+
+  });
+  }
+
+  //Estrae la información de la tabla para ver.
+
+  var data_showasignacionpermission =  function(tbody ,  tablerolepermission){
+  $(tbody).on("click", "#showrolepermission", function(){
+
+    var data=  tablerolepermission.row($(this).parents("tr")).data();
+        var  name =$("#showidapermission").val(data.permission_id);
+        var  email =$("#showidarole").val(data.role_id);
+  });
+  }
+
+  // Estrae el id del usuario de una columan especifica para eliminar
+
+  var data_deleteasignacionpermission =  function(tbody , tablerolepermission){
+
+  $(tbody).on("click", "#deleterolepermission", function(){
+
+    var data=  tablerolepermission.row($(this).parents("tr")).data();
+      var id =$("#idasignacionpermissionedit").val(data.id);
 
   });
   }

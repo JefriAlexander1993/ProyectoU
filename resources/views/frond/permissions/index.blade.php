@@ -2,13 +2,13 @@
 
 @section('content')
 
-  <div class="container" style="margin-right:3px">
+  <div class="container" >
   <div class="row">
-  <div class="col-sm-4" style="padding-right:1px">
+  <div class="col-sm-4" >
           <div class="card-body">
               <!-- Nav tabs -->
               <div class="container">
-                  <ul class="nav nav-tabs" role="tablist" style="padding-left:100px">
+                  <ul class="nav nav-tabs" role="tablist" style="padding-left:60px">
                     <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"></input>
                     <input type="hidden" value="" id="idpermisoedit" name="idpermisoedit"></input>
                     <li role="plantillas"><button href="#variables"  title="Crear rol" id="create-form-rol"  name="crear-form" type="button" class="btn btn-success btn-sm" aria-controls="variables" role="tab" data-toggle="tab"><i class="fas fa-plus-square" ></i></button></li>
@@ -18,7 +18,7 @@
               </div>
 
               <!-- Tab panes -->
-              <div class="tab-content" style="padding-left:50px">
+              <div class="tab-content" style="padding-left:0px">
                 <div role="tabpanel" class="tab-pane fade in active" id="table" >
                       <div id="editusers" class="card">
                         <div  class="card-header card-header-info">

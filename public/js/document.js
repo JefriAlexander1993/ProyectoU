@@ -210,7 +210,8 @@ $("#Registropermission").on("click",function(e){
           e.preventDefault();
 var name = $("#namepermission").val();
 var display_name = $("#display_namepermission").val();
-var description= $("#descriptionpermission").val();
+var description1= $("#descriptionpermission").val();
+
 var route= "permissions";
 var token=$("#token").val();
   $.ajax({
@@ -218,7 +219,7 @@ var token=$("#token").val();
     headers:{'X-CSRF-TOKEN':token},
     type:'POST',
     dataType:'json',
-    data:{name:name, display_name:display_name,description:description},
+    data:{name:name, display_name:display_name,description:description1},
     success:function(){
         swal("¡Buen trabajo, se ha agregado exitosamente!", "Haz clic en el botón!", "success");
 
@@ -237,7 +238,7 @@ $('#ActualizarPermission').click(function(e){
       var display_name = $("#display_namepermissionedit").val();
       var description = $("#descriptionpermissionedit").val();
       var routeA= "permissions/"+idpermission+"";
-      alert(routeA);
+
       var token =$("#token").val();
       $.ajax({
         url:routeA,
@@ -291,166 +292,346 @@ function eliminarPermission(){
   });
 }
 
+// Crear un cliente
 
+$("#Registroclient").on("click",function(e){
+          e.preventDefault();
+var nuip = $("#nuip").val();
+var name= $("#nameclient").val();
+var phone = $("#phoneclient").val();
+var address = $("#addressclient").val();
+var email = $("#emailclient").val();
+var route= "clients";
+var token=$("#token").val();
+  $.ajax({
+    url:route,
+    headers:{'X-CSRF-TOKEN':token},
+    type:'POST',
+    dataType:'json',
+    data:{nuip:nuip,name:name,phone:phone,address:address,email:email},
+    success:function(){
 
+        swal("¡Buen trabajo, se ha agregado exitosamente!", "Haz clic en el botón!", "success");
+        limpiar();
+        $('#clients').DataTable().ajax.reload();
+    }
 
-
-
-  $().ready(function() {
-    $sidebar = $('.sidebar');
-
-    $sidebar_img_container = $sidebar.find('.sidebar-background');
-
-    $full_page = $('.full-page');
-
-    $sidebar_responsive = $('body > .navbar-collapse');
-
-    window_width = $(window).width();
-
-    $('.fixed-plugin a').click(function(event) {
-      // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-      if ($(this).hasClass('switch-trigger')) {
-        if (event.stopPropagation) {
-          event.stopPropagation();
-        } else if (window.event) {
-          window.event.cancelBubble = true;
-        }
-      }
-    });
-
-    $('.fixed-plugin .active-color span').click(function() {
-      $full_page_background = $('.full-page-background');
-
-      $(this).siblings().removeClass('active');
-      $(this).addClass('active');
-
-      var new_color = $(this).data('color');
-
-      if ($sidebar.length != 0) {
-        $sidebar.attr('data-color', new_color);
-      }
-
-      if ($full_page.length != 0) {
-        $full_page.attr('filter-color', new_color);
-      }
-
-      if ($sidebar_responsive.length != 0) {
-        $sidebar_responsive.attr('data-color', new_color);
-      }
-    });
-
-    $('.fixed-plugin .background-color .badge').click(function() {
-      $(this).siblings().removeClass('active');
-      $(this).addClass('active');
-
-      var new_color = $(this).data('background-color');
-
-      if ($sidebar.length != 0) {
-        $sidebar.attr('data-background-color', new_color);
-      }
-    });
-
-    $('.fixed-plugin .img-holder').click(function() {
-      $full_page_background = $('.full-page-background');
-
-      $(this).parent('li').siblings().removeClass('active');
-      $(this).parent('li').addClass('active');
-
-
-      var new_image = $(this).find("img").attr('src');
-
-      if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-        $sidebar_img_container.fadeOut('fast', function() {
-          $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-          $sidebar_img_container.fadeIn('fast');
-        });
-      }
-
-      if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-        $full_page_background.fadeOut('fast', function() {
-          $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-          $full_page_background.fadeIn('fast');
-        });
-      }
-
-      if ($('.switch-sidebar-image input:checked').length == 0) {
-        var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
-        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-        $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-        $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-      }
-
-      if ($sidebar_responsive.length != 0) {
-        $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
-      }
-    });
-
-    $('.switch-sidebar-image input').change(function() {
-      $full_page_background = $('.full-page-background');
-
-      $input = $(this);
-
-      if ($input.is(':checked')) {
-        if ($sidebar_img_container.length != 0) {
-          $sidebar_img_container.fadeIn('fast');
-          $sidebar.attr('data-image', '#');
-        }
-
-        if ($full_page_background.length != 0) {
-          $full_page_background.fadeIn('fast');
-          $full_page.attr('data-image', '#');
-        }
-
-        background_image = true;
-      } else {
-        if ($sidebar_img_container.length != 0) {
-          $sidebar.removeAttr('data-image');
-          $sidebar_img_container.fadeOut('fast');
-        }
-
-        if ($full_page_background.length != 0) {
-          $full_page.removeAttr('data-image', '#');
-          $full_page_background.fadeOut('fast');
-        }
-
-        background_image = false;
-      }
-    });
-
-    $('.switch-sidebar-mini input').change(function() {
-      $body = $('body');
-
-      $input = $(this);
-
-      if (md.misc.sidebar_mini_active == true) {
-        $('body').removeClass('sidebar-mini');
-        md.misc.sidebar_mini_active = false;
-
-        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
-
-      } else {
-
-        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
-
-        setTimeout(function() {
-          $('body').addClass('sidebar-mini');
-
-          md.misc.sidebar_mini_active = true;
-        }, 300);
-      }
-
-      // we simulate the window Resize so the charts will get updated in realtime.
-      var simulateWindowResize = setInterval(function() {
-        window.dispatchEvent(new Event('resize'));
-      }, 180);
-
-      // we stop the simulation of Window Resize after the animations are completed
-      setTimeout(function() {
-        clearInterval(simulateWindowResize);
-      }, 1000);
-
-    });
   });
+
+});
+// Crear un cliente
+
+$("#Registroproduct").on("click",function(e){
+
+          e.preventDefault();
+var code = $("#codeproduct").val();
+var name= $("#nameproduct").val();
+var date= $("#dateproduct").val();
+var description = $("#descriptionproduct").val();
+
+var iva = $("#ivaproduct").val();
+var unit_price = $("#unit_price").val();
+var sale_price = $("#sale_price").val();
+var stockmin = $("#stockmin").val();
+var file =$("#file").val();
+
+var route= "products";
+var token=$("#token").val();
+  $.ajax({
+    url:route,
+    headers:{'X-CSRF-TOKEN':token},
+    type:'POST',
+    dataType:'json',
+    data:{code:code,name:name,date:date,description:description,iva:iva,unit_price:unit_price,sale_price:sale_price,stockmin:stockmin,file:file},
+    success:function(){
+
+        swal("¡Buen trabajo, se ha agregado exitosamente!", "Haz clic en el botón!", "success");
+        limpiar();
+        $('#products').DataTable().ajax.reload();
+    }
+
+  });
+
+});
+
+
+// Crear un comentarios
+
+$("#Registrocomment").on("click",function(e){
+          e.preventDefault();
+var name = $("#namecomment").val();
+var email= $("#emailcomment").val();
+var body= $("#bodycomment").val();
+
+var route= "commentaries";
+var token=$("#token").val();
+  $.ajax({
+    url:route,
+    headers:{'X-CSRF-TOKEN':token},
+    type:'POST',
+    dataType:'json',
+    data:{name:name,email:email,body:body},
+    success:function(){
+        $('#commentaries').DataTable().ajax.reload();
+        swal("¡Buen trabajo, tu comentario fue enviado exitosamente!", "Haz clic en el botón!", "success");
+        cleancomment();
+
+    }
+
+  });
+
+});
+function cleancomment(){
+
+  var name = $("#namecomment").val(' ');
+  var email= $("#emailcomment").val(' ');
+  var body= $("#bodycomment").val(' ');
+
+}
+
+// Crear un role_user
+
+$("#Registroroleuser").on("click",function(e){
+          e.preventDefault();
+
+var user_id = $("#user_id").val();
+
+var role_id= $("#role_id").val();
+if (user_id ==='' && role_id==='') {
+  swal({
+        title: "Error, no se pueden enviar campos vacios !",
+        text: "Recuerda, seleccionar el usuario y el rol.",
+        icon: "warning",
+        button: "Cerrar!",
+        });
+
+
+} else{
+var route= "users_roles";
+var token=$("#token").val();
+
+  $.ajax({
+    url:route,
+    headers:{'X-CSRF-TOKEN':token},
+    type:'POST',
+    dataType:'json',
+    data:{user_id:user_id,role_id:role_id},
+    success:function(){
+
+        swal("¡Buen trabajo, su asociación ha si exitosamente!", "Haz clic en el botón!", "success");
+          cleanasignación();
+        $('#users_roles').DataTable().ajax.reload();
+    }
+
+  });
+}
+});
+// Actualizar role_user
+
+$('#Actualizarasignacionrole').click(function(e){
+
+      e.preventDefault();
+      var id= $("#iduroleasigancionedit").val();
+      var user_id = $("#user_idedit").val();
+      var role_id= $("#role_idedit").val();
+
+
+      if(id === ''){
+        swal({
+              title: "Error en la actualización!",
+              text: "Vuelve a intentarlo, recuerda darle click al botón de la tabla que tiene un icono de una mano, para mostrar y poder editar.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+      }else if (user_id ==='' && role_id==='') {
+        swal({
+              title: "Error, no se pueden enviar campos vacios !",
+              text: "Recuerda, seleccionar el usuario y el rol.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+      } else{
+
+        var routeA= "users_roles/"+id+"";
+        var token =$("#token").val();
+
+      $.ajax({
+        url:routeA,
+        headers: {'X-CSRF-TOKEN': token},
+        type:'PUT',
+        dataType:'json',
+        data:{user_id:user_id, role_id:role_id},
+        success:function(){
+            $('#users_roles').DataTable().ajax.reload();
+                  swal("¡Buen trabajo, se ha actualizado exitosamente!", "Haz clic en el botón!", "success");
+                  cleanEdit();
+        }
+
+      });
+}
+});
+function cleanasignación(){
+
+$("#user_id").val(' ');
+ $("#role_id").val(' ');
+
+}
+// Eliminar usuario rol_user
+function eliminarasignacionroleuser(){
+  swal({
+    title: "¿Estás seguro?",
+    text: " Una vez eliminado, no podrá recuperar este archivo imaginario!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      var id= $("#iduroleasigancionedit").val();
+
+      var routeA= "users_roles/"+id;
+      var token =$("#token").val();
+      $.ajax({
+        url:routeA,
+        headers: {'X-CSRF-TOKEN': token},
+        type:'POST',
+        dataType:'json',
+        data: {_method: 'DELETE'},
+        success:function(){
+          $("#users_roles").dataTable()._fnAjaxUpdate();
+          swal("¡Su archivo imaginario ha sido eliminado!", {
+            icon: "success",
+          });
+
+        }
+
+      });
+
+    } else {
+      swal("Tu archivo imaginario es seguro!");
+    }
+  });
+}
+
+// Crear un role_permission
+$("#Registrorolepermission").on("click",function(e){
+
+          e.preventDefault();
+
+var role_id = $("#role_id1").val();
+
+var permission_id= $("#permission_id").val();
+
+var route= "role_permissions";
+var token=$("#token").val();
+
+  $.ajax({
+    url:route,
+    headers:{'X-CSRF-TOKEN':token},
+    type:'POST',
+    dataType:'json',
+    data:{role_id:role_id,permission_id:permission_id},
+    success:function(){
+
+        swal("¡Buen trabajo, su asociación ha si exitosamente!", "Haz clic en el botón!", "success");
+          cleanasignación();
+        $('#role_permission').DataTable().ajax.reload();
+    }
+
+  });
+
+});
+function cleanasignación(){
+
+$("#user_id").val(' ');
+ $("#role_id").val(' ');
+
+
+}
+// Actualizar role_permission
+
+$('#Actualizarasignacionpermission').click(function(e){
+
+      e.preventDefault();
+      var id= $("#idasignacionpermissionedit").val();
+      var role_id = $("#role_idedit").val();
+      var permission_id= $("#permission_idedit").val();
+
+      if(id === ''){
+        swal({
+              title: "Error en la actualización!",
+              text: "Vuelve a intentarlo, recuerda darle click al botón de la tabla que tiene un icono de una mano, para mostrar y poder editar.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+      }else if (role_id ==='' && permission_id==='') {
+        swal({
+              title: "Error, no se pueden enviar campos vacios !",
+              text: "Recuerda, seleccionar el usuario y el rol.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+      } else{
+
+        var routeA= "role_permissions/"+id+"";
+        var token =$("#token").val();
+
+      $.ajax({
+        url:routeA,
+        headers: {'X-CSRF-TOKEN': token},
+        type:'PUT',
+        dataType:'json',
+        data:{role_id:role_id, permission_id:permission_id},
+        success:function(){
+            $('#role_permission').DataTable().ajax.reload();
+                  swal("¡Buen trabajo, se ha actualizado exitosamente!", "Haz clic en el botón!", "success");
+                  cleanEdit();
+        }
+
+      });
+}
+});
+
+// Eliminar usuario
+function eliminarasignacionrolepermission(){
+  swal({
+    title: "¿Estás seguro?",
+    text: " Una vez eliminado, no podrá recuperar este archivo imaginario!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      var id= $("#idasignacionpermissionedit").val();
+      var routeA= "role_permissions/"+id;
+      var token =$("#token").val();
+      $.ajax({
+        url:routeA,
+        headers: {'X-CSRF-TOKEN': token},
+        type:'POST',
+        dataType:'json',
+        data: {_method: 'DELETE'},
+        success:function(){
+          $("#role_permission").dataTable()._fnAjaxUpdate();
+          swal("¡Su archivo imaginario ha sido eliminado!", {
+            icon: "success",
+          });
+
+        }
+
+      });
+
+    } else {
+      swal("Tu archivo imaginario es seguro!");
+    }
+  });
+}

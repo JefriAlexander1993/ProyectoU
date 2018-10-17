@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,6 @@ class RoleController extends Controller
      */
     public function index()
     {
-
         return view('frond.roles.index');
     }
 
@@ -38,7 +41,7 @@ class RoleController extends Controller
         $role->save();
 
               return response()->json([
-                "mensaje"=>"El usuario fue creado."
+                "mensaje"=>"Fue creado."
               ]);
       }
 

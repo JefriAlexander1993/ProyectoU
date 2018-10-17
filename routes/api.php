@@ -18,26 +18,27 @@ use Illuminate\Http\Request;
 
 Route::get('clients/all', function () {
 
-	 return datatables()->eloquent(App\Models\Client::query())->addColumn('btn','frond.actions')->rawColumns(['btn'])->toJson();
+	 return datatables()->eloquent(App\Models\Client::query())->addColumn('btn','frond.clients.fragment.actions')->rawColumns(['btn'])->toJson();
 
 });
 
+
 Route::get('products/all', function () {
 
-	 return datatables()->eloquent(App\Models\Product::query())->toJson();
+	 return datatables()->eloquent(App\Models\Product::query())->addColumn('btn','frond.products.fragment.actions')->rawColumns(['btn'])->toJson();
 
 });
 
 
 Route::get('sales/all', function () {
 
-	 return datatables()->eloquent(App\Models\Sale::query())->toJson();
+	 return datatables()->eloquent(App\Models\Sale::query())->addColumn('btn','frond.sales.fragment.actions')->rawColumns(['btn'])->toJson();
 
 });
 
 Route::get('purchases/all', function () {
 
-	 return datatables()->eloquent(App\Models\Purchase::query())->toJson();
+	 return datatables()->eloquent(App\Models\Purchase::query())->addColumn('btn','frond.purchases.fragment.actions')->rawColumns(['btn'])->toJson();
 
 });
 
@@ -58,6 +59,29 @@ Route::get('permissions/all', function () {
 
 });
 
+Route::get('commentaries/all', function () {
+
+	 return datatables()->eloquent(App\Models\Commentary::query())->addColumn('btn','frond.commentaries.fragment.actions')->rawColumns(['btn'])->toJson();
+
+});
+
+Route::get('quotations/all', function () {
+
+	 return datatables()->eloquent(App\Models\Quotation::query())->addColumn('btn','frond.quotations.fragment.actions')->rawColumns(['btn'])->toJson();
+
+});
+
+Route::get('users_roles/all', function () {
+
+	 return datatables()->eloquent(App\Models\Role_user::query())->addColumn('btn','frond.users_roles.fragment.actions')->rawColumns(['btn'])->toJson();
+
+});
+
+Route::get('roles_permissions/all', function () {
+
+	 return datatables()->eloquent(App\Models\Permission_role::query())->addColumn('btn','frond.users_permissions.fragment.actions')->rawColumns(['btn'])->toJson();
+
+});
 
 
 

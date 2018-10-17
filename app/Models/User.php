@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    protected $table = 'users';
 
     use EntrustUserTrait;
     //Implementamos
@@ -38,16 +39,20 @@ class User extends Authenticatable
     ];
 
     public function commentary() {
-        return $this->belongsToMany('App\Commentary');
+        return $this->belongsToMany('App\Models\Commentary');
     }
      public function purchase() {
-        return $this->belongsToMany('App\Purchase');
+        return $this->belongsToMany('App\Models\Purchase');
     }
     public function sale() {
-        return $this->belongsToMany('App\Sale');
+        return $this->belongsToMany('App\Models\Sale');
     }
     public function quotation() {
-        return $this->belongsToMany('App\Quotation');
+        return $this->belongsToMany('App\Models\Quotation');
+    }
+
+    public function role() {
+          return $this->belongsToMany('App\Role');
     }
 
 

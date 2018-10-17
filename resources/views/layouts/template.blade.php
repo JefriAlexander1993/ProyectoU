@@ -13,14 +13,15 @@
   <link href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet" />
   <link href="{{asset('css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/all.min.css')}}">
-   <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/fontawesome.min.css')}}">
-   <link rel="stylesheet" href="{{asset('assets/css/demo/demo.css')}}">
-
+  <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/fontawesome.min.css')}}">
+@yield('link')
 
 </head>
 
 <body class="dark-edition">
 <div class="wrapper ">
+  <div class="row">
+    <div class="col-lg-2">
   <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
@@ -30,7 +31,7 @@
     <div class="sidebar-wrapper">
       <ul class="nav">
         <li class="nav-item active  ">
-          <a class="nav-link" href="./dashboard.html">
+          <a class="nav-link" href="{{"route('quotations.index')"}}">
               <i class="fas fa-home"></i>
             <p>Dashboard</p>
           </a>
@@ -45,112 +46,77 @@
                     <a class="nav-link" href="{{route("users.index")}}"><i class="fas fa-user"></i> <span>Usuarios</span></a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{{route("roles.index")}}"><i class="fas fa-user-tie"></i> <span>Roles</a></span></a>
+                    <a class="nav-link" href="{{route("roles.index")}}"><i class="fas fa-user-tie"></i> <span>Roles</span></a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{{route("permissions.index")}}"><i class="fas fa-user-tag"></i> <span>Permisos</a>
+                    <a class="nav-link" href="{{route("permissions.index")}}"><i class="fas fa-user-tag"></i><span>Permisos</span></a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#">Asignación</a>
+                    <a class="nav-link" href="{{route("users_roles.index")}}"><i class="fas fa-address-book"></i><span>Asignación de rol</span></a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{{route("role_permissions.index")}}"><i class="fas fa-address-card"></i><span>Asignación de permiso</span></a>
                 </li>
             </ul>
             <li class="nav-item ">
+                  <a class="nav-link" href="{{route("purchases.index")}}">
+                  <i class="fas fa-shopping-cart"></i>
+                    <p>Compras</p>
+                  </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="{{route("sales.index")}}">
+                <i class="fas fa-money-bill-alt"></i>
+                <p>Ventas</p>
+              </a>
+            </li>
+            <li class="nav-item ">
               <a class="nav-link" href="{{route("products.index")}}">
-                  <i class="fas fa-home"></i>
+                <i class="fab fa-product-hunt"></i>
                 <p>Productos</p>
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="{{route("brands.index")}}">
-                  <i class="fas fa-home"></i>
-                <p>Marcas</p>
-              </a>
-            </li>
-            <li class="nav-item ">
               <a class="nav-link" href="{{route("clients.index")}}">
-                  <i class="fas fa-home"></i>
+                  <i class="fas fa-users"></i>
                 <p>Clientes</p>
               </a>
             </li>
             <li class="nav-item ">
               <a class="nav-link" href="{{route("commentaries.index")}}">
-                  <i class="fas fa-home"></i>
-                <p>Comentarios</p>
+              <i class="fas fa-comment-alt"></i>
+                <p>Cometarios</p>
               </a>
             </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="{{route("quotations.index")}}">
+              <i class="fas fa-clipboard-list"></i>
+                <p>Cotización</p>
+              </a>
+            </li>
+
+
 
 
       </ul>
 
   </div>
-  <div class="main-panel">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
-      <div class="container-fluid">
-        <div class="navbar-wrapper">
-          <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="navbar-toggler-icon icon-bar"></span>
-          <span class="navbar-toggler-icon icon-bar"></span>
-          <span class="navbar-toggler-icon icon-bar"></span>
-        </button>
 
-      </div>
-    </nav>
-
-  </div>
 
 </div>
-<div class="content" >
+</div>
+<div class="col-lg-10">
 
+<div class="content" >
 
             @yield('content')
 
 </div>
-
+</div>
+</div>
 </div>
 
-
-
     <!-- End Navbar -->
-
-
-
-
-    <footer class="footer">
-      <div class="container-fluid">
-        <nav class="float-left">
-          <ul>
-            <li>
-              <a href="https://www.creative-tim.com">
-                Creative Tim
-              </a>
-            </li>
-            <li>
-              <a href="https://creative-tim.com/presentation">
-                About Us
-              </a>
-            </li>
-            <li>
-              <a href="http://blog.creative-tim.com">
-                Blog
-              </a>
-            </li>
-            <li>
-              <a href="https://www.creative-tim.com/license">
-                Licenses
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <div class="copyright float-right" id="date">
-          , made with <i class="material-icons">favorite</i> by
-          <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-        </div>
-      </div>
-    </footer>
 
 <div class="fixed-plugin" style="margin-top:-7%;">
   <div class="dropdown show-dropdown" style="color:#000">
@@ -180,16 +146,15 @@
   </div>
 </div>
 
-<script>
-  const x = new Date().getFullYear();
-  let date = document.getElementById('date');
-  date.innerHTML = '&copy; ' + x + date.innerHTML;
-</script>
 </div>
+
+
   <!--   Core JS Files   -->
-  <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
   <script src="{{asset('js/jquery.dataTables.min.js') }}"></script>
   <script src="{{asset('js/dataTables.bootstrap4.min.js') }}"></script>
+
+
   <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
   <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
 

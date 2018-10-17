@@ -19,15 +19,13 @@ class CreateDatabaseTable extends Migration
      Schema::create('products', function (Blueprint $table) {
                  $table->increments('id');
                  $table->string('code')->unique();
-                 $table->date('date');
                  $table->string('name');
-                 $table->string('size')->nullable();
-                 $table->string('brand')->nullable();
-                 $table->integer('quantity')->default(0);
+                 $table->date('date')->nullable();
+                 $table->mediumtext('description')->nullable();
                  $table->float('iva')->default(0);
                  $table->float('unit_price');
                  $table->float('sale_price');
-                 $table->integer('stockmin');
+                 $table->integer('stockmin')->default(0);
                  $table->string('file',128)->nullable();
                  $table->softDeletes();
                  $table->timestamps();
@@ -47,35 +45,12 @@ class CreateDatabaseTable extends Migration
 
         });
 
-    /*-------------------------BRANDS-----------------------------------------*/
-
-     Schema::create('brands', function (Blueprint $table) {
-                 $table->increments('id');
-                 $table->string('name')->unique();
-                 $table->string('characteristics')->nullable();
-                 $table->integer('product_id')->unsigned();
-                 $table->foreign('product_id')->references('id')->on('products');
-                 $table->softDeletes();
-                 $table->timestamps();
-
-        });
-
-    /*-------------------------Sezes-----------------------------------------*/
-
-     Schema::create('sizes', function (Blueprint $table) {
-                 $table->increments('id');
-                 $table->string('name')->unique();
-                 $table->integer('product_id')->unsigned();
-                 $table->foreign('product_id')->references('id')->on('products');
-                 $table->softDeletes();
-                 $table->timestamps();
-
-        });
 
      /*-------------------------Commentary-----------------------------------------*/
   Schema::create('comments', function (Blueprint $table) {
                  $table->increments('id');
                  $table->string('name');
+                 $table->string('email')->unique();
                  $table->mediumtext('body');
                  $table->integer('user_id')->unsigned()->nullable();
                  $table->foreign('user_id')->references('id')->on('users');
@@ -161,7 +136,7 @@ class CreateDatabaseTable extends Migration
 
         Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('totalPurchase');
+            $table->double('totalpurchase');
 
             $table->integer('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users');
@@ -175,7 +150,6 @@ class CreateDatabaseTable extends Migration
 
             $table->increments('id');
             $table->integer('quantity');
-            $table->float('unit_price');
             $table->float('subtotal');
             $table->float('total');
             $table->integer('purchase_id')->unsigned()->nullable();
@@ -195,7 +169,6 @@ class CreateDatabaseTable extends Migration
 
         $table->increments('id');
         $table->double('totalsale');
-
         $table->integer('users_id')->unsigned();
         $table->foreign('users_id')->references('id')->on('users');
         $table->softDeletes();
@@ -208,7 +181,6 @@ class CreateDatabaseTable extends Migration
 
         $table->increments('id');
         $table->integer('quantity');
-        $table->float('unit_price');
         $table->float('subtotal');
         $table->float('total');
         $table->integer('sale_id')->unsigned()->nullable();

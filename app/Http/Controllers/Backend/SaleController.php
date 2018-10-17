@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,18 +18,10 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        return view('frond.sales.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,30 +31,16 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      if($request->ajax()){
+       $sale =  Sale::create($request->all());
+       $sale->save();
+              return response()->json([
+                "mensaje"=>"Fue creado."
+              ]);
+      }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Sale $sale)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Sale  $sale
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Sale $sale)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -67,9 +49,11 @@ class SaleController extends Controller
      * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sale $sale)
+    public function update(Request $request, $id)
     {
-        //
+      $sale= Sale::find($id);
+      $sale->fill($request->all())->save();
+      return response()->json(["mensaje"=>"Actualizar"]);
     }
 
     /**
@@ -78,8 +62,9 @@ class SaleController extends Controller
      * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sale $sale)
+    public function destroy($id)
     {
-        //
+      $sale= Sale::findOrFail($id)->delete();
+      return response()->json(["mensaje"=>"Borrado"]);
     }
 }

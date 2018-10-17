@@ -6,7 +6,6 @@
         <div class="col-sm-12">
             <div class="form-group">
             <input type="text" required class="form-control"  placeholder="Ej: crear, editar, ver, eliminar" id="namepermission" name="namepermission" title="Nombre del rol">
-
           </div>
       </div>
   </div>

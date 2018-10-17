@@ -25,16 +25,16 @@ Route::get('/home', 'Backend\HomeController@index')->name('home');
 
 Route::Resource('products', 'Backend\ProductController');
 Route::Resource('clients', 'Backend\ClientController');
-
 Route::Resource('sales', 'Backend\SaleController');
-
 Route::Resource('purchases', 'Backend\PurchaseController');
 Route::Resource('users', 'Backend\UserController');
 Route::Resource('brands', 'Backend\BrandController');
 Route::Resource('commentaries', 'Backend\CommentaryController');
-
+Route::Resource('quotations', 'Backend\QuotationController');
 
 // users-roles-permissions
 
 Route::Resource('roles', 'Backend\RoleController');
 Route::Resource('permissions', 'Backend\PermissionController');
+Route::Resource('users_roles', 'Backend\UserRoleController');
+Route::Resource('role_permissions', 'Backend\RolePermissionController');

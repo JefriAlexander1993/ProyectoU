@@ -10,11 +10,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Permission extends EntrustPermission
 {
-	use SoftDeletes; //Implementamos 
+    protected $table = 'permissions';
 
-    protected $dates = ['deleted_at']; 
-    
-     protected $fillable = [
-        'id','name','display_name','descripcion','created_at'
+		use SoftDeletes; //Implementamos
+
+    protected $dates = ['deleted_at'];
+
+    protected $fillable = [
+        'id','name','display_name','description','created_at'
+
     ];
 }
