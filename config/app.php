@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,9 +177,14 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+  
         Zizaco\Entrust\EntrustServiceProvider::class,
         //Barryvdh\DomPDF\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
 
     ],
@@ -235,7 +240,8 @@ return [
        // 'PDF' => Barryvdh\DomPDF\Facade::class,
        'Form' => Collective\Html\FormFacade::class,
        'Html' => Collective\Html\HtmlFacade::class,
-
+       'PDF' => Barryvdh\DomPDF\Facade::class,
+       'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
 
     ],

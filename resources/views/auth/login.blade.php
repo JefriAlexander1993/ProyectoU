@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/fontawesome.min.css')}}">
   <!-- CSS Files -->
-  <link href="{{asset('assets/css/material-kit.css?v=2.0.4')}}" rel="stylesheet" />
+  <link href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{{asset('assets/demo/demo.css"')}} rel="stylesheet" />
+  <link href="{{asset('css/demo.css')}}" rel="stylesheet" />
 </head>
 
 <body class="login-page sidebar-collapse">
@@ -32,15 +32,15 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-  
+
     </div>
   </nav>
-  <div class="page-header header-filter" style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
-    <div class="container">
+  <div class="page-header header-filter" style="background-color:#fff" >
+    <div class="container" style="margin-top:150px">
       <div class="row">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
           <div class="card card-login">
-        
+
           <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                                         {{ csrf_field() }}
               <div class="card-header card-header-primary text-center">
@@ -50,7 +50,7 @@
               <div class="card-body">
 
                         <div class="row">
-                                     <div class="col-sm-12">              
+                                     <div class="col-sm-12">
                                          <div class="input-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                               <div class="input-group-prepend">
                                                                 <span class="input-group-text">
@@ -65,13 +65,13 @@
                                                                     </span>
                                                                 @endif
 
-      
+
                                         </div>
                                     </div>
-                         </div>           
+                         </div>
 
                          <div class="row">
-                                     <div class="col-sm-12">  
+                                     <div class="col-sm-12">
                                          <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                               <div class="input-group-prepend">
                                                 <span class="input-group-text">
@@ -85,12 +85,12 @@
                                                                 <strong>{{ $errors->first('password') }}</strong>
                                                             </span>
                                                         @endif
-                                   
+
                                         </div>
                                     </div>
-                        </div>  
+                        </div>
                               <div class="row">
-                                     <div class="col-sm-12">    
+                                     <div class="col-sm-12">
                                          <div class="form-group" style="margin-left:18px">
                                               <button type="submit" class="btn btn-primary submit-btn btn-block">Aceptar</button>
                                          </div>
@@ -107,7 +107,7 @@
                                                           <a href="{{ route('register') }}" class="text-black text-small">Crear una nueva cuenta.</a>
                                                     </div>
                                     </div>
-                                </div>  
+                                </div>
             </form>
           </div>
         </div>
@@ -123,7 +123,7 @@
                 J&C PROGRAMMING
               </a>
             </li>
-          
+
           </ul>
         </nav>
         <div class="copyright float-right">
@@ -134,7 +134,7 @@
         </div>
       </div>
     </footer>
-  
+
   <!--   Core JS Files   -->
   <script  type="text/javascript" src="{{asset('assets/js/core/jquery.min.js')}}"></script>
   <script src="{{asset('assets/js/core/popper.min.js')}}" type="text/javascrip" ></script>

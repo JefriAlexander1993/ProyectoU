@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
-use App\Commentary;
+use App\Models\Commentary;
 use Illuminate\Http\Request;
+use App\Exports\CommentariesExport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
+
 
 class CommentaryController extends Controller
 {
@@ -14,18 +18,10 @@ class CommentaryController extends Controller
      */
     public function index()
     {
-        //
+      return view('frond.commentaries.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -35,30 +31,37 @@ class CommentaryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      if($request->ajax()){
+       $commentary =  Commentary::create($request->all());
+       $commentary->save();
+              return response()->json([
+                "mensaje"=>"Fue creado."
+              ]);
+      }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Commentary  $commentary
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Commentary $commentary)
-    {
-        //
+
+    public function pdfCommentary()
+    {        
+       
+
+        $commentaries = Commentary::all(); 
+
+
+        $pdf = PDF::loadView('informe.commentaries_list',['commentaries'=>$commentaries]);
+
+        return $pdf->download('lists_commentaries.pdf');
+
+    }
+       
+    public function excelCommentary()
+    {        
+
+        return Excel::download(new CommentariesExport, 'lists_commentaries.xlsx');
+
+    
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Commentary  $commentary
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Commentary $commentary)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -67,9 +70,11 @@ class CommentaryController extends Controller
      * @param  \App\Commentary  $commentary
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Commentary $commentary)
+    public function update(Request $request, $id)
     {
-        //
+      $commentary= Permission::find($id);
+      $commentary->fill($request->all())->save();
+      return response()->json(["mensaje"=>"Actualizar"]);
     }
 
     /**
@@ -78,8 +83,9 @@ class CommentaryController extends Controller
      * @param  \App\Commentary  $commentary
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Commentary $commentary)
+    public function destroy($id)
     {
-        //
+      $commentary= Commentary::findOrFail($id)->delete();
+      return response()->json(["mensaje"=>"Borrado"]);
     }
 }

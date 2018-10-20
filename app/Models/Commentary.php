@@ -10,15 +10,17 @@ class Commentary extends Model
 {
 
    protected $table = 'comments';
-    use SoftDeletes; //Implementamos 
+    use SoftDeletes; //Implementamos
 
-    protected $dates = ['deleted_at']; 
+    protected $dates = ['deleted_at'];
 
          protected $fillable = [
-       		 'id','name','users_id',
+       		 'id','name','email', 'body','users_id',
     ];
 
-     public function user() {
-	  return $this->hasOne('App\User');
+    public function user() {
+	  return $this->belongsToMany('App\User');
 	}
+
+//   return $this->hasMany('App\Comment');
 }

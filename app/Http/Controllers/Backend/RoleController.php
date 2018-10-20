@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Role;
+use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use PDF;
+use App\Exports\RolesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,11 +22,35 @@ class RoleController extends Controller
      */
     public function index()
     {
-        
         return view('frond.roles.index');
     }
 
- 
+    
+    public function pdfRole()
+    {        
+       
+        $roles = Role::all(); 
+
+        $pdf = PDF::loadView('informe.roles_list',compact('roles'));
+
+        return $pdf->download('lists_roles.pdf');
+
+    }
+       
+    public function excelRole()
+    {        
+
+        return Excel::download(new RolesExport, 'lists_roles.xlsx');
+
+    
+    }
+
+
+
+
+
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -28,37 +59,20 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $role = new Role;
 
+      if($request->ajax()){
+        $role = new Role;
         $role->name = $request->name;
         $role->display_name = $request->display_name;
         $role->description = $request->description;
 
         $role->save();
 
-        return redirect()->route('roles.index');
-    }
+              return response()->json([
+                "mensaje"=>"Fue creado."
+              ]);
+      }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Role $role)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Role $role)
-    {
-        //
     }
 
     /**
@@ -68,9 +82,11 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
-        //
+      $role= Role::find($id);
+        $role->fill($request->all())->save();
+        return response()->json(["mensaje"=>"Actualizar"]);
     }
 
     /**
@@ -79,8 +95,9 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
-        //
+      $role= Role::findOrFail($id)->delete();
+      return response()->json(["mensaje"=>"Borrado"]);
     }
 }

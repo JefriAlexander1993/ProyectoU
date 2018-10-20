@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
-use App\Quotation;
+use App\Models\Quotation;
 use Illuminate\Http\Request;
 
 class QuotationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,51 +18,22 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        //
+        return view('frond.quotations.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+      if($request->ajax()){
+       $permission =  Quotation::create($request->all());
+       $permission->save();
+              return response()->json([
+                "mensaje"=>"Fue creado."
+              ]);
+      }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Quotation  $quotation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Quotation $quotation)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Quotation  $quotation
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Quotation $quotation)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -67,9 +42,11 @@ class QuotationController extends Controller
      * @param  \App\Quotation  $quotation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quotation $quotation)
+    public function update(Request $request, $id)
     {
-        //
+      $quotation= Quotation::find($id);
+      $quotation->fill($request->all())->save();
+      return response()->json(["mensaje"=>"Actualizar"]);
     }
 
     /**
@@ -80,6 +57,7 @@ class QuotationController extends Controller
      */
     public function destroy(Quotation $quotation)
     {
-        //
+      $quotation= Quotation::findOrFail($id)->delete();
+      return response()->json(["mensaje"=>"Borrado"]);
     }
 }

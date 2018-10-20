@@ -10,15 +10,18 @@ class Sale extends Model
 {
 
 	protected $table = 'sale';
-    use SoftDeletes; //Implementamos 
+    use SoftDeletes; //Implementamos
 
-    protected $dates = ['deleted_at']; 
+    protected $dates = ['deleted_at'];
 
          protected $fillable = [
-       		 'id','totalsale','users_id',
+       		 'id','totalsale','users_id','product_id'
     ];
 
-       public function user() {
-		  return $this->hasOne('App\User');
-	}
+    public function user() {
+		  return $this->belongsToMany('App\User');
+		}
+		public function product() {
+		  return $this->hasMany('App\Product');
+		}
 }

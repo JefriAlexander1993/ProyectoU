@@ -11,13 +11,14 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
-//Rutas 
+//Rutas
 
 Route::get('store','StoreController@index')->name('store');
 
@@ -76,22 +77,83 @@ Route:: get('detalle',[
 
 
 Route::get('/home', 'Backend\HomeController@index')->name('home');
+<<<<<<< HEAD
 Route::get('/principal','Backend\PrincipalController@index');
 Route::get('/navbar','NavbarController@index');
 Route::get('/catalogo','Backend\CatalogoController@index')->name('catalogo');
+=======
+
+
+
+>>>>>>> 861abf30f5dfd08bc9a0037fd85b205a826aa6fb
 Route::Resource('products', 'Backend\ProductController');
 Route::Resource('clients', 'Backend\ClientController');
-Route::Resource('credits', 'Backend\CreditController');
-Route::Resource('lots', 'Backend\LotController');
-Route::Resource('raw_materials', 'Backend\RawMaterialController');
 Route::Resource('sales', 'Backend\SaleController');
-Route::Resource('spendings', 'Backend\SpendingController');
-Route::Resource('warranties', 'Backend\WarrantyController');
 Route::Resource('purchases', 'Backend\PurchaseController');
 Route::Resource('users', 'Backend\UserController');
+
+Route::Resource('commentaries', 'Backend\CommentaryController');
+Route::Resource('quotations', 'Backend\QuotationController');
 
 // users-roles-permissions
 
 Route::Resource('roles', 'Backend\RoleController');
 Route::Resource('permissions', 'Backend\PermissionController');
+Route::Resource('users_roles', 'Backend\UserRoleController');
+Route::Resource('role_permissions', 'Backend\RolePermissionController');
 
+//pdf clients
+Route::get('/clientspdf', 'Backend\ClientController@pdfClient',function(){
+return back();
+
+});
+
+Route::get('/clientsexcel', 'Backend\ClientController@excelClient',function(){
+return back();
+
+});
+//pdf commentaries
+Route::get('/commentariespdf', 'Backend\CommentaryController@pdfCommentary',function(){
+return back();
+
+});
+
+Route::get('/commentariesexcel', 'Backend\CommentaryController@excelCommentary',function(){
+return back();
+
+});
+
+
+//pdf users
+Route::get('/userspdf', 'Backend\UserController@pdfUser',function(){
+return back();
+
+});
+
+Route::get('/usersexcel', 'Backend\UserController@excelUser',function(){
+return back();
+
+});
+
+//pdf permissions
+Route::get('/permissionspdf', 'Backend\PermissionController@pdfPermission',function(){
+return back();
+
+});
+
+Route::get('/permissionsexcel', 'Backend\PermissionController@excelPermission',function(){
+return back();
+
+});
+
+
+//pdf roles
+Route::get('/rolespdf', 'Backend\RoleController@pdfRole',function(){
+return back();
+
+});
+
+Route::get('/rolesexcel', 'Backend\RoleController@excelRole',function(){
+return back();
+
+});

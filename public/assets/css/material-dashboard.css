@@ -2753,7 +2753,7 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #ffffff;
-  background:linear-gradient(60deg, #288c6c, #4ea752);
+  background-color: #4caf50;
   border-color: #4caf50;
   box-shadow: none;
 }
@@ -3413,7 +3413,7 @@ tbody.collapse.show {
   color: #212529;
   text-align: left;
   list-style: none;
-  background-color: transparent;
+  background-color: #ffffff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
@@ -4877,12 +4877,12 @@ tbody.collapse.show {
 .page-item.active .page-link {
   z-index: 1;
   color: #ffffff;
-  background:linear-gradient(60deg, #288c6c, #4ea752);
-  border-color: #fff;
+  background-color: #2196f3;
+  border-color: #2196f3;
 }
 
 .page-item.disabled .page-link {
-  color: #fff;
+  color: #6c757d;
   pointer-events: none;
   cursor: auto;
   background-color: transparent;
@@ -6659,7 +6659,6 @@ button.bg-dark:focus {
 .align-items-end {
   align-items: flex-end !important;
 }
-
 
 .align-items-center {
   align-items: center !important;
@@ -8789,8 +8788,8 @@ a.text-dark:focus {
 
 .btn.btn-primary {
   color: #fff;
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: #38338A;
+  border-color: #000;
   box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
 }
 
@@ -8799,13 +8798,13 @@ a.text-dark:focus {
   background-color: #9124a3;
   border-color: #701c7e;
 }
-
+/*aqui*/
 .btn.btn-primary:focus,
 .btn.btn-primary.focus,
 .btn.btn-primary:hover {
   color: #fff;
-  background-color: #9124a3;
-  border-color: #701c7e;
+  background-color: #38338A;
+  border-color: #000;
 }
 
 .btn.btn-primary:active,
@@ -13031,7 +13030,7 @@ fieldset[disabled] .form-group .form-control {
   padding: 0.625rem 0;
   margin-bottom: 20px;
   height: auto !important;
-  color: #555;
+  color: #000;
   background-color: #fff !important;
   box-shadow: 0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15);
 }
@@ -13656,7 +13655,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .page-header:before {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color:#fff ;
 }
 
 html * {
@@ -14490,7 +14489,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   position: relative;
   height: calc(100vh - 75px);
   overflow: auto;
-  width: 260px;
+  width: 215px;
   z-index: 4;
   padding-bottom: 30px;
 }
@@ -16192,8 +16191,8 @@ thead.thead-inverse th,
 }
 
 body {
-  background-color: #eee;
-  color: #3C4858;
+  background-color: #fff;
+  color: #fff;
   font-weight: 300;
 }
 
@@ -16215,12 +16214,12 @@ legend {
 }
 
 a {
-  color: #9c27b0;
+  color: #000;
 }
 
 a:hover,
 a:focus {
-  color: #89229b;
+  color: #000;
   text-decoration: none;
 }
 
@@ -16237,7 +16236,7 @@ a .material-icons {
 label {
   font-size: 14px;
   line-height: 1.42857;
-  color: #fff;
+  color: #AAAAAA;
   font-weight: 400;
 }
 
@@ -16617,7 +16616,7 @@ label {
 .card.bg-primary,
 .card.card-rotate.bg-primary .front,
 .card.card-rotate.bg-primary .back {
-  background: linear-gradient(60deg, #ab47bc, #8e24aa);
+  background: #38338A;
 }
 
 .card .card-header-info .card-icon,
@@ -16795,7 +16794,7 @@ label {
 }
 
 .card {
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  box-shadow: 0 1px 4px 0 rgb(11, 10, 10);
 }
 
 .card .table tr:first-child td {
@@ -18430,6 +18429,7 @@ Copyright (c) 2015 Daniel Eden
       -moz-transform: rotate(-135deg);
     }
   }
+
   @keyframes bottombar-back {
     0% {
       bottom: 6px;
@@ -18670,7 +18670,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition {
-  background-color: transparent;
+  background-color: #fff;
 }
 
 .dark-edition .btn,
@@ -19520,7 +19520,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .sidebar[data-color="purple"] li.active>a {
-  background: linear-gradient(60deg, #288c6c, #4ea752);
+  background: linear-gradient(60deg, #574FD7, #fff);
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
 }
 
@@ -19554,17 +19554,18 @@ Copyright (c) 2015 Daniel Eden
 
 .dark-edition .sidebar .sidebar-background:after,
 .dark-edition .sidebar {
-  background: #1f283e;
+  background: #38338B;
   opacity: .94;
+  width:215px;
 }
 
 .dark-edition .sidebar[data-background-color="black"] .nav li:not(.active) a,
 .dark-edition .sidebar[data-background-color="black"] .nav li:not(.active) .dropdown-menu a {
-  color: #a9afbbd1;
+  color: #fff;
 }
 
 .dark-edition .sidebar[data-background-color="black"] .nav li:not(.active) i {
-  color: #a9afbbd1;
+  color: #fff;
 }
 
 .dark-edition .sidebar[data-background-color="black"] .nav li:not(.active):not(.active):hover>a,
@@ -19576,7 +19577,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .sidebar .logo .simple-text {
-  color: #fff;
+  color: #a9afbbd1;
   font-weight: 300;
 }
 
@@ -19655,7 +19656,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .card {
-  background: #202940;
+  background: #fff;
 }
 
 .dark-edition .card .card-header.card-header-text .card-title,
@@ -19681,7 +19682,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .card .card-body .card-description {
-  color: #606477;
+  color: #000;
 }
 
 .dark-edition .card .card-body+.card-footer .stats,
@@ -19729,7 +19730,7 @@ Copyright (c) 2015 Daniel Eden
 .dark-edition .card.bg-info,
 .dark-edition .card.card-rotate.bg-info .front,
 .dark-edition .card.card-rotate.bg-info .back {
-  background: linear-gradient(60deg, #288c6c, #4ea752);
+  background: linear-gradient(60deg, #029eb1, #25b1c3);
 }
 
 .dark-edition .card .card-header-primary .card-icon,
@@ -19738,7 +19739,7 @@ Copyright (c) 2015 Daniel Eden
 .dark-edition .card.bg-primary,
 .dark-edition .card.card-rotate.bg-primary .front,
 .dark-edition .card.card-rotate.bg-primary .back {
-  background:linear-gradient(60deg, #288c6c, #4ea752);
+  background: linear-gradient(60deg, #7b1fa2, #913f9e);
 }
 
 .dark-edition .primary-link {
@@ -19794,8 +19795,8 @@ Copyright (c) 2015 Daniel Eden
 .dark-edition .table>thead>tr>td,
 .dark-edition .table>tbody>tr>td,
 .dark-edition .table>tfoot>tr>td {
-  color: #fff;
-  border-color: rgba(180, 180, 180, 0.1);
+  color: #000;
+  border-color: rgba(180, 180, 180, 0.8);
 }
 
 .dark-edition .table-hover tbody tr:hover {
@@ -19871,7 +19872,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .form-control {
-  color: #fff;
+  color: #000;
 }
 
 .dark-edition .form-control::-moz-placeholder {
@@ -19892,7 +19893,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .form-group label {
-  color: #a9afbbd1;
+  color: #000;
 }
 
 .dark-edition [class^='bmd-label'],
@@ -19902,7 +19903,7 @@ Copyright (c) 2015 Daniel Eden
 
 .dark-edition .form-control,
 .is-focused .dark-edition .form-control {
-  background-image: linear-gradient(to top, #288c6c 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(180, 180, 180, 0.1) 1px, rgba(180, 180, 180, 0) 1px);
+background-image: linear-gradient(to top, #38338B 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, rgba(180, 180, 180, 0.1) 1px, rgba(180, 180, 180, 0) 1px);
 }
 
 .dark-edition .form-control:invalid {
@@ -20985,15 +20986,15 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 }
 
 .dark-edition .fixed-plugin .fa-cog {
-  color: #8b92a9;
+  color: #fff;
 }
 
 .dark-edition .fixed-plugin .dropdown .dropdown-menu {
-  background-color: #2f3954;
+  background-color: #38338B;
 }
 
 .dark-edition .fixed-plugin .dropdown .dropdown-menu:after {
-  border-left-color: #2f3954;
+  border-left-color: #transparent;
 }
 
 .dark-edition .fixed-plugin .dropdown .dropdown-menu li.adjustments-line {
@@ -21044,7 +21045,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 
 .dark-edition .dropdown:not(.show-dropdown) .dropdown-menu .dropdown-item,
 .dark-edition .dropdown:not(.show-dropdown) .dropdown-menu li>a {
-  color: #fff;
+  color: #000;
   -webkit-transition: all 150ms linear, color, box-shadow 0ms;
   -moz-transition: all 150ms linear, color, box-shadow 0ms;
   -o-transition: all 150ms linear, color, box-shadow 0ms;
@@ -21059,7 +21060,7 @@ fieldset[disabled][disabled] .dark-edition .has-error .form-control,
 .dark-edition .dropdown:not(.show-dropdown) .dropdown-menu li>a:focus,
 .dark-edition .dropdown:not(.show-dropdown) .dropdown-menu li>a:active {
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
-  background: linear-gradient(60deg, #288c6c, #4ea752);
+  background: linear-gradient(60deg, #574FD7, #fff);
   color: #fff;
 }
 

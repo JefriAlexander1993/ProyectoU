@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use PDF;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -15,14 +21,29 @@ class UserController extends Controller
      */
     public function index()
     {
-     
-
         return view('frond.users.index');
-
     }
 
 
- 
+    public function pdfUser()
+    {        
+       
+
+        $users = User::all(); 
+
+        $pdf = PDF::loadView('informe.users_list',compact('users'));
+
+        return $pdf->download('lists_users.pdf');
+
+    }
+       
+    public function excelUser()
+    {        
+
+        return Excel::download(new UsersExport, 'lists_users.xlsx');
+
+    
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -32,39 +53,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
          //$user = User::create($request->all());
-        
-        $user= new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password= $request->password;
-        $user->save();
-        
-             return redirect()->route('users.index');
+      if($request->ajax()){
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->save();
+              return response()->json([
+                "mensaje"=>"El usuario fue creado."
+              ]);
+      }
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-    
-    }
 
     /**
      * Update the specified resource in storage.
@@ -75,11 +78,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-
           $user= User::find($id);
           $user->fill($request->all())->save();
-          return redirect()->route('users.index');
-   
+            return response()->json(["mensaje"=>"Actualizar"]);
+
     }
 
     /**
@@ -90,6 +92,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user= User::findOrFail($id)->delete();
+        return response()->json(["mensaje"=>"Borrado"]);
     }
 }

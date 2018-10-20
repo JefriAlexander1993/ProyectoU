@@ -11,17 +11,17 @@ class Type extends Model
 
 	protected $table = 'types';
 
-	use SoftDeletes; //Implementamos 
+	use SoftDeletes; //Implementamos
 
-    protected $dates = ['deleted_at']; 
+    protected $dates = ['deleted_at'];
 
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'id','name','characteristics','product_id'
     ];
 
 
     public function product() {
-		  return $this->hasOne('App\Product');
+		  return $this->hasMany('App\Product');
 	}
 }

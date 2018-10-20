@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Permission;
+use App\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use PDF;
+use App\Exports\PermissionsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PermissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,20 +22,30 @@ class PermissionController extends Controller
      */
     public function index()
     {
-           
-        
         return view('frond.permissions.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        public function pdfPermission()
+    {        
+       
+
+        $permissions = Permission::all(); 
+
+        $pdf = PDF::loadView('informe.permissions_list',compact('permissions'));
+
+        return $pdf->download('lists_permissions.pdf');
+
     }
+       
+    public function excelPermission()
+    {        
+
+        return Excel::download(new PermissionsExport, 'lists_permissions.xlsx');
+
+    
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -38,29 +55,13 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Permission $permission)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Permission $permission)
-    {
-        //
+      if($request->ajax()){
+       $permission =  Permission::create($request->all());
+       $permission->save();
+              return response()->json([
+                "mensaje"=>"Fue creado."
+              ]);
+      }
     }
 
     /**
@@ -70,9 +71,11 @@ class PermissionController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, $id)
     {
-        //
+        $permission= Permission::find($id);
+        $permission->fill($request->all())->save();
+        return response()->json(["mensaje"=>"Actualizar"]);
     }
 
     /**
@@ -81,8 +84,9 @@ class PermissionController extends Controller
      * @param  \App\Permission  $permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy($id)
     {
-        //
+      $permission= Permission::findOrFail($id)->delete();
+      return response()->json(["mensaje"=>"Borrado"]);
     }
 }

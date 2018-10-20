@@ -11,15 +11,19 @@ class Quotation extends Model
 
 	 protected $table = 'users';
 
-    use SoftDeletes; //Implementamos 
+    use SoftDeletes; //Implementamos
 
-    protected $dates = ['deleted_at']; 
+    protected $dates = ['deleted_at'];
 
          protected $fillable = [
-       		 'id','nit','nameprovider','namerepresentative','address','phone','email','observation',
+       		 'id','nit','nameprovider','namerepresentative','address','phone','email','observation','product_id'
+					 'users_id'
     ];
 
-    public function user() {
-	  return $this->hasOne('App\User');
-	}
+    public function product() {
+	  			return $this->belongsToMany('App\Product');
+		}
+		public function user() {
+	  			return $this->belongsToMany('App\User');
+		}
 }
