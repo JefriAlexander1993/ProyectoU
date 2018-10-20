@@ -3,7 +3,7 @@
 
 @section('content')
   <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"></input>
-  <input type="hidden" value="" id="idbrandedit" name="idbrandedit"></input>
+  <input type="hidden" value="" id="idclientedit" name="idclientedit"></input>
   <div class="container" >
   <div class="row">
   <div class="col-lg-4" >
@@ -69,7 +69,7 @@
             <div class="col-lg-8">
               <div class="card">
                 <div  class="card-header card-header-success">
-                  <h4 class="card-title "><strong>LISTA DE CLIENTES</strong></a></h4>
+                  <h4 class="card-title "><strong>LISTA DE CLIENTES</strong> <a href="{{ url('/clientspdf') }}" class="btn btn-sm btn-danger" title="Exportar a pdf"><i class="far fa-file-pdf"></i> </a> <a href="{{ url('/clientsexcel') }}" class="btn btn-sm btn-warning" title="Exportar a excel"><i class="far fa-file-excel"></i> </a></h4>
 
                 </div>
                 <div class="card-body">
@@ -78,7 +78,7 @@
                     <table id="clients" class="table table-striped table-hover">
                             <thead class=" text-primary">
                               <tr>
-
+                                <th class="text-center">Id</th>
                                 <th class="text-center">Nuip</th>
                                 <th class="text-center">Nombres</th>
                                 <th class="text-center">Teléfono</th>

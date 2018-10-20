@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Commentary;
 use Illuminate\Http\Request;
+use App\Exports\CommentariesExport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
+
 
 class CommentaryController extends Controller
 {
@@ -34,6 +38,28 @@ class CommentaryController extends Controller
                 "mensaje"=>"Fue creado."
               ]);
       }
+    }
+
+
+    public function pdfCommentary()
+    {        
+       
+
+        $commentaries = Commentary::all(); 
+
+
+        $pdf = PDF::loadView('informe.commentaries_list',['commentaries'=>$commentaries]);
+
+        return $pdf->download('lists_commentaries.pdf');
+
+    }
+       
+    public function excelCommentary()
+    {        
+
+        return Excel::download(new CommentariesExport, 'lists_commentaries.xlsx');
+
+    
     }
 
 

@@ -296,12 +296,12 @@ function eliminarPermission(){
 
 $("#Registroclient").on("click",function(e){
           e.preventDefault();
-var nuip = $("#nuip").val();
-var name= $("#nameclient").val();
-var phone = $("#phoneclient").val();
-var address = $("#addressclient").val();
-var email = $("#emailclient").val();
-var route= "clients";
+      var nuip = $("#nuip").val();
+      var name= $("#nameclient").val();
+      var phone = $("#phoneclient").val();
+      var address = $("#addressclient").val();
+      var email = $("#emailclient").val();
+      var route= "clients";
 var token=$("#token").val();
   $.ajax({
     url:route,
@@ -312,14 +312,134 @@ var token=$("#token").val();
     success:function(){
 
         swal("¡Buen trabajo, se ha agregado exitosamente!", "Haz clic en el botón!", "success");
-        limpiar();
         $('#clients').DataTable().ajax.reload();
+        cleanClient();
     }
 
   });
 
 });
-// Crear un cliente
+
+// Actualizar client
+
+$('#Actualizarclient').click(function(e){
+
+      e.preventDefault();
+      var id= $("#idclientedit").val();
+
+      var nuip = $("#nuipclient").val();
+      var name= $("#nameclientedit").val();
+      var phone = $("#phoneclientedit").val();
+      var address = $("#addressclientedit").val();
+      var email = $("#emailclientedit").val();
+
+      if(id === ''){
+        swal({
+              title: "Error en la actualización!",
+              text: "Vuelve a intentarlo, recuerda darle click al botón de la tabla que tiene un icono de una mano, para mostrar y poder editar.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+      }else if (nuip ==='' || name==='' || phone==='' || address==='' || email==='' ) {
+        swal({
+              title: "Error, no se pueden enviar campos vacios !",
+              text: "Recuerda, seleccionar el usuario y el rol.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+      } else{
+
+        var routeA= "clients/"+id+"";
+        var token =$("#token").val();
+
+      $.ajax({
+        url:routeA,
+        headers: {'X-CSRF-TOKEN': token},
+        type:'PUT',
+        dataType:'json',
+        data:{nuip:nuip,name:name,phone:phone,address:address,email:email},
+        success:function(){
+            $('#clients').DataTable().ajax.reload();
+                  swal("¡Buen trabajo, se ha actualizado exitosamente!", "Haz clic en el botón!", "success");
+                  cleanClientedit();
+        }
+
+      });
+}
+});
+
+function cleanClient(){
+  var nuip = $("#nuip").val('');
+  var name= $("#nameclient").val('');
+  var phone = $("#phoneclient").val('');
+  var address = $("#addressclient").val('');
+  var email = $("#emailclient").val('');
+
+
+}
+
+
+function cleanClientedit(){
+
+  var id= $("#idclientedit").val('');
+  var nuip = $("#nuipedit").val('');
+  var name= $("#nameclientedit").val('');
+  var phone = $("#phoneclientedit").val('');
+  var address = $("#addressclientedit").val('');
+  var email = $("#emailclientedit").val('');
+
+}
+
+// Eliminar usuario cliente
+function eliminarClient(){
+  swal({
+    title: "¿Estás seguro?",
+    text: " Una vez eliminado, no podrá recuperar este archivo imaginario!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      var id= $("#idclientedit").val();
+
+
+      var routeA= "clients/"+id;
+      var token =$("#token").val();
+      $.ajax({
+        url:routeA,
+        headers: {'X-CSRF-TOKEN': token},
+        type:'POST',
+        dataType:'json',
+        data: {_method: 'DELETE'},
+        success:function(){
+          $("#clients").dataTable()._fnAjaxUpdate();
+          swal("¡Su archivo  ha sido eliminado!", {
+            icon: "success",
+          });
+
+        }
+
+      });
+
+    } else {
+      swal("Tu archivo imaginario es seguro!");
+    }
+  });
+}
+
+
+
+
+
+
+
+
+// Crear un producto
 
 $("#Registroproduct").on("click",function(e){
 
@@ -445,7 +565,7 @@ $('#Actualizarasignacionrole').click(function(e){
               });
 
 
-      }else if (user_id ==='' && role_id==='') {
+      }else if (user_id ==='' || role_id==='') {
         swal({
               title: "Error, no se pueden enviar campos vacios !",
               text: "Recuerda, seleccionar el usuario y el rol.",

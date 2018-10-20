@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use PDF;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -20,6 +22,27 @@ class UserController extends Controller
     public function index()
     {
         return view('frond.users.index');
+    }
+
+
+    public function pdfUser()
+    {        
+       
+
+        $users = User::all(); 
+
+        $pdf = PDF::loadView('informe.users_list',compact('users'));
+
+        return $pdf->download('lists_users.pdf');
+
+    }
+       
+    public function excelUser()
+    {        
+
+        return Excel::download(new UsersExport, 'lists_users.xlsx');
+
+    
     }
 
     /**

@@ -68,7 +68,7 @@
             <div class="col-lg-8">
               <div class="card">
                 <div  class="card-header card-header-success">
-                  <h4 class="card-title "><strong>LISTA DE ROLES</strong></a></h4>
+                  <h4 class="card-title "><strong>LISTA DE ROLES</strong> <a href="{{ url('/rolespdf') }}" class="btn btn-sm btn-danger" title="Exportar a pdf"><i class="far fa-file-pdf"></i> </a> <a href="{{ url('/rolesexcel') }}" class="btn btn-sm btn-warning" title="Exportar a excel"><i class="far fa-file-excel"></i> </a></h4>
 
                 </div>
                 <div class="card-body">

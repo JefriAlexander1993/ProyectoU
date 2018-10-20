@@ -1,3 +1,5 @@
+
+// LLamado a todas las lista en el momento iniciar
 $(document).ready(function() {
   usersList();
   clientsList();
@@ -16,9 +18,9 @@ $(document).ready(function() {
 // Datatable de Clientes
 
 function clientsList() {
-  var table =    $('#clients').removeAttr('width').DataTable({
-
-           language: {
+  var tableclient =    $('#clients').DataTable({
+  
+         language: {
                "sProcessing":     "Procesando...",
                "sLengthMenu":     "Mostrar _MENU_ Registros",
                "sZeroRecords":    "No se encontraron resultados",
@@ -46,18 +48,76 @@ function clientsList() {
           "autoWidth": true,
           "serverSide":true,
           "ajax": "api/clients/all",
+
            "columns":[
+               {data:'id'},
                {data:'nuip'},
                {data:'name'},
                {data:'phone'},
                {data:'address'},
                {data:'email'},
                {data:'btn'},
-                     ]
+             ],
+                  
      });
 
+data_editclient("#clients tbody", tableclient);
+data_showclient("#clients tbody", tableclient);
+data_deleteclient("#clients tbody", tableclient);
 }
 
+
+
+
+
+
+//Estrae la información de la tabla para editar.
+
+var data_editclient =  function(tbody , tableclient){
+
+$(tbody).on("click", "#editClient", function(){
+
+  var data= tableclient.row($(this).parents("tr")).data();
+  var idclient =$("#idclientedit").val(data.id);
+  var nuip=$("#nuipedit").val(data.nuip);
+  var name=$("#nameclientedit").val(data.name);
+  var phone=$("#phoneclientedit").val(data.phone);
+  var address=$("#addressclientedit").val(data.address);
+  var email=$("#emailclientedit").val(data.email);
+
+
+});
+}
+
+//Estrae la información de la tabla para ver.
+
+var data_showclient =  function(tbody , tableclient){
+
+$(tbody).on("click", "#showClient", function(){
+
+  var data= tableclient.row($(this).parents("tr")).data();
+      var  nuip =$("#shownuipclient").val(data.nuip);
+      var  name =$("#shownameclient").val(data.name);
+      var  phone =$("#showphoneclient").val(data.phone);
+      var  address =$("#showaddressclient").val(data.address);
+      var  email =$("#showemailclient").val(data.phone);
+
+
+
+});
+}
+
+// Estrae el id del usuario de una columan especifica para eliminar
+
+var data_deleteclient =  function(tbody , tableclient){
+
+$(tbody).on("click", "#deleteClient", function(){
+
+  var data= tableclient.row($(this).parents("tr")).data();
+      var idclient =$("#idclientedit").val(data.id);
+
+});
+}
 
 // Datatable de productos
 
@@ -497,7 +557,7 @@ $(tbody).on("click", "#showPermission", function(){
 
   // Datatable de comentarios
   function commentsList() {
-    $('#commentaries').DataTable(
+  var tabletcomment =   $('#commentaries').DataTable(
     {  language: {
               "sProcessing":     "Procesando...",
               "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -533,7 +593,23 @@ $(tbody).on("click", "#showPermission", function(){
 
                     ]
     });
+    data_showcomment("#commentaries tbody", tabletcomment)
   }
+  //Estrae la información de la tabla para ver.
+
+  var data_showcomment =  function(tbody ,tabletcomment ){
+  $(tbody).on("click", "#showcommentary", function(){
+
+        var data= tabletcomment.row($(this).parents("tr")).data();
+        var  name =$("#shownamecomment").val(data.name);
+        var  email =$("#showemailcomment").val(data.email);
+        var description=$("#showdescriptioncomment").val(data.body);
+  });
+  }
+
+
+
+
   // Datatable de role_user
   function role_userList() {
   var tableroleuser =  $('#users_roles').DataTable({

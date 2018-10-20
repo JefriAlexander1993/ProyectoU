@@ -19,7 +19,9 @@ use Illuminate\Http\Request;
 Route::get('clients/all', function () {
 
 	 return datatables()->eloquent(App\Models\Client::query())->addColumn('btn','frond.clients.fragment.actions')->rawColumns(['btn'])->toJson();
-
+	 
+	 
+ 
 });
 
 

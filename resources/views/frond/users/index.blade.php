@@ -66,7 +66,7 @@
             <div class="col-lg-8" >
               <div class="card">
                 <div  class="card-header card-header-success">
-                  <h4 class="card-title "><strong>LISTA DE USUARIO</strong></a></h4>
+                  <h4 class="card-title "><strong>LISTA DE USUARIO</strong><a href="{{ url('/userspdf') }}" class="btn btn-sm btn-danger" title="Exportar a pdf"><i class="far fa-file-pdf"></i> </a> <a href="{{ url('/usersexcel') }}" class="btn btn-sm btn-warning" title="Exportar a excel"><i class="far fa-file-excel"></i> </a></h4>
 
                 </div>
                 <div class="card-body">

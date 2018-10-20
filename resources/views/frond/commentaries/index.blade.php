@@ -67,7 +67,7 @@
             <div class="col-sm-8">
               <div class="card">
                 <div  class="card-header card-header-success">
-                  <h4 class="card-title "><strong>LISTA DE COMENTARIOS</strong></a></h4>
+                  <h4 class="card-title "><strong>LISTA DE COMENTARIOS </strong>  <a href="{{ url('/commentariespdf') }}" class="btn btn-sm btn-danger" title="Exportar a pdf"><i class="far fa-file-pdf"></i> </a> <a href="{{ url('/commentariesexcel') }}" class="btn btn-sm btn-warning" title="Exportar a excel"><i class="far fa-file-excel"></i> </a></h4>
 
                 </div>
                 <div class="card-body">

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use PDF;
+use App\Exports\PermissionsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PermissionController extends Controller
 {
@@ -21,6 +24,27 @@ class PermissionController extends Controller
     {
         return view('frond.permissions.index');
     }
+
+        public function pdfPermission()
+    {        
+       
+
+        $permissions = Permission::all(); 
+
+        $pdf = PDF::loadView('informe.permissions_list',compact('permissions'));
+
+        return $pdf->download('lists_permissions.pdf');
+
+    }
+       
+    public function excelPermission()
+    {        
+
+        return Excel::download(new PermissionsExport, 'lists_permissions.xlsx');
+
+    
+    }
+
 
 
     /**

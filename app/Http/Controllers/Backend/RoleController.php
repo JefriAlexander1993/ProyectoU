@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use PDF;
+use App\Exports\RolesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RoleController extends Controller
 {
@@ -21,6 +24,31 @@ class RoleController extends Controller
     {
         return view('frond.roles.index');
     }
+
+    
+    public function pdfRole()
+    {        
+       
+        $roles = Role::all(); 
+
+        $pdf = PDF::loadView('informe.roles_list',compact('roles'));
+
+        return $pdf->download('lists_roles.pdf');
+
+    }
+       
+    public function excelRole()
+    {        
+
+        return Excel::download(new RolesExport, 'lists_roles.xlsx');
+
+    
+    }
+
+
+
+
+
 
 
     /**
