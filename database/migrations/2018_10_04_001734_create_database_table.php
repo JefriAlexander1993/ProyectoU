@@ -28,6 +28,7 @@ class CreateDatabaseTable extends Migration
                  $table->float('unit_price');  
                  $table->float('sale_price');  
                  $table->integer('stockmin');
+                 $table->string('imagen');
                  $table->softDeletes();
                  $table->timestamps();
 
