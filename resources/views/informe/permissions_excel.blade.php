@@ -1,6 +1,3 @@
-                
-<title>INFORME DE PERMISOS</title>
-   @include('informe.formatpdf')
     <table class="table table-hover table-striped">
         <thead>
             <tr>

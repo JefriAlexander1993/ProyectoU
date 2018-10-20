@@ -1,9 +1,5 @@
-              
-<title>INFORME DE COMENTARIO</title>
     
-    @include('informe.formatpdf')
-
-    <table class="table table-hover table-striped">
+    <table class="table">
         <thead>
             <tr>
                 <th>ID</th>

@@ -16,7 +16,7 @@ class CommentariesExport implements FromView
 
  	public function view(): View
     {
-        return view('informe.commentaries_list', [
+        return view('informe.commentaries_excel', [
             'commentaries' => Commentary::all()
         ]);
     }

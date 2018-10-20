@@ -1,0 +1,22 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#menu, #contenido {
+    position: absolute;
+}
+#menu{
+    top: 0px;
+    width: 200px;
+    bottom: 0px;
+
+}
+#contenido {
+    top: 0px;
+    left: 200px;
+    right: 0;
+    bottom: 0px;
+
+}

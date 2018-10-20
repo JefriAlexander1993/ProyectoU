@@ -1,3 +1,7 @@
+
+//========================================================USUARIO======================================================//
+
+
 // Crear un usuario
 
 $("#Registro").on("click",function(e){
@@ -5,6 +9,19 @@ $("#Registro").on("click",function(e){
 var name = $("#idname").val();
 var email = $("#idemail").val();
 var password = $("#idpassword").val();
+
+if(name==='' || email ==='' || password ===''){
+
+     swal({
+              title: "Error en el momento de registro!",
+              text: "Vuelve a intentarlo, recuerda llenar todos lo campos.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+}else{
+
 var route= "users";
 var token=$("#token").val();
   $.ajax({
@@ -22,7 +39,9 @@ var token=$("#token").val();
 
   });
 
-});
+}});
+
+
 
 //Limpiar los campos de los usuarios
  function  limpiar(){
@@ -49,6 +68,27 @@ $('#Actualizar').click(function(e){
       var name = $("#name").val();
       var email = $("#email").val();
       var password = $("#password").val();
+
+        if(id === ''){
+        swal({
+              title: "Error en la actualización!",
+              text: "Vuelve a intentarlo, recuerda darle click al botón de la tabla que tiene un icono de una mano, para mostrar y poder editar.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+      }else if (name==='' || email==='' || password ==='' ) {
+        swal({
+              title: "Error, no se pueden enviar campos vacios !",
+              text: "Recuerdalo.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+      } else{
+
       var routeA= "users/"+id+"";
       var token =$("#token").val();
       $.ajax({
@@ -65,7 +105,7 @@ $('#Actualizar').click(function(e){
 
       });
 
-});
+}});
 
 // Eliminar usuario
 function eliminarUsers(){
@@ -102,13 +142,25 @@ function eliminarUsers(){
     }
   });
 }
-
+//===========================================================ROL========================================================//
 // Registro de rol
 $("#RegistroRole").on("click",function(e){
           e.preventDefault();
 var name = $("#nameRole").val();
 var display_name = $("#display_nameRole").val();
 var description = $("#descriptionRole").val();
+
+if(name==='' || description ===''){
+
+     swal({
+              title: "Error en el momento de registro!",
+              text: "Vuelve a intentarlo, recuerda llenar todos lo campos.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+}else{
 var route= "roles";
 var token=$("#token").val();
   $.ajax({
@@ -126,7 +178,7 @@ var token=$("#token").val();
 
   });
 
-});
+}});
 //Actualizar role
 $('#ActualizarRole').click(function(e){
   e.preventDefault();
@@ -134,6 +186,28 @@ $('#ActualizarRole').click(function(e){
       var name = $("#nameRoleEdit").val();
       var display_name = $("#display_nameRoleEdit").val();
       var description = $("#descriptionRoleEdit").val();
+      if (idrole==='') {
+
+        swal({
+              title: "Error en la actualización!",
+              text: "Vuelve a intentarlo, recuerda darle click al botón de la tabla que tiene un icono de una mano, para mostrar y poder editar.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+      }else if (name==='' || description==='') {
+        swal({
+              title: "Error, no se pueden enviar campos vacios !",
+              text: "Recuerdalo.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+      } else{
+
+
       var routeA= "roles/"+idrole+"";
       var token =$("#token").val();
       $.ajax({
@@ -150,7 +224,7 @@ $('#ActualizarRole').click(function(e){
 
       });
 
-});
+}});
 
 function  cleanRole(){
  $("#nameRole").val('');
@@ -202,7 +276,7 @@ function eliminarRole(){
     }
   });
 }
-
+//========================================================PERMISOS======================================================//
 
 // Crear un permisos
 
@@ -211,7 +285,17 @@ $("#Registropermission").on("click",function(e){
 var name = $("#namepermission").val();
 var display_name = $("#display_namepermission").val();
 var description1= $("#descriptionpermission").val();
+if(name==='' || description1 ===''){
 
+     swal({
+              title: "Error en el momento de registro!",
+              text: "Vuelve a intentarlo, recuerda llenar todos lo campos.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+}else{
 var route= "permissions";
 var token=$("#token").val();
   $.ajax({
@@ -228,7 +312,7 @@ var token=$("#token").val();
 
   });
 
-});
+}});
 
 //Actualizar permiso
 $('#ActualizarPermission').click(function(e){
@@ -237,6 +321,26 @@ $('#ActualizarPermission').click(function(e){
       var name = $("#namepermissionedit").val();
       var display_name = $("#display_namepermissionedit").val();
       var description = $("#descriptionpermissionedit").val();
+      if (idpermission==='') {
+
+        swal({
+              title: "Error en la actualización!",
+              text: "Vuelve a intentarlo, recuerda darle click al botón de la tabla que tiene un icono de una mano, para mostrar y poder editar.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+      }else if (name==='' || description==='') {
+        swal({
+              title: "Error, no se pueden enviar campos vacios !",
+              text: "Recuerdalo.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+
+
+      } else{
       var routeA= "permissions/"+idpermission+"";
 
       var token =$("#token").val();
@@ -254,7 +358,7 @@ $('#ActualizarPermission').click(function(e){
 
       });
 
-});
+}});
 
 // Eliminar usuario
 function eliminarPermission(){
@@ -292,7 +396,7 @@ function eliminarPermission(){
   });
 }
 
-// Crear un cliente
+//=========================================================CLIENTES======================================================//
 
 $("#Registroclient").on("click",function(e){
           e.preventDefault();
@@ -301,8 +405,21 @@ $("#Registroclient").on("click",function(e){
       var phone = $("#phoneclient").val();
       var address = $("#addressclient").val();
       var email = $("#emailclient").val();
-      var route= "clients";
-var token=$("#token").val();
+
+  if(nuip==='' || name==='' ||  phone==='' || address ==='' && email ===''){
+
+       swal({
+                title: "Error en el momento de registro!",
+                text: "Vuelve a intentarlo, recuerda llenar todos lo campos.",
+                icon: "warning",
+                button: "Cerrar!",
+                });
+
+
+  }else{
+
+  var route= "clients";
+  var token=$("#token").val();
   $.ajax({
     url:route,
     headers:{'X-CSRF-TOKEN':token},
@@ -318,7 +435,7 @@ var token=$("#token").val();
 
   });
 
-});
+}});
 
 // Actualizar client
 
@@ -342,7 +459,7 @@ $('#Actualizarclient').click(function(e){
               });
 
 
-      }else if (nuip ==='' || name==='' || phone==='' || address==='' || email==='' ) {
+      }else if (nuip ==='' || name==='' || phone==='' || address==='' &&  email==='' ) {
         swal({
               title: "Error, no se pueden enviar campos vacios !",
               text: "Recuerda, seleccionar el usuario y el rol.",
@@ -432,11 +549,7 @@ function eliminarClient(){
   });
 }
 
-
-
-
-
-
+//=========================================================PRODUCTOS======================================================//
 
 
 // Crear un producto
@@ -474,6 +587,7 @@ var token=$("#token").val();
 
 });
 
+//=========================================================COMENTARIOS==================================================//
 
 // Crear un comentarios
 
@@ -508,6 +622,8 @@ function cleancomment(){
   var body= $("#bodycomment").val(' ');
 
 }
+
+//=========================================================ROLES_USER===================================================//
 
 // Crear un role_user
 
@@ -636,6 +752,7 @@ function eliminarasignacionroleuser(){
     }
   });
 }
+//=========================================================ROLES_PERMISSION==============================================//
 
 // Crear un role_permission
 $("#Registrorolepermission").on("click",function(e){

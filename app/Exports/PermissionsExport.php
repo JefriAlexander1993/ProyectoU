@@ -14,7 +14,7 @@ class PermissionsExport implements FromView
     */
 	public function view(): View
     {
-        return view('informe.permissions_list', [
+        return view('informe.permissions_excel', [
             'permissions' => Permission::all()
         ]);
     }

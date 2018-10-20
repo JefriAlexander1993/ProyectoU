@@ -1,6 +1,3 @@
-                
-<title>INFORME DE PERMISOS</title>
-   @include('informe.formatpdf')
     <table class="table table-hover table-striped">
         <thead>
             <tr>
@@ -12,12 +9,12 @@
             </tr>                            
         </thead>
         <tbody>
-            @foreach($permissions as $permission)
+            @foreach($roles as $role)
             <tr>
-                <td>{{ $permission->id }}</td>
-                <td>{{ $permission->name }}</td>
-                <td>{{ $permission->display_name }}</td>
-                <td>{{ $permission->description}}</td>
+                <td>{{ $role->id }}</td>
+                <td>{{ $role->name }}</td>
+                <td>{{ $role->display_name }}</td>
+                <td>{{ $role->description}}</td>
           
             </tr>
             @endforeach

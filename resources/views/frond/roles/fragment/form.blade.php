@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                <label class="bmd-label-floating"><strong>Nombre</strong></label>
+                <label class="bmd-label-floating"><strong>Nombre(*)</strong></label>
             <input type="text" required class="form-control"  placeholder="Ej: admin, cliente, empleado" id="nameRole" name="nameRole" title="Nombre del rol">
           </div>
         </div>
@@ -21,7 +21,7 @@
     <div class="row">
           <div class="col-sm-12">
               <div class="form-group">
-                      <label class="bmd-label-floating"><strong>Descripción</strong></label>
+                      <label class="bmd-label-floating"><strong>Descripción(*)</strong></label>
               <input  id="descriptionRole" type="text" required class="form-control" placeholder="El rol admin: podrá crear,editar,ver,eliminar." name="descriptionRole" title="Descripción">
           </div>
         </div>

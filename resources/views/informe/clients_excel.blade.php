@@ -1,6 +1,3 @@
-                
-<title>INFORME DE CLIENTES</title>
-   @include('informe.formatpdf')
     <table class="table table-hover table-striped">
         <thead>
             <tr>

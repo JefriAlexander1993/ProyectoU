@@ -17,7 +17,7 @@ class ClientsExport implements FromView
 
  	public function view(): View
     {
-        return view('informe.clients_list', [
+        return view('informe.clients_excel', [
             'clients' => Client::all()
         ]);
     }

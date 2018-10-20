@@ -14,6 +14,7 @@
   <link href="{{asset('css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/all.min.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/fontawesome.min.css')}}">
+  <link href="{{asset('css/document.css')}}" rel="stylesheet">
 @yield('link')
 
 </head>
@@ -21,15 +22,19 @@
 <body class="dark-edition">
 <div class="wrapper ">
   <div class="row">
-    <div class="col-lg-2">
+   <div id="menu">
+  <div class="col-lg-2" >
   <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
       Tip 2: you can also add an image using data-image tag
   -->
-    <div class="sidebar-wrapper">
+
+
+    <div class="sidebar-wrapper" >
       <ul class="nav">
+
         <li class="nav-item active  ">
           <a class="nav-link" href="{{"route('quotations.index')"}}">
               <i class="fas fa-home"></i>
@@ -102,20 +107,22 @@
 
   </div>
 
+</div>
 
 </div>
 </div>
-<div class="col-lg-10">
 
+<div class="col-lg-10" id="contenido">
+    
 <div class="content" >
 
-            @yield('content')
-
+          @yield('content')
+  
 </div>
 </div>
 </div>
 </div>
-
+ 
     <!-- End Navbar -->
 
 <div class="fixed-plugin" style="margin-top:-7%;">
@@ -152,13 +159,7 @@
   <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
   <script src="{{asset('js/jquery.dataTables.min.js') }}"></script>
   <script src="{{asset('js/dataTables.bootstrap4.min.js') }}"></script>
-  <script src="{{asset('js/dataTables.buttons.min.js') }}"></script>
-  <script src="{{asset('js/buttons.flash.min.js') }}"></script>
-  <script src="{{asset('js/jszip.min.js') }}"></script>
-  <script src="{{asset('js/pdfmake.min.js') }}"></script>
-  <script src="{{asset('js/vfs_fonts.js') }}"></script>
-  <script src="{{asset('js/buttons.html5.min.js') }}"></script>
-  <script src="{{asset('js/buttons.print.min.js') }}"></script>
+
 
   <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
   <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>

@@ -14,7 +14,7 @@ class RolesExport implements FromView
     */
   	public function view(): View
     {
-        return view('informe.roles_list', [
+        return view('informe.roles_excel', [
             'roles' => Role::all()
         ]);
     }
