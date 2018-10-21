@@ -67,10 +67,6 @@ data_deleteclient("#clients tbody", tableclient);
 }
 
 
-
-
-
-
 //Estrae la información de la tabla para editar.
 
 var data_editclient =  function(tbody , tableclient){
@@ -122,7 +118,7 @@ $(tbody).on("click", "#deleteClient", function(){
 // Datatable de productos
 
   function productsList() {
-              $('#products').DataTable(
+      var tableProduct   =   $('#products').DataTable(
               {  language: {
                         "sProcessing":     "Procesando...",
                         "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -151,6 +147,7 @@ $(tbody).on("click", "#deleteClient", function(){
                     "ajax": "api/products/all",
                     "columns":[
 
+              
                         {data:'code'},
                         {data:'name'},
                         {data:'description'},
@@ -160,6 +157,21 @@ $(tbody).on("click", "#deleteClient", function(){
 
                               ]
               });
+      data_deleteProduct("#products tbody" , tableProduct);
+
+}
+
+// Estrae el id del usuario de una columan especifica para eliminar
+
+
+var data_deleteProduct =  function(tbody , tableProduct){
+
+$(tbody).on("click", "#deleteProduct", function(){
+
+  var data= tableProduct.row($(this).parents("tr")).data();
+      var idclient =$("#idproductedit").val(data.id);
+
+});
 }
 
 

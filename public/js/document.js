@@ -5,10 +5,11 @@
 // Crear un usuario
 
 $("#Registro").on("click",function(e){
-          e.preventDefault();
+   e.preventDefault();
+
 var name = $("#idname").val();
 var email = $("#idemail").val();
-var password = $("#idpassword").val();
+var password = $("#idpassword").val()
 
 if(name==='' || email ==='' || password ===''){
 
@@ -22,7 +23,8 @@ if(name==='' || email ==='' || password ===''){
 
 }else{
 
-var route= "users";
+  var route= "users";
+
 var token=$("#token").val();
   $.ajax({
     url:route,
@@ -551,12 +553,10 @@ function eliminarClient(){
 
 //=========================================================PRODUCTOS======================================================//
 
-
 // Crear un producto
 
-$("#Registroproduct").on("click",function(e){
+$("#Registroproduct").on("click",function(){
 
-          e.preventDefault();
 var code = $("#codeproduct").val();
 var name= $("#nameproduct").val();
 var date= $("#dateproduct").val();
@@ -567,6 +567,16 @@ var unit_price = $("#unit_price").val();
 var sale_price = $("#sale_price").val();
 var stockmin = $("#stockmin").val();
 var file =$("#file").val();
+
+if(code==='' || name ==='' || date ==='' || unit_price ==='' || sale_price ==='' || stockmin===''){
+           swal({
+                title: "Error en el momento de registro!",
+                text: "Vuelve a intentarlo, recuerda llenar todos lo campos.",
+                icon: "warning",
+                button: "Cerrar!",
+                });
+
+}else{
 
 var route= "products";
 var token=$("#token").val();
@@ -579,13 +589,66 @@ var token=$("#token").val();
     success:function(){
 
         swal("¡Buen trabajo, se ha agregado exitosamente!", "Haz clic en el botón!", "success");
-        limpiar();
+        clenProduct();
         $('#products').DataTable().ajax.reload();
     }
 
   });
 
-});
+}});
+
+
+function clenProduct(){
+
+   $("#codeproduct").val('');
+   $("#nameproduct").val('');
+   $("#dateproduct").val('');
+   $("#descriptionproduct").val('');
+   $("#ivaproduct").val('');
+   $("#unit_price").val('');
+   $("#sale_price").val('');
+   $("#stockmin").val('');
+   $("#file").val('');
+
+}
+
+// Eliminar usuario rol_user
+function eliminarProduct(){
+  swal({
+    title: "¿Estás seguro?",
+    text: " Una vez eliminado, no podrá recuperar este archivo imaginario!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      var id= $("#idproductedit").val();
+      var routeA= "products/"+id;
+      var token =$("#token").val();
+      $.ajax({
+        url:routeA,
+        headers: {'X-CSRF-TOKEN': token},
+        type:'POST',
+        dataType:'json',
+        data: {_method: 'DELETE'},
+        success:function(){
+          $("#products").dataTable()._fnAjaxUpdate();
+          swal("¡Su archivo imaginario ha sido eliminado!", {
+            icon: "success",
+          });
+
+        }
+
+      });
+
+    } else {
+      swal("Tu archivo imaginario es seguro!");
+    }
+  });
+
+}
+
 
 //=========================================================COMENTARIOS==================================================//
 
@@ -623,6 +686,43 @@ function cleancomment(){
 
 }
 
+// Eliminar usuario rol_user
+function eliminarasignacionroleuser(){
+  swal({
+    title: "¿Estás seguro?",
+    text: " Una vez eliminado, no podrá recuperar este archivo imaginario!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      var id= $("#iduroleasigancionedit").val();
+
+      var routeA= "users_roles/"+id;
+      var token =$("#token").val();
+      $.ajax({
+        url:routeA,
+        headers: {'X-CSRF-TOKEN': token},
+        type:'POST',
+        dataType:'json',
+        data: {_method: 'DELETE'},
+        success:function(){
+          $("#users_roles").dataTable()._fnAjaxUpdate();
+          swal("¡Su archivo imaginario ha sido eliminado!", {
+            icon: "success",
+          });
+
+        }
+
+      });
+
+    } else {
+      swal("Tu archivo imaginario es seguro!");
+    }
+  });
+
+}
 //=========================================================ROLES_USER===================================================//
 
 // Crear un role_user

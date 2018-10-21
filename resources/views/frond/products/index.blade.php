@@ -11,7 +11,7 @@
               <div class="container">
                   <ul class="nav nav-tabs" role="tablist" style="padding-left:70px">
                     <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"></input>
-                    <input type="hidden" value="" id="idproductdit" name="idproductedit"></input>
+                    <input type="hidden" value="" id="idproductedit" name="idproductedit"></input>
                     <li role="plantillas"><button href="#variables"  title="Crear rol" id="create-form-rol"  name="crear-form" type="button" class="btn btn-success btn-sm" aria-controls="variables" role="tab" data-toggle="tab"><i class="fas fa-plus-square" ></i></button></li>
                     <li role="plantillas" class="active"><a id="edit-form-rol" title="Editar rol" class="btn btn-info btn-sm" href="#table" aria-controls="table" role="tab" data-toggle="tab"><i class="far fa-edit"></i></a></li>
                     <li role="plantillas" class="active"><a id="show-form-rol"title="Ver rol" class="btn btn-secundary btn-sm" href="#ver" aria-controls="table" role="tab" data-toggle="tab"><i class='fas fa-eye'></i></a></li>
@@ -73,6 +73,7 @@
                                   <table id="products" class="table table-striped table-hover">
                                           <thead>
                                             <tr>
+                                       
                                               <th>Codigo</th>
                                               <th>Nombre</th>
                                               <th>Descripción</th>

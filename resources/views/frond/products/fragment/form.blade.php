@@ -5,13 +5,13 @@
   <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-              <label class="bmd-label-floating"><strong>Codigo</strong></label>
+              <label class="bmd-label-floating"><strong>Codigo(*) </strong></label>
             <input type="text" placeholder="Ej:123245" required class="form-control" value="" id="codeproduct" name="codeproduct" title="Codigo del producto">
            </div>
         </div>
           <div class="col-sm-6">
                <div class="form-group">
-                     <label class="bmd-label-floating"><strong>Fecha</strong></label>
+                     <label class="bmd-label-floating"><strong>Fecha(*)</strong></label>
                      <input type="date" placeholder="Ej:13/07/1993" required class="form-control" id="dateproduct" name="dateproduct" title="Fecha de la compra del producto">
                </div>
          </div>
@@ -21,13 +21,13 @@
   <div class="row">
         <div class="col-sm-4">
             <div class="form-group">
-                  <label class="bmd-label-floating"><strong>Stockmin</strong></label>
+                  <label class="bmd-label-floating"><strong>Stockmin(*)</strong></label>
                   <input type="number" placeholder="1" required min="1" class="form-control" id="stockmin" name="stockmin" title="Cantidad minima del producto">
             </div>
       </div>
       <div class="col-sm-8">
           <div class="form-group">
-          <label class="bmd-label-floating"><strong>Nombre</strong></label>
+          <label class="bmd-label-floating"><strong>Nombre(*)</strong></label>
           <input type="select" placeholder="Ej:Televisión" required class="form-control" id="nameproduct" name="nameproduct" title=" Nombre del producto">
         </div>
     </div>
@@ -58,19 +58,19 @@
   <div class="row">
       <div class="col-sm-4">
             <div class="form-group">
-            <label class="bmd-label-floating"><strong>Iva</strong></label>
+            <label class="bmd-label-floating"><strong>Iva(*)</strong></label>
             <input type="number" placeholder="Ej:15%" required class="form-control" id="ivaproduct" name="ivaproduct" title="Iva">
           </div>
       </div>
       <div class="col-sm-4">
           <div class="form-group">
-          <label class="bmd-label-floating"><strong>Precio costo</strong></label>
+          <label class="bmd-label-floating"><strong>Precio costo(*)</strong></label>
           <input type="number" placeholder="Ej:1500" required class="form-control" id="unit_price" name="unit_price" title="Precio unitario">
         </div>
       </div>
       <div class="col-sm-4">
           <div class="form-group">
-          <label class="bmd-label-floating"><strong>Precio venta</strong></label>
+          <label class="bmd-label-floating"><strong>Precio venta(*)</strong></label>
           <input type="number" placeholder="Ej:1800" required class="form-control" id="sale_price" name="sale_price" title="Precio unitario">
         </div>
       </div>
