@@ -45,4 +45,20 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+    public function redirectPath()
+    
+    {
+
+        if(Auth()->user()->email == 'admin@admin.com' ){
+          
+              return '/home';
+               return  '/carrito/show';
+
+        }
+
+             return  '/carrito/show';
+    }
+
 }

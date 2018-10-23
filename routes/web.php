@@ -16,9 +16,13 @@
     return view('frond.catalogo.index');
 });*/
 
+Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
+    Route::get('/home');
+});
+
 Auth::routes();
 
-//Rutas
+
 
 Route::get('store','StoreController@index')->name('store');
 
@@ -28,12 +32,16 @@ Route::get('store','StoreController@index')->name('store');
 	return App\Producto::where('id',$id)->first();
 });*/
 
+Route::group(['middleware' => 'auth'], function () {
 
+		Route:: get('carrito/show',[
+		'as'=>'mostrar-carrito',
+		'uses'=>'CarritoController@show'
+		]);
+
+});
 //ruta carrito
-Route:: get('carrito/show',[
-'as'=>'mostrar-carrito',
-'uses'=>'CarritoController@show'
-]);
+
  
 //ruta agregar producto carrito
 Route:: get('carrito/add/{producto}',[

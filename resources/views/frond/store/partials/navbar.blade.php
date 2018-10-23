@@ -9,8 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
+    
         <li class="nav-item">
           <a class="nav-link" href="{{url("/")}}">Catalogo</a>
         </li>
@@ -20,12 +19,36 @@
         <li class="nav-item">
           <a class="nav-link " href="#">Contactanos</a>
         </li>
+        @if(!Auth::check())
         <li class="nav-item" >
               <a class="nav-link" href="{{route("login")}}" >Inicar sesion</a>
         </li>
         <li class="nav-item" >     
               <a class="nav-link" href="{{route("register")}}"  >Registrate</a>
          </li>
+        @endif 
+ @if (Auth::guest())
+                      
+  @else
+  <li class="dropdown" style="margin-left:570px ">
+    <a href="#" class="nav-link" style ="color:#fff;" class="dropdown-toggle" data-toggle="dropdown">
+     {{ Auth::user()->name }}<b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li class="divider"></li>
+      <li>
+         <a href="{{ url('/logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                Cerrar sesión
+         </a>
+         <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+      </li>
+    </ul>
+  </li>
+  @endif
  
     </ul>
      
