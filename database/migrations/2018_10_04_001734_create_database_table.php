@@ -23,10 +23,17 @@ class CreateDatabaseTable extends Migration
                  $table->date('date')->nullable();
                  $table->mediumtext('description')->nullable();
                  $table->float('iva')->default(0);
+<<<<<<< HEAD
+                 $table->float('unit_price');  
+                 $table->float('sale_price');  
+                 $table->integer('stockmin');
+                 $table->string('imagen');
+=======
                  $table->float('unit_price');
                  $table->float('sale_price');
                  $table->integer('stockmin')->default(0);
                  $table->string('file',128)->nullable();
+>>>>>>> 861abf30f5dfd08bc9a0037fd85b205a826aa6fb
                  $table->softDeletes();
                  $table->timestamps();
 

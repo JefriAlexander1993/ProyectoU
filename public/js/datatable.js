@@ -1,6 +1,7 @@
 
 // LLamado a todas las lista en el momento iniciar
 $(document).ready(function() {
+
   usersList();
   clientsList();
   salesList();
@@ -87,7 +88,7 @@ $(tbody).on("click", "#editClient", function(){
 
 //Estrae la información de la tabla para ver.
 
-var data_showclient =  function(tbody , tableclient){
+var data_showclient =  function(tbody , tablecotizacion){
 
 $(tbody).on("click", "#showClient", function(){
 

@@ -1,3 +1,64 @@
+$(document).ready(function() {
+ calcularTotal();
+   $('#totalcard').innerHTML = sum;
+});
+
+   $("#update-cotizacion").on('click', function(){
+ 
+  
+    
+    var id = $(this).data('id');
+    console.log("id",id);
+    var href = $(this).data('href');
+    console.log('href'.href);
+    var quantity = $("#product_" + id).val();
+    console.log('cantidad'.quantity);
+    window.location.href = href + "/" + quantity;
+       
+  });
+sum = 0;
+function calcularTotal(){
+
+
+     $('tr').find('#subtotalcot').each(function () {
+        var combat = $(this).text();
+
+         if (!isNaN(combat) || combat.length !== 0) {
+            sum += parseInt(combat);
+         
+         }
+   
+     }
+
+     );
+   
+  $('#totalcarrito').val(sum);
+
+    
+}
+
+
+ // $('#tablecotizacion tr').each(function () {
+
+   // var price = parseFloat($(this).find('td:nth-child(4)').text());
+  //  var cant = $("#cantidadc1").val();
+   //  total1 = price * cant;
+   // console.log(total1);
+     
+  
+ //    $("#subtotal1").val(total1);
+//});
+
+
+// $('#tablecotizacion').find('th').eq(4).after('<th>Subtotal</th>');
+  //              $('#tablecotizacion').find('tr').each(function () {
+//                    $(this).find('td').eq(4).after('<td><input id ="subtotalc '+<? $item->id ?>+'" name ="subtotalc" value=""> </td>');
+//                });
+
+
+
+
+
 
 //========================================================USUARIO======================================================//
 

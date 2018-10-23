@@ -13,6 +13,14 @@ return [
     |
     */
 
+        'local' => [
+         
+        'driver' => 'local',
+         
+        'root' => public_path().'/storage',
+         
+        ],
+
     'default' => env('FILESYSTEM_DRIVER', 'local'),
 
     /*

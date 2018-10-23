@@ -20,7 +20,6 @@ class ProductController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -31,9 +30,11 @@ class ProductController extends Controller
     {
       if($request->ajax()){
            $product =  Product::create($request->all());
-        if($request->file('file')){
-          $photo =Storage::disk('public')->put('image', $request->file('file'));
-          $product->fill(['file'=>asset($photo)])->save();
+        if($file = $request->file('file')){
+           $photo = $file->getClientOriginalName();
+           //$photo =Storage::disk('public')->put('image', $request->file('file'));
+          \Storage::disk('local')->put($phono,  \File::get($file));
+          //$product->fill(['file'=>asset($photo)])->save();
 
         }
 
