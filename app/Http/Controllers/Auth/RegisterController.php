@@ -68,4 +68,18 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+    
+    public function redirectPath()
+    
+    {
+
+        if(Auth()->user()->email == 'admin@admin.com' ){
+          
+              return '/home';
+               return  '/carrito/show';
+
+        }
+
+             return  '/carrito/show';
+    }
 }

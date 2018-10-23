@@ -99,9 +99,9 @@
   </div>
 </div>
 
-<div class="col-lg-10" id="contenido">
+<div class="col-lg-10" id="contenido" >
     
-<div class="content" >
+<div class="content" style="padding-right:10px;padding-left:10px " >
 
           @yield('content')
   

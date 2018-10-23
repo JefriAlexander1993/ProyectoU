@@ -21,6 +21,18 @@ class PurchaseController extends Controller
         return  view('frond.purchases.index');
     }
 
+    public function create(){
+
+         return  view('frond.purchases.create');
+
+    }
+
+    public function show($id){
+
+          $purchase =Purchase::find($id);
+              return  view('frond.purchases.show', compact("purchase"));
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -38,6 +50,17 @@ class PurchaseController extends Controller
               ]);
       }
     }
+
+    public function edit($id){
+
+
+          $purchase =Purchase::find($id);
+              return  view('frond.purchases.edit', compact("purchase"));
+
+    }  
+
+
+
 
     /**
      * Update the specified resource in storage.

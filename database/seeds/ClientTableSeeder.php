@@ -12,7 +12,7 @@ class ClientTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Moldes\Client::class,20)->create();
+        //factory(App\Moldes\Client::class,20)->create();
     }
 }
 
