@@ -1,11 +1,189 @@
 $(document).ready(function() {
- calcularTotal();
+  
+    calcularTotal();
    $('#totalcard').innerHTML = sum;
 });
 
-   $("#update-cotizacion").on('click', function(){
- 
-  
+
+$('#btn-purchase').on('click', function() {
+
+        if ($('#code').val() == '') {
+
+            swal({
+              title: "Error en el momento de agregar!",
+              text: "Vuelve a intentarlo, recuerda llenar el campo de codigo, no puede estar vacio.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+            return false;
+        }
+
+        for (i = 0; i < listcode.length; i++) {
+            if (listcode[i] == $('#code').val()) {
+   
+             swal({
+              title: "Error en el momento de agregar!",
+              text: "Vuelve a intentarlo, no se puede agregar el mismo codigo.",
+              icon: "warning",
+              button: "Cerrar!",
+              });
+                return false;
+            }
+        }
+
+        addRowBuy();
+
+    });
+
+var listcode = new Array();
+
+/*************    Adicionar filas de compra    ************/
+
+function addRowBuy() {
+
+    $.ajax({
+        url: $('#url_product').val() + '/' + $('#code').val(),
+        dataType: 'json',
+        type: 'GET',
+        success: function(data) {
+            console.log(data);
+            if (data.code === 200) {
+                $(data.datos).each(function(index, el) {
+                   // var totaIva = parseFloat(el.sale_price) * parseFloat(el.iva) / 100;
+                    
+                    var row = '<tr id="fila' + el.id + '">\n\
+    <td align="center"><input readonly="readonly" style="border:none;text-align:center" readonly="readonly" type="text" id="codeproduct' + el.id + '" name="codeproduct[]" value="' + el.code + '"></td>\n\
+    <td align="center"><input readonly="readonly" style="border:none;text-align:center" readonly="readonly" type="text" id="nameproduct' + el.id + '" name="nameproduct[]" value="' + el.name + '"></td>\n\
+    <td align="center"><input style="border:none;text-align:center"  type="number" id="quantity' + el.id + '" min="1" pattern="^[0-9]+"  name="quantity[]" onkeyup="totalizePurchase(' + el.id + ');" value="1"></td>\n\
+    <td align="center"><input style="border:none;text-align:center" readonly="readonly" type="text" id="sale_price' + el.id + '" name="sale_price[]" value="' + el.sale_price + '"></td>\n\
+    <td align="center"><input  style="border:none;text-align:center" type="text" id="subtotal' + el.id + '" name="subtotal[]" step="0.01" value="' + el.sale_price+ '"></td>\n\
+    <td align="center"><a id="btn-borrar' + el.id + '" class="btn btn-danger btn-sm" onclick="deleteRow(' + el.id + ')" ><i class="fa fa-trash" ></i></a></td>\n\
+    </tr>';
+          
+
+                    $('#tbl-purchases tbody').append(row);
+
+                    var c = parseInt($('#compra').val()) + 1;
+                    $('#compra').val(c);
+                    //Corregir 
+                    $('#totalPurchase').val(parseFloat($('#totalPurchase').val())+parseFloat($('#totalPurchase').val()));
+
+
+                    listcode.push($('#code').val());
+                  
+                    swal("¡Buen trabajo, se ha agregado exitosamente el producto, recuerda solo se puede modificar cantidad!", "Haz clic en el botón!", "success");
+       
+                  //  toastr.success('Se ha agregado un articulo en Compra!.')
+
+
+
+
+                });
+
+            } else {
+                if (data.code === 600) {
+                    //toastr.error('No se encuentra el codigo digitado');
+                } else {
+                   // toastr.error('error');
+
+                }
+
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+
+            data = {
+                error: jqXHR + ' - ' + textStatus + ' - ' + errorThrown
+            }
+            $('#modal' + 1).modal('toggle');
+            $('body').append('<div class="modal fade" id="modalError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><h4 class="modal-title" id="myModalLabel">ERROR EN TRANSACCIÓN</h4></div><div class="modal-body">' + data.error + '</div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button></div></div></div></div>');
+            $('#modalError').modal({ show: true });
+        }
+    });
+
+}
+
+/************ Totaliza todos los valores de la fila agregada ************/
+function  totalizePurchase(id) {
+
+    var cantidad = $('#quantity' + id).val();
+
+    if (cantidad != '') {
+
+        var precio = $('#sale_price' + id).val();
+        
+        var subtotal = parseFloat(precio).toFixed(2) * parseFloat(cantidad).toFixed(2);
+
+        $('#subtotal' + id).val(subtotal);
+
+        //var totalIva = (subtotal * parseFloat($('#iva' + id).val()).toFixed(2)) / 100;
+        //var total = subtotal + totalIva;
+        //$('#total' + id).val(total);
+
+        var totalVenta = 0;
+        var fila = $("#tbl-purchases> tbody > tr").each(function(index, element) {
+            var idfila = element.id.replace("fila", "#subtotal"); /*Debe ser este*/
+
+            totalPurchase += parseInt($(idfila).val());
+            
+        });
+        $('#totalPurchase').val(totalPurchase);
+    } else {
+        $('#subtotal' + id).val(0);
+        $('#totalPurchase').val(0);
+      
+    }
+
+
+}
+
+/*--------- Eliminar fila por medio del id-------------*/
+function deleteRow(id, e) {
+
+    if ($('#fila' + id).remove()) {
+        file = $('#venta').val() - 1;
+        filec = $('#compra').val() - 1;
+        $('#venta').val(file)
+        $('#compra').val(filec)
+        $('#codigo').val('');
+        var totalVenta = 0;
+        var fila = $("#tbl-venta > tbody > tr").each(function(index, element) {
+            var idfila = element.id.replace("fila", "#total"); /*Debe ser este*/
+            totalVenta = parseInt($(idfila).val());
+
+        });
+        $('#totalVenta').val(totalVenta);
+
+        listcode.pop();
+
+
+        if (isNaN(totalVenta)) {
+            $('#totalVenta').val(0);
+        } else {
+            $('#totalVenta').val(e);
+
+        }
+        toastr.success('Se ha eliminado correctamente', '!El articulo.')
+
+
+        $('#totalVenta').val(totalVenta);
+
+        for (i = 0; i < listcodigo.length; i++) {
+            if (listcodigo[i] == id) {
+
+                listcodigo.splice(i);
+                return false;
+
+            }
+        }
+    }
+}
+
+
+
+// Actualiza subprecio de cotizacion
+
+$("#update-cotizacion").on('click', function(){
     
     var id = $(this).data('id');
     console.log("id",id);
@@ -16,7 +194,9 @@ $(document).ready(function() {
     window.location.href = href + "/" + quantity;
        
   });
-sum = 0;
+
+var sum = 0;
+// Total de la otización
 function calcularTotal(){
 
 
@@ -36,28 +216,6 @@ function calcularTotal(){
 
     
 }
-
-
- // $('#tablecotizacion tr').each(function () {
-
-   // var price = parseFloat($(this).find('td:nth-child(4)').text());
-  //  var cant = $("#cantidadc1").val();
-   //  total1 = price * cant;
-   // console.log(total1);
-     
-  
- //    $("#subtotal1").val(total1);
-//});
-
-
-// $('#tablecotizacion').find('th').eq(4).after('<th>Subtotal</th>');
-  //              $('#tablecotizacion').find('tr').each(function () {
-//                    $(this).find('td').eq(4).after('<td><input id ="subtotalc '+<? $item->id ?>+'" name ="subtotalc" value=""> </td>');
-//                });
-
-
-
-
 
 
 //========================================================USUARIO======================================================//

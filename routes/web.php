@@ -22,7 +22,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
 
 Auth::routes();
 
-
+ Route::get('products/getProduct/{code}' , 'Backend\ProductController@getProductByCode');
 
 Route::get('store','StoreController@index')->name('store');
 

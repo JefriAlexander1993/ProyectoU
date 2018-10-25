@@ -44,6 +44,15 @@ class Product extends Model
     {
         return $this->hasOne('App\Brand');
     }
+       public static function codeUnique($code){ //Verifica que el nuip sea unico en la base de datos, en caso de no ser unico devuelve falso (false)
+        
+        $codigU = App\Models\Product::where('code', '=', $code)->count();
+        if( $codigU == 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 
 }
