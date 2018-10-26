@@ -4,10 +4,10 @@
 <!--'code', 'date','name','size','brand','quantity','iva','unit_price','sale_price','stockmin'-->
   <div class="row">
         <div class="col-sm-6">
-            <div class="form-group">
+        <div class="form-group">
               <label class="bmd-label-floating"><strong>Codigo(*) </strong></label>
             <input type="text" placeholder="Ej:123245" required class="form-control" value="" id="codeproduct" name="codeproduct" title="Codigo del producto">
-           </div>
+           </div> 
         </div>
           <div class="col-sm-6">
                <div class="form-group">

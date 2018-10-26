@@ -19,6 +19,9 @@
   <link href="{{asset('css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/all.min.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/fontawesome.min.css')}}">
+  <link href="{{asset('css/select/css/bootstrap-select.min.css')}}" rel="stylesheet">
+
+
 
 @yield('link')
 
@@ -139,13 +142,13 @@
 </div>
 
 </div>
-
+  @yield('script')
   <!--   Core JS Files   -->
   <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
   <script src="{{asset('js/jquery.dataTables.min.js') }}"></script>
   <script src="{{asset('js/dataTables.bootstrap4.min.js') }}"></script>
 
-
+  <script src="{{asset('js/select/js/bootstrap-select.min.js')}}"></script>
   <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
   <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
 

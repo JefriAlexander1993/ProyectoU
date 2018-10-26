@@ -11,7 +11,7 @@ $('#btn-purchase').on('click', function() {
 
             swal({
               title: "Error en el momento de agregar!",
-              text: "Vuelve a intentarlo, recuerda llenar el campo de codigo, no puede estar vacio.",
+              text: "Vuelve a intentarlo,recuerda llenar el campo de codigo, no puede estar vacio, vuelve a seleccionarlo.",
               icon: "warning",
               button: "Cerrar!",
               });
@@ -46,7 +46,6 @@ function addRowBuy() {
         dataType: 'json',
         type: 'GET',
         success: function(data) {
-            console.log(data);
             if (data.code === 200) {
                 $(data.datos).each(function(index, el) {
                    // var totaIva = parseFloat(el.sale_price) * parseFloat(el.iva) / 100;
@@ -120,13 +119,14 @@ function  totalizePurchase(id) {
         //var total = subtotal + totalIva;
         //$('#total' + id).val(total);
 
-        var totalVenta = 0;
+        var totalPurchase = 0;
         var fila = $("#tbl-purchases> tbody > tr").each(function(index, element) {
-            var idfila = element.id.replace("fila", "#subtotal"); /*Debe ser este*/
-
+           var idfila = element.id.replace("fila", "#subtotal"); /*Debe ser este*/
+   
             totalPurchase += parseInt($(idfila).val());
             
         });
+     
         $('#totalPurchase').val(totalPurchase);
     } else {
         $('#subtotal' + id).val(0);
@@ -145,33 +145,42 @@ function deleteRow(id, e) {
         filec = $('#compra').val() - 1;
         $('#venta').val(file)
         $('#compra').val(filec)
-        $('#codigo').val('');
+        $('#code').val('');
         var totalVenta = 0;
         var fila = $("#tbl-venta > tbody > tr").each(function(index, element) {
-            var idfila = element.id.replace("fila", "#total"); /*Debe ser este*/
+            var idfila = element.id.replace("fila", "#subtotal"); /*Debe ser este*/
             totalVenta = parseInt($(idfila).val());
 
         });
-        $('#totalVenta').val(totalVenta);
+        $('#totalPurchase').val(totalVenta);
 
         listcode.pop();
 
 
         if (isNaN(totalVenta)) {
-            $('#totalVenta').val(0);
+            $('#totalPurchase').val(0);
         } else {
-            $('#totalVenta').val(e);
+            $('#totalPurchase').val(e);
 
         }
-        toastr.success('Se ha eliminado correctamente', '!El articulo.')
+         
+            swal({ title: "Se ha eliminado correctamente!",
+              text: "!El producto.",
+              icon: "success",
+              button: "Cerrar!",})
+            .then((value) => {
+              swal({ title: "Recordar!",
+              text: "Debes volver a selecionar el producto.",
+              icon: "warning",
+              button: "Cerrar!",});
+            });
 
+        $('#totalPurchase').val(totalVenta);
 
-        $('#totalVenta').val(totalVenta);
+        for (i = 0; i < listcode.length; i++) {
+            if (listcode[i] == id) {
 
-        for (i = 0; i < listcodigo.length; i++) {
-            if (listcodigo[i] == id) {
-
-                listcodigo.splice(i);
+                listcode.splice(i);
                 return false;
 
             }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class PurchaseController extends Controller
   {
@@ -23,7 +24,9 @@ class PurchaseController extends Controller
 
     public function create(){
 
-         return  view('frond.purchases.create');
+          $products = Product::pluck('name','code'); 
+
+         return  view('frond.purchases.create',compact('products'));
 
     }
 
