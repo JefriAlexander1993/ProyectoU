@@ -2,6 +2,8 @@ $(document).ready(function() {
   
     calcularTotal();
    $('#totalcard').innerHTML = sum;
+
+
 });
 
 
@@ -68,8 +70,9 @@ function addRowBuy() {
                     $('#totalPurchase').val(parseFloat($('#totalPurchase').val())+parseFloat($('#totalPurchase').val()));
 
 
-                    listcode.push($('#code').val());
-                  
+                    var a = listcode.push($('#code').val());
+                   return a;
+
                     swal("¡Buen trabajo, se ha agregado exitosamente el producto, recuerda solo se puede modificar cantidad!", "Haz clic en el botón!", "success");
        
                   //  toastr.success('Se ha agregado un articulo en Compra!.')
@@ -120,7 +123,7 @@ function  totalizePurchase(id) {
         //$('#total' + id).val(total);
 
         var totalPurchase = 0;
-        var fila = $("#tbl-purchases> tbody > tr").each(function(index, element) {
+        var fila = $("#tbl-purchases > tbody > tr").each(function(index, element) {
            var idfila = element.id.replace("fila", "#subtotal"); /*Debe ser este*/
    
             totalPurchase += parseInt($(idfila).val());
@@ -141,40 +144,27 @@ function  totalizePurchase(id) {
 function deleteRow(id, e) {
 
     if ($('#fila' + id).remove()) {
-        file = $('#venta').val() - 1;
+
         filec = $('#compra').val() - 1;
-        $('#venta').val(file)
         $('#compra').val(filec)
         $('#code').val('');
         var totalVenta = 0;
-        var fila = $("#tbl-venta > tbody > tr").each(function(index, element) {
+        var fila = $("#tbl-purchases > tbody >tr").each(function(index, element) {
+                
             var idfila = element.id.replace("fila", "#subtotal"); /*Debe ser este*/
             totalVenta = parseInt($(idfila).val());
+         
 
         });
         $('#totalPurchase').val(totalVenta);
-
         listcode.pop();
 
-
-        if (isNaN(totalVenta)) {
+        }else if (isNaN(totalVenta)) {
             $('#totalPurchase').val(0);
-        } else {
+        
+        } else{
             $('#totalPurchase').val(e);
-
-        }
-         
-            swal({ title: "Se ha eliminado correctamente!",
-              text: "!El producto.",
-              icon: "success",
-              button: "Cerrar!",})
-            .then((value) => {
-              swal({ title: "Recordar!",
-              text: "Debes volver a selecionar el producto.",
-              icon: "warning",
-              button: "Cerrar!",});
-            });
-
+            
         $('#totalPurchase').val(totalVenta);
 
         for (i = 0; i < listcode.length; i++) {
@@ -185,8 +175,10 @@ function deleteRow(id, e) {
 
             }
         }
-    }
-}
+
+      }}
+    
+
 
 
 

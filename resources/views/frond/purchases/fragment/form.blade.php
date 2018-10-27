@@ -5,7 +5,7 @@
 <div class="col-sm-12">
 <div class="form-group">
 <label>Producto(*)</label>	
-{!!Form::select('code',$products, null,['class'=>'form-control selectpicker','data-live-search'=>'true', 'data-style'=>'btn btn-warning','title'=>'Elige tu Producto.','id' =>'code','name'=>'code', 'required'=>'required', 'title'=>'Elige tu producto...'])!!}
+{!!Form::select('code',$products, null,['class'=>'form-control selectpicker','data-live-search'=>'true', 'data-style'=>'btn btn-warning','title'=>'Elige tu Producto.','id' =>'code','name'=>'code', 'required'=>'required','onKeyUp'=>'this.value = this.value.toUpperCase()','title'=>'Elige tu producto...'])!!}
 </div>
 </div>
 </div>
@@ -13,12 +13,11 @@
 <div class="col-sm-6">
 <div class="form-group">
 	<button type="button" class="btn btn-success btn-sm" id="btn-purchase" name="btn-purchase"> <i class="fa fa-plus" aria-hidden="true"></i>&nbsp; Agregar </button>
-
 </div>
 </div>
 <div class="col-sm-2 ">
 <div class="form-group">
-<input  value="0" type="hidden" id="compra" name="cantidadarticulos" class="form-control" >
+<input  value="0" type="hidden" id="compra" name="quantityproduct" class="form-control" >
 </div>
 </div>
 <div class="col-sm-4" >
@@ -50,7 +49,7 @@
 </div>
 <div class="col-sm-12" >
 <div class="form-group">
-{!!Form::button('<i class="far fa-save" aria-hidden="true"></i>&nbsp;', array('type' => 'sublime', 'id'=>'enviarCompra', 'class'=>'form-control btn btn-success', 'onclick'=>'confirmacion()' ))!!}
+{!!Form::button('<i class="far fa-save" aria-hidden="true"></i>&nbsp;', array('type' => 'sublime', 'id'=>'enviarCompra', 'class'=>'form-control btn btn-success'))!!}
 </div>
 </div>
 
