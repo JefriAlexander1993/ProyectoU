@@ -2,6 +2,7 @@
 // LLamado a todas las lista en el momento iniciar
 $(document).ready(function() {
 
+  purchaseList();
   usersList();
   clientsList();
   salesList();
@@ -11,6 +12,7 @@ $(document).ready(function() {
   commentsList();
   role_userList();
   role_permissionList();
+
 
       });
 
@@ -781,4 +783,46 @@ $(tbody).on("click", "#showPermission", function(){
       var id =$("#idasignacionpermissionedit").val(data.id);
 
   });
+  }
+
+
+  // Datatable de purchase
+  function  purchaseList() {
+     alert()
+     $('#purchases').DataTable({
+            language: {
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":     "Último",
+                  "sNext":     "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        }
+                    },
+          "serverSide":true,
+          "ajax": "api/purchases/all",
+          "columns":[
+              {data:'id'},
+              {data:'created_at'},
+              {data:'totalpurchase'},
+              {data:'btn'},
+
+                    ]
+    });
+
   }

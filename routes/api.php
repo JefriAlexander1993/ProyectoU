@@ -40,8 +40,8 @@ Route::get('sales/all', function () {
 
 Route::get('purchases/all', function () {
 
-	 return datatables()->eloquent(App\Models\Purchase::query())->addColumn('btn','frond.purchases.fragment.actions')->rawColumns(['btn'])->toJson();
-
+   return datatables()->eloquent(App\Models\Purchase::query())->addColumn('btn','frond.purchases.fragment.actions')->rawColumns(['btn'])->toJson();
+   
 });
 
 Route::get('users/all', function () {

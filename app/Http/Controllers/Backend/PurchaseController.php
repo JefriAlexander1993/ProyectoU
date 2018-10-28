@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Purchase_product;
 
 class PurchaseController extends Controller
   {
@@ -18,12 +21,15 @@ class PurchaseController extends Controller
      */
     public function index()
     {
+
         return  view('frond.purchases.index');
     }
 
     public function create(){
 
-         return  view('frond.purchases.create');
+          $products = Product::pluck('name','code'); 
+
+         return  view('frond.purchases.create',compact('products'));
 
     }
 
@@ -42,13 +48,35 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-      if($request->ajax()){
-       $purchase =  Purchase::create($request->all());
+     
+
+       $id = Auth::id();  
+       $totalPurchase=$request->totalPurchase;
+       $purchase =  new Purchase;
+       $purchase->users_id=$id;
+       $purchase->totalpurchase = $totalPurchase;
        $purchase->save();
-              return response()->json([
-                "mensaje"=>"Fue creado."
-              ]);
-      }
+
+        for($x = 0; $x < $request->quantityproduct; $x++) {   // Ciclo el cual almacena todos los articulos entrantes en la compra
+         
+              $purchase_product= new Purchase_product;     
+              
+              $purchase_product->quantity=$request->quantity[$x];
+              $purchase_product->subtotal=$request->subtotal[$x];
+              $purchase_product->purchase_id= $purchase->id;
+
+             
+              $product =Product::where('code',$request->codeproduct[$x])->first();
+          
+              $product->quantity += $request->quantity[$x];
+              $purchase_product->product_id=$product->id;
+              $product->save();  
+            
+              $purchase_product->save();
+        }
+
+    
+      return view('frond.purchases.index');
     }
 
     public function edit($id){

@@ -151,11 +151,10 @@ class CreateDatabaseTable extends Migration
 
             $table->increments('id');
             $table->integer('quantity');
-            $table->float('subtotal');
-            $table->float('total');
+            $table->double('subtotal');
             $table->integer('purchase_id')->unsigned()->nullable();
             $table->integer('product_id')->unsigned()->nullable();
-             $table->foreign('purchase_id')->references('id')->on('purchases')
+            $table->foreign('purchase_id')->references('id')->on('purchases')
              ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')
              ->onUpdate('cascade')->onDelete('cascade');
