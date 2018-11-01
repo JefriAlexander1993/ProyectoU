@@ -7,7 +7,7 @@
     "require": {
         "php": ">=7.0.0",
         "almasaeed2010/adminlte": "~2.4",
-        "barryvdh/laravel-dompdf": "^0.8.3",
+       
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
@@ -18,6 +18,7 @@
         "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {
+        "barryvdh/laravel-dompdf": "^0.8.3",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",

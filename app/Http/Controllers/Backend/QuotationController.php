@@ -24,6 +24,8 @@ class QuotationController extends Controller
 
     public function store(Request $request)
     {
+      
+
       if($request->ajax()){
        $permission =  Quotation::create($request->all());
        $permission->save();

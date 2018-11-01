@@ -23,8 +23,9 @@ class CarritoController extends Controller
 
     public function pdfQuotation()
     {        
+     
             $cart= \Session:: get ('cart');
-
+            
              $pdf = PDF::loadView('informe.card_list',compact('cart'));
 
               return $pdf->download('lists_cards.pdf');

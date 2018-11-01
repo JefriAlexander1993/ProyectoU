@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark " style="margin-bottom: 0px;">
+<nav class="navbar navbar-expand-lg navbar-dark " style="margin-bottom: 0px; ">
    <img src="../assets/img/gotica/icono.png" height="50px" width="50px">
   <a href="{{ url('/home') }}" class="nav-link " style="color:#fff">  <h4 style="margin-left:10px;margin-top:10px  ">Comercializadora Gotica</h4><span class="sr-only">(current)</span>  </a> 
 
@@ -11,9 +11,12 @@
     <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-    
+        
         <li class="nav-item">
-          <a class="nav-link" href="{{url("/")}}">Catalogo</a>
+          <a class="nav-link" href="{{route('principal')}}">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  href="{{route('catalogo')}}">Catalogo</a>
         </li>
         <li class="nav-item">
          <a  class="nav-link" href="">Quines Somos</a>
@@ -59,3 +62,4 @@
     </ul>
      </div>
 </nav>
+

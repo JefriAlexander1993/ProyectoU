@@ -19,4 +19,6 @@ class CatalogoController extends Controller
     	
     	return view('frond.catalogues.index',['products'=>$products] );
     }
+
+    
 }

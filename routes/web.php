@@ -84,11 +84,12 @@ Route:: get('detalle',[
 
 
 
+
 Route::get('/home', 'Backend\HomeController@index')->name('home');
 
-Route::get('/principal','Backend\PrincipalController@index');
+Route::get('/','Backend\PrincipalController@index')->name('principal');
 Route::get('/navbar','NavbarController@index');
-Route::get('/','Backend\CatalogoController@index')->name('catalogo');
+Route::get('/catalogo','Backend\CatalogoController@index')->name('catalogo');
 
 Route::Resource('products', 'Backend\ProductController');
 Route::Resource('clients', 'Backend\ClientController');
