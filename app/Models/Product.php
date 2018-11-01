@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Product;
 
 class Product extends Model
 {
@@ -15,7 +16,7 @@ class Product extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'id', 'code', 'date','name','description','quantity', 'file','size','brand','iva','unit_price','sale_price','stockmin','sale_id','purchase_id',
+        'id', 'code', 'date','name','description','quantity', 'file','unit_price','sale_price','stockmin','sale_id','purchase_id',
         'quotation_id'
     ];
 
@@ -46,9 +47,10 @@ class Product extends Model
     }
        public static function codeUnique($code){ //Verifica que el nuip sea unico en la base de datos, en caso de no ser unico devuelve falso (false)
         
-        $codigU = App\Models\Product::where('code', '=', $code)->count();
-        if( $codigU == 0){
+        $codigU = Product::where('code', '=', $code)->count();
+        if($codigU == 0){
             return true;
+
         }else{
             return false;
         }

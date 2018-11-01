@@ -774,19 +774,20 @@ function eliminarClient(){
 //=========================================================PRODUCTOS======================================================//
 
 // Crear un producto
-
-$("#Registroproduct").on("click",function(){
+/*$("#Registroproduct").on("click",function(){
 
 var code = $("#codeproduct").val();
 var name= $("#nameproduct").val();
 var date= $("#dateproduct").val();
 var description = $("#descriptionproduct").val();
 
-var iva = $("#ivaproduct").val();
+
 var unit_price = $("#unit_price").val();
 var sale_price = $("#sale_price").val();
 var stockmin = $("#stockmin").val();
-var file =$("#file").val();
+
+var file = $("#file").val(); //datos serializados
+
 
 if(code==='' || name ==='' || date ==='' || unit_price ==='' || sale_price ==='' || stockmin===''){
            swal({
@@ -805,7 +806,7 @@ var token=$("#token").val();
     headers:{'X-CSRF-TOKEN':token},
     type:'POST',
     dataType:'json',
-    data:{code:code,name:name,date:date,description:description,iva:iva,unit_price:unit_price,sale_price:sale_price,stockmin:stockmin,file:file},
+    data:{code:code,name:name,date:date,description:description,unit_price:unit_price,sale_price:sale_price,stockmin:stockmin,file:file},
     success:function(){
 
         swal("¡Buen trabajo, se ha agregado exitosamente!", "Haz clic en el botón!", "success");
@@ -815,8 +816,7 @@ var token=$("#token").val();
 
   });
 
-}});
-
+}});*/
 
 function clenProduct(){
 
@@ -830,7 +830,7 @@ function clenProduct(){
    $("#stockmin").val('');
    $("#file").val('');
 
-}
+} 
 
 // Eliminar usuario rol_user
 function eliminarProduct(){
@@ -868,6 +868,10 @@ function eliminarProduct(){
   });
 
 }
+
+
+
+
 
 
 //=========================================================COMENTARIOS==================================================//

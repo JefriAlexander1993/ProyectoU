@@ -22,7 +22,6 @@ class CreateDatabaseTable extends Migration
                  $table->string('name');
                  $table->date('date')->nullable();
                  $table->mediumtext('description')->nullable();
-                 $table->float('iva')->default(0);
                  $table->float('unit_price');
                  $table->float('sale_price');
                  $table->integer('quantity')->default(0);

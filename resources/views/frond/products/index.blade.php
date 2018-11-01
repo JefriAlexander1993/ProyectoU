@@ -1,10 +1,14 @@
 @extends('layouts.template')
 
 @section('content')
-
+    <br>
+    <div class="col-sm-12">
+      @include('frond.products.fragment.info') 
+    </div> 
   <div class="container" >
-  
+
   <div class="row">
+
   <div class="col-lg-5" >
           <div class="card-body">
               <!-- Nav tabs -->
@@ -27,9 +31,9 @@
 
                         </div>
                         <div class="card-body">
-
-                            @include('frond.products.fragment.formedit')
-
+                      
+                                  @include('frond.products.fragment.formedit')
+                     
                       </div>
                     </div>
 
@@ -42,9 +46,10 @@
 
                     </div>
                       <div class="card-body">
-
+                            {!!Form::open(['route'=>'products.store', 'id'=>'formproduct', 'files' => true])!!}
                               @include('frond.products.fragment.form')
-
+                            {!!Form::close()!!}
+             
                     </div>
                   </div>
             </div>

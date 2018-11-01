@@ -278,7 +278,7 @@
               <div class="card-body" > 
                 <img class="card-img-top " src="{{$product->file}}"  style="height:100px;width:100px " alt="Card image cap">
                 <p class="card-text">{{$product->description}}</p>
-                <h4>{{number_format($product->sale_price,1)}}</h4>
+                <h4>{{number_format($product->sale_price,2)}}</h4>
                 <a href="{{route('agregar-producto',$product->id)}}" type="button" class="btn btn-sm btn-primary">¿Cotizar?</a>
                 <a href="{{route('detalle-producto',$product->id)}}" type="button" class="btn btn-sm btn-primary"> Ver mas <a/>  
               </div>

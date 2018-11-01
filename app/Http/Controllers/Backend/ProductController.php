@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Http\File;
+use Validator;
 
 class ProductController extends Controller
 {
@@ -28,24 +32,47 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-      if($request->ajax()){
-         if(Product::codeUnique($request->code)){ 
-          
-           $product =  Product::create($request->all());
 
-         }if($file = $request->file('file')){
-           $photo = $file->getClientOriginalName();
-           //$photo =Storage::disk('public')->put('image', $request->file('file'));
-              \Storage::disk('local')->put($phono,  \File::get($file));
-          //$product->fill(['file'=>asset($photo)])->save();
-
+        $validator = Validator::make($request->all(), [
+            'code'=>'required|unique:products',
+            'date'=>'required',
+            'name' => 'required',
+            'description' => 'required',
+            'unit_price' =>'required',
+            'sale_price'=>'required',
+            'stockmin'=>'required',
+            'file'=>'mimes:jpg.jpeg,png',
+        ]);
+        if ($validator->fails()) {
+            return redirect('/products')
+                        ->withErrors($validator)
+                        ->with('info','Ya existe el codigo digitado.');
         }
-              return response()->json([
-                "mensaje"=>"Fue creado."
-              ]);
-      }
 
-  }
+        if(Product::codeUnique($request->code)){ 
+            
+         $product =  Product::create($request->all());
+              
+         if($request->file('file')){
+                        
+            $photo =Storage::disk('public')->put('files', $request->file('file'));
+        
+              $product->fill(['file'=>asset($photo)])->save();
+                                                                                   
+                }
+                 return redirect()->route('products.index')->with('info','Producto creado con exitos.');
+
+            } else{
+            return redirect()->route('products.index')  // Se redirige a  la ruta cliente.create (cliente/create)
+            ->with('info', 'Ya existe un articulo con el codigo digitado.'); // El sistema arroja la informacion "Ya existe un cliente con el nuip digitado"
+        }  
+    
+ 
+                                     
+
+    }
+
+  
 
 
 

@@ -161,6 +161,8 @@ $(tbody).on("click", "#deleteClient", function(){
                               ]
               });
       data_deleteProduct("#products tbody" , tableProduct);
+      data_editProduct("#products tbody" , tableProduct);
+      data_showProduct("#products tbody" , tableProduct);
 
 }
 
@@ -176,6 +178,36 @@ $(tbody).on("click", "#deleteProduct", function(){
 
 });
 }
+      //Estrae la información de la tabla para editar.
+
+ var data_editProduct =  function(tbody , tableProduct){
+
+ $(tbody).on("click", "#editProduct", function(){
+    var data= tableProduct.row($(this).parents("tr")).data();
+    var iduser =$("#idproductedit").val(data.id);
+    var code=$("#codeproductedit").val(data.code);
+    var fecha=$("#dateproductedit").val(data.date);
+    var name=$("#nameproductedit").val(data.name);
+    var stockmin=$("#stockminedit").val(data.stockmin);
+    var description=$("#descriptionproductedit").val(data.description);
+    var sale_price=$("#sale_priceedit").val(data.sale_price);
+    var unit_price=$("#unit_priceedit").val(data.unit_price);
+    var file=$("#file").val(data.file);
+   });
+  }
+
+              //Estrae la información de la tabla para ver.
+
+  var data_showProduct =  function(tbody , tableProduct){
+
+  $(tbody).on("click", "#showProduct", function(){
+
+   var data= tableProduct.row($(this).parents("tr")).data();
+   var  name =$("#showname").val(data.name);
+   var  email =$("#showemail").val(data.email);
+
+              });
+              }
 
 
 // Datatable de ventas
@@ -788,7 +820,7 @@ $(tbody).on("click", "#showPermission", function(){
 
   // Datatable de purchase
   function  purchaseList() {
-     alert()
+
      $('#purchases').DataTable({
             language: {
               "sProcessing":     "Procesando...",

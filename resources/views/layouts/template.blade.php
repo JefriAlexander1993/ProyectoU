@@ -35,7 +35,7 @@
            <div class="sidebar-wrapper" >
               <ul class="nav">
                 <li class="nav-item active  ">
-                  <a class="nav-link" href="{{"route('quotations.index')"}}">
+                  <a class="nav-link" href="{{url('/')}}">
                       <i class="fas fa-home"></i>
                     <p>Dashboard</p>
                   </a>

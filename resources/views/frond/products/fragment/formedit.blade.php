@@ -43,20 +43,28 @@
           </div>
       </div>
   </div>
-  <div class="row">
-      <div class="col-sm-4">
-            <div class="form-group">
-            <label class="bmd-label-floating"><strong>Iva</strong></label>
-            <input type="number" placeholder="Ej:15%" required class="form-control" id="ivaproductedit" name="ivaproductedit" title="Iva">
-          </div>
+    <div class="row">
+  <div class="col-sm-12">
+    <div class="file_input_div">
+        <div class="file_input">
+            {!!Form::label('file','Imagen')!!}
+            {!! Form::file('file',['id'=>'file'])!!}
+          </label>
+
+        </div>
+
       </div>
-      <div class="col-sm-4">
+</div>
+</div>
+  <div class="row">
+ 
+      <div class="col-sm-6">
           <div class="form-group">
           <label class="bmd-label-floating"><strong>Precio unitario</strong></label>
           <input type="number" placeholder="Ej:1500" required class="form-control" id="unit_priceedit" name="unit_priceedit" title="Precio unitario">
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
           <div class="form-group">
           <label class="bmd-label-floating"><strong>Precio venta</strong></label>
           <input type="number" placeholder="Ej:1800" required class="form-control" id="sale_priceedit" name="sale_priceedit" title="Precio unitario">
