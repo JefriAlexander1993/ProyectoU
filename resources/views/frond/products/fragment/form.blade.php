@@ -1,7 +1,5 @@
-
   <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"></input>
-           {{ csrf_field() }}
-<!--'code', 'date','name','size','brand','quantity','iva','unit_price','sale_price','stockmin'-->
+
   <div class="row">
         <div class="col-sm-6">
         <div class="form-group">
@@ -41,18 +39,15 @@
           </div>
         </div>
   </div>
-  <div class="row">
-  <div class="col-sm-12">
-    <div class="file_input_div">
-        <div class="file_input">
-            {!!Form::label('file','Imagen')!!}
-            {!! Form::file('file',['id'=>'file'])!!}
-          </label>
-
-        </div>
-
+<div class="row">
+    <div class="col-sm-12">
+      <div class="file_input_div">
+          <div class="file_input">
+              {!!Form::label('file','Imagen')!!}
+              {!!Form::file('file',['id'=>'file'])!!}
+          </div>
       </div>
-</div>
+    </div>
 </div>
   <div class="row">
       <div class="col-sm-6">
@@ -73,9 +68,9 @@
     <div class="col-sm-12">
         <div class="form-group">        
          <div class="form-group text-center">
-          {!!Form::button('<i class="fa fa-floppy-o" aria-hidden="true"></i>', array('type' => 'submit', 'class'=>'btn btn-success btn-lg btn-block'))!!}
-</div> 
+            {!!link_to('#',$title='Registrar', $attributes =['id'=>'Registroproduct','class'=>'btn btn-success submit-btn btn-block','type'=>'submit'],$secure =null)!!}
 
+          </div> 
         </div>
     </div>
   </div>

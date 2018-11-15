@@ -4,6 +4,7 @@
     <br>
     <div class="col-sm-12">
       @include('frond.products.fragment.info') 
+      @include('frond.products.fragment.error') 
     </div> 
   <div class="container" >
 
@@ -14,7 +15,6 @@
               <!-- Nav tabs -->
               <div class="container">
                   <ul class="nav nav-tabs" role="tablist" style="padding-left:70px">
-                    <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"></input>
                     <input type="hidden" value="" id="idproductedit" name="idproductedit"></input>
                     <li role="plantillas"><button href="#variables"  title="Crear rol" id="create-form-rol"  name="crear-form" type="button" class="btn btn-success btn-sm" aria-controls="variables" role="tab" data-toggle="tab"><i class="fas fa-plus-square" ></i></button></li>
                     <li role="plantillas" class="active"><a id="edit-form-rol" title="Editar rol" class="btn btn-info btn-sm" href="#table" aria-controls="table" role="tab" data-toggle="tab"><i class="far fa-edit"></i></a></li>
@@ -31,9 +31,9 @@
 
                         </div>
                         <div class="card-body">
-                      
+                    
                                   @include('frond.products.fragment.formedit')
-                     
+                           
                       </div>
                     </div>
 
@@ -45,10 +45,10 @@
                       <h4 class="card-title "><strong>Crear producto</strong></h4>
 
                     </div>
-                      <div class="card-body">
-                            {!!Form::open(['route'=>'products.store', 'id'=>'formproduct', 'files' => true])!!}
+                      <div class="card-body" >
+                           {!!Form::open(['id'=>'formproduct', 'files' => true,'enctype' => 'multipart/form-data'])!!}
                               @include('frond.products.fragment.form')
-                            {!!Form::close()!!}
+                           {!!Form::close()!!}
              
                     </div>
                   </div>
@@ -95,6 +95,6 @@
   </div>
 </div>
 </div>
-
+       
 
 @endsection

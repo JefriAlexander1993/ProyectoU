@@ -8,7 +8,9 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Http\File;
+
 use Validator;
+use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
 {
@@ -33,7 +35,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
+        /*$validator = Validator::make($request->all(), [
             'code'=>'required|unique:products',
             'date'=>'required',
             'name' => 'required',
@@ -41,39 +43,51 @@ class ProductController extends Controller
             'unit_price' =>'required',
             'sale_price'=>'required',
             'stockmin'=>'required',
-            'file'=>'mimes:jpg.jpeg,png',
-        ]);
-        if ($validator->fails()) {
-            return redirect('/products')
-                        ->withErrors($validator)
-                        ->with('info','Ya existe el codigo digitado.');
-        }
+            'file'=>'image|mimes:jpg.jpeg,png',
+        ]);*/
+        try{
 
-        if(Product::codeUnique($request->code)){ 
-            
-         $product =  Product::create($request->all());
-              
-         if($request->file('file')){
+             $product =  Product::create($request->all());
+                
+
+                 if($request->file('file')){
+
+                     $photo = Storage::disk('public')->put('images', $request->file('file'));
+                     $product->fill(['file'=>asset($photo)])->save();
+                     $message    = array(
+
+                        'datos'  => $request->all(),
+                        'code'   => 200,
+                        'status' => 200,
                         
-            $photo =Storage::disk('public')->put('files', $request->file('file'));
+                                     );
         
-              $product->fill(['file'=>asset($photo)])->save();
-                                                                                   
-                }
-                 return redirect()->route('products.index')->with('info','Producto creado con exitos.');
 
-            } else{
-            return redirect()->route('products.index')  // Se redirige a  la ruta cliente.create (cliente/create)
-            ->with('info', 'Ya existe un articulo con el codigo digitado.'); // El sistema arroja la informacion "Ya existe un cliente con el nuip digitado"
-        }  
-    
- 
-                                     
+                    }else{
+                     $message    = array(
 
-    }
+                        'datos'  =>'Error al intentar guardar el producto.',
+                        'code'   => 600,
+                        'status' => 500,
+                        
+                                     );
+                
+                        }
+                return $message;
+        
+        }catch(Exception $e){
 
-  
+                     $error =$e; 
+                     $message    =  array(
+                        'error'  => $error,
+                        'code'   => 600,
+                        'status' => 500,
+                                         );
+                return $message;        
 
+            }            
+
+        }
 
 
     /**
@@ -83,15 +97,43 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
-    {
-      $product= Product::find($id);
-      $product->fill($request->all())->save();
-      return response()->json(["mensaje"=>"Actualizar"]);
+    public function update(Request $request, $id){
 
+return $request->all();
+            $product= Product::find($id)->update($request->all());        
 
+                    if($request->file('file')){
+                          dd($product);
+     
+              
+                     $photo = Storage::disk('public')->put('images', $request->file('file'));
+                     $product->fill(['file'=>asset($photo)])->save();
+                   
+                            
+                     return response()->json([
+                                    'data' =>$request->all(),
+                                    'code'=>200,
+                                    'status' => 200,
+                                    'message' => 'Producto actualizado exitosamente.',
+   
+                            ], 200);
 
-    }
+        
+                    }
+                        
+                      return response()->json([
+                                    'data' =>$request->all(),
+                                    'code'=>200,
+                                    'status' => 200,
+                                    'message' => 'Producto actualizado exitosamente, sin imagen.',
+                                
+                            ], 200);
+          
+
+    
+
+     }
+                    
 
     /**
      * Remove the specified resource from storage.

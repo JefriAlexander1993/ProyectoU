@@ -1,7 +1,10 @@
+
+
 $(document).ready(function() {
-  
+            var id= $("#idproductedit").val(); 
     calcularTotal();
    $('#totalcard').innerHTML = sum;
+
 
 
 });
@@ -774,65 +777,101 @@ function eliminarClient(){
 //=========================================================PRODUCTOS======================================================//
 
 // Crear un producto
-/*$("#Registroproduct").on("click",function(){
+$("#Registroproduct").on("click",function(e){
 
-var code = $("#codeproduct").val();
-var name= $("#nameproduct").val();
-var date= $("#dateproduct").val();
-var description = $("#descriptionproduct").val();
-
-
-var unit_price = $("#unit_price").val();
-var sale_price = $("#sale_price").val();
-var stockmin = $("#stockmin").val();
-
-var file = $("#file").val(); //datos serializados
-
-
-if(code==='' || name ==='' || date ==='' || unit_price ==='' || sale_price ==='' || stockmin===''){
-           swal({
-                title: "Error en el momento de registro!",
-                text: "Vuelve a intentarlo, recuerda llenar todos lo campos.",
-                icon: "warning",
-                button: "Cerrar!",
-                });
-
-}else{
-
-var route= "products";
-var token=$("#token").val();
-  $.ajax({
+   e.preventDefault();
+   
+    var formData = new FormData($('#formproduct')[0]);
+    var route = '/products'; 
+   $.ajax({
     url:route,
-    headers:{'X-CSRF-TOKEN':token},
-    type:'POST',
+    data:formData,
     dataType:'json',
-    data:{code:code,name:name,date:date,description:description,unit_price:unit_price,sale_price:sale_price,stockmin:stockmin,file:file},
-    success:function(){
+    type:'POST',
+    cache:false,
+    contentType:false,
+    processData:false,
+    success: function(data){
+               console.log(data);
 
-        swal("¡Buen trabajo, se ha agregado exitosamente!", "Haz clic en el botón!", "success");
-        clenProduct();
-        $('#products').DataTable().ajax.reload();
-    }
+          if(data.code===200){
 
-  });
+              $('#products').DataTable().ajax.reload();
+              $("#formproduct")[0].reset();
+              swal("¡Buen trabajo, se ha agregado exitosamente!", "Haz clic en el botón!", "success");
+             
+          }else{
 
-}});*/
+               swal({
+                          title:  "Error en el momento de registro!",
+                          text:   "Vuelve a intentarlo, recuerda llenar todos lo campos.",
+                          icon:   "warning",
+                          button: "Cerrar!",
+                      });
+           }        
+                }  
 
-function clenProduct(){
+              });  
+   });           
+      
 
-   $("#codeproduct").val('');
-   $("#nameproduct").val('');
-   $("#dateproduct").val('');
-   $("#descriptionproduct").val('');
-   $("#ivaproduct").val('');
-   $("#unit_price").val('');
-   $("#sale_price").val('');
-   $("#stockmin").val('');
-   $("#file").val('');
 
-} 
 
-// Eliminar usuario rol_user
+
+// Actualizar un producto
+$("#Actualizarproduct").on("click", function(e){
+
+    e.preventDefault();
+    var id= $("#idproductedit").val();
+    var routeA= "products/"+id+"";
+
+    var form = $('#formproductedit')[0];
+    var data = new FormData(form);
+
+    return data;
+    var token =$("#token").val();
+    var file= $('#file').val();
+
+  
+
+   $.ajax({
+    url:routeA,
+    type:'PUT',
+    enctype: 'multipart/form-data',
+    headers: {'X-CSRF-TOKEN': token},
+    dataType:'JSON',
+    data:{data,_method:'PUT'},
+    cache:false,
+    processData:false,
+    contentType:false,
+
+    success: function(data){
+        console.log(data);
+             
+          if(data.code===200){
+
+                 $('#products').DataTable().ajax.reload();
+          
+              swal("¡Buen trabajo, se ha actualizado exitosamente!", "Haz clic en el botón!", "success");
+              $("#formproductedit")[0].reset();
+          }else{
+
+               swal({
+                          title:  "Error en el momento de actualizar!",
+                          text:   "Vuelve a intentarlo, recuerda llenar todos lo campos.",
+                          icon:   "warning",
+                          button: "Cerrar!",
+                      });
+           }        
+                }
+              });
+
+
+});
+
+
+
+//Eliminar usuario rol_user
 function eliminarProduct(){
   swal({
     title: "¿Estás seguro?",

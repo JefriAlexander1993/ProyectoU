@@ -92,6 +92,7 @@ Route::get('/navbar','NavbarController@index');
 Route::get('/catalogo','Backend\CatalogoController@index')->name('catalogo');
 
 Route::Resource('products', 'Backend\ProductController');
+
 Route::Resource('clients', 'Backend\ClientController');
 Route::Resource('sales', 'Backend\SaleController');
 Route::Resource('purchases', 'Backend\PurchaseController');

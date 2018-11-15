@@ -131,7 +131,7 @@
           </div>
         
           <div class="form-group">
-            <label for="message-text" class="col-form-label">telefono/celular</label>
+            <label for="message-text" class="col-form-label">Teléfono/Celular</label>
             <input class="form-control" id="message-text"></input>
           </div>
         </form>

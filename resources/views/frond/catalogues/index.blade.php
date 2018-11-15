@@ -297,11 +297,11 @@
 
 <!--inicia modal -->
 
-<div class="modal fade" id="modalInicio" tabindex="-1" role="dialog" aria-labelledby="modalInicioLabel" aria-hidden="true">
+<div class="modal fade" id="modalInicio" tabindex="-1" role="dialog" aria-labelledby="modalInicioLabel" aria-hidden="true" style="margin-top:150px ">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalInicioLabel" style="color: black">Ofertas Exclusivas</h5>
+        <b><h5 class="modal-title " id="modalInicioLabel" style="color:black;font-weight: bold;">Ofertas Exclusivas</h5></b>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -309,14 +309,13 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <h4 style="color: black" for="recipient-name" class="col-form-label" id="nombreU" >Registrate hoy y recibe todos nuestros descuentos en tu correo</h4>
+            <h4 style="color: black" for="recipient-name" class="col-form-label" id="nombreU" >Registra tu correo lectronico y recibe nuestras ofertas.</h4>
             <input type="text" class="form-control" id="recipient-name" placeholder="tu@correo.com">
           </div>
-          <label>no compartiremos tu informacion con nadie mas</label>
         </form>
       </div>
       <div class="modal-footer">
-        <a href="" type="button" class="btn btn-warning" data-dismiss="modal" id="false">No,no deseo promosiones </a>
+        <a href="" type="button" class="btn btn-warning" data-dismiss="modal" id="false">No, deseo promociones </a>
         <a href="" type="button" class="btn btn-primary">Registrar</a>
       </div>
     </div>

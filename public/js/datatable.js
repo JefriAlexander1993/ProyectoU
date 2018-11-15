@@ -184,7 +184,7 @@ $(tbody).on("click", "#deleteProduct", function(){
 
  $(tbody).on("click", "#editProduct", function(){
     var data= tableProduct.row($(this).parents("tr")).data();
-    var iduser =$("#idproductedit").val(data.id);
+    var id =$("#idproductedit").val(data.id);
     var code=$("#codeproductedit").val(data.code);
     var fecha=$("#dateproductedit").val(data.date);
     var name=$("#nameproductedit").val(data.name);
@@ -192,7 +192,7 @@ $(tbody).on("click", "#deleteProduct", function(){
     var description=$("#descriptionproductedit").val(data.description);
     var sale_price=$("#sale_priceedit").val(data.sale_price);
     var unit_price=$("#unit_priceedit").val(data.unit_price);
-    var file=$("#file").val(data.file);
+   
    });
   }
 

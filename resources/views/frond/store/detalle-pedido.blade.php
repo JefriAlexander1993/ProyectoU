@@ -5,10 +5,10 @@
 <div class="container">
 	<div class="row">
 		<div class="col-ms-12">
-			<h2>detalle usuario</h2>
-			<h4>nombre</h4>
-			<h4>correo</h4>
-			<h4>telefono</h4>
+			<h2>Detalle usuario</h2>
+			<h4>Nombre</h4>
+			<h4>Correo</h4>
+			<h4>Telefono</h4>
 
 		</div>
 	</div>
@@ -56,9 +56,9 @@
 					</span>
 				</h3>
 				<div>
-				<a href="{{route('catalogo')}}" class="btn btn-danger">cancelar</a>
-				<button class="btn btn-info">ver cotizacion</button>
-				<button class="btn btn-success">descargar cotizacion</button>
+				<a href="{{route('catalogo')}}" class="btn btn-danger">Cancelar</a>
+				<button class="btn btn-info">Ver cotizacion</button>
+				<button class="btn btn-success">Descargar cotizacion</button>
 			</div>
 			</div>
 
