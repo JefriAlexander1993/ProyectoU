@@ -30,7 +30,6 @@ class ProductTableSeeder extends Seeder
  		DB::table('products')->insert([
  			'code'=>'0010',
  			'name'=>'rc7',
- 			'date'=>'2018-08-01',
  			'unit_price'=>3000,
  			'sale_price'=>35000,
  			'stockmin'=>2,
@@ -43,8 +42,7 @@ class ProductTableSeeder extends Seeder
 
  			DB::table('products')->insert([
  			'code'=>'0011',
- 			'name'=>'nike ',
- 			'date'=>'2018-08-01',
+ 			'name'=>'Nike ',
  			'unit_price'=>3000,
  			'sale_price'=>50000.00,
  			'stockmin'=>2,
@@ -58,8 +56,7 @@ class ProductTableSeeder extends Seeder
 
  			DB::table('products')->insert([
  			'code'=>'0012',
- 			'name'=>'adidas',
- 			'date'=>'2018-08-01',
+ 			'name'=>'Adidas',
  			'description'=>'zapatillas',
  			'unit_price'=>3000,
  			'sale_price'=>35000,
@@ -73,8 +70,7 @@ class ProductTableSeeder extends Seeder
 
  			DB::table('products')->insert([
  			'code'=>'0013',
- 			'name'=>'rc7',
- 			'date'=>'2018-08-01',
+ 			'name'=>'Rc7',
  			'unit_price'=>3000,
  			'sale_price'=>35000,
  			'stockmin'=>2,

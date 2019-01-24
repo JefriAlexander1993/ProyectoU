@@ -8,7 +8,7 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Http\File;
-
+use App\Models\Category;
 use Validator;
 use Illuminate\Support\Facades\Input;
 
@@ -22,8 +22,28 @@ class ProductController extends Controller
     public function index()
     {
 
-        return view('frond.products.index');
+        return view('frond.products.index',['products'=>Product::orderBy('id','desc')->paginate('8')]);
     }
+
+    public function show($id){
+
+        return view('frond.products.show',['product'=>Product::find($id)]);
+
+    }
+
+    public function edit($id){
+         
+        return view('frond.products.edit',['product1'=>Product::findOrFail($id), 'categories' => Category::orderBy('name', 'ASC')->pluck('name', 'id') ]);
+
+    }
+       public function create()
+        {
+            
+            $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+    
+    
+            return view('frond.products.create', ['category'=>Category::pluck('name','id')]);
+        }
 
 
     /**
@@ -45,7 +65,7 @@ class ProductController extends Controller
             'stockmin'=>'required',
             'file'=>'image|mimes:jpg.jpeg,png',
         ]);*/
-        try{
+  
 
              $product =  Product::create($request->all());
                 
@@ -54,38 +74,14 @@ class ProductController extends Controller
 
                      $photo = Storage::disk('public')->put('images', $request->file('file'));
                      $product->fill(['file'=>asset($photo)])->save();
-                     $message    = array(
-
-                        'datos'  => $request->all(),
-                        'code'   => 200,
-                        'status' => 200,
-                        
-                                     );
-        
+                            return redirect()->route('products.index')
+                             ->with('info','El producto fue regstrado  exitosamente.');
 
                     }else{
-                     $message    = array(
-
-                        'datos'  =>'Error al intentar guardar el producto.',
-                        'code'   => 600,
-                        'status' => 500,
-                        
-                                     );
-                
-                        }
-                return $message;
-        
-        }catch(Exception $e){
-
-                     $error =$e; 
-                     $message    =  array(
-                        'error'  => $error,
-                        'code'   => 600,
-                        'status' => 500,
-                                         );
-                return $message;        
-
-            }            
+                       return redirect()->route('users.create')
+                             ->with('danger','Error en el momento de enviar la imagen.');  
+        }
+         
 
         }
 
@@ -99,38 +95,25 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id){
 
-return $request->all();
-            $product= Product::find($id)->update($request->all());        
+      
 
-                    if($request->file('file')){
-                          dd($product);
-     
-              
-                     $photo = Storage::disk('public')->put('images', $request->file('file'));
+             $product= Product::find($id);        
+
+                if($request->file('file')){
+                    
+                $photo = Storage::disk('public')->put('images', $request->file('file'));
                      $product->fill(['file'=>asset($photo)])->save();
                    
-                            
-                     return response()->json([
-                                    'data' =>$request->all(),
-                                    'code'=>200,
-                                    'status' => 200,
-                                    'message' => 'Producto actualizado exitosamente.',
-   
-                            ], 200);
-
+                    return redirect()->route('products.index')
+                      ->with('info','El producto fue actualizado  exitosamente.');;
         
+                    }else{
+                        return redirect()->route('users.create')
+                             ->with('danger','Error en el momento de enviar la imagen.');  
                     }
-                        
-                      return response()->json([
-                                    'data' =>$request->all(),
-                                    'code'=>200,
-                                    'status' => 200,
-                                    'message' => 'Producto actualizado exitosamente, sin imagen.',
-                                
-                            ], 200);
           
-
-    
+                
+         
 
      }
                     
@@ -144,7 +127,8 @@ return $request->all();
     public function destroy($id)
     {
       $product=Product::findOrFail($id)->delete();
-      return response()->json(["mensaje"=>"Borrado"]);
+         return redirect()->route('products.index')
+                             ->with('info','El producto fue actualizado exitosamente.');
     }
 
 

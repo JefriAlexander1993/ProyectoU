@@ -1,0 +1,9 @@
+Proceso Tablas
+	Leer num;
+	Para x<-1 Hasta num Con Paso paso Hacer
+		resul = num*x
+		Escribir num*x = resul
+		
+	Fin Para
+	
+FinProceso

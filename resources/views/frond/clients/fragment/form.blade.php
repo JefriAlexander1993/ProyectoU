@@ -1,66 +1,68 @@
-<form id="formclient" class="form-horizontal" method="POST" action="">
-  <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"></input>
-           {{ csrf_field() }}
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="form-group">
-              <label class="bmd-label-floating"><strong>Nuip</strong></label>
-            <input type="text" required class="form-control" id="nuip" name="nuip" title="Numero de identificación">
-            </div>
-      </div>
-   </div>
-
-  <div class="row">
-      <div class="col-sm-12">
-          <div class="form-group">
-            <label class="bmd-label-floating"><strong>Nombre</strong></label>
-          <input type="text" id="nameclient" required class="form-control"  name="nameclient" title="Nombre del cliente">
-              <i class="mdi mdi-check-circle-outline"></i>
-
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group ">
+            {!! Form::label('name','Nombre(*).')!!}
+    {!!Form::text('name',null,['class'=>'form-control','Nombre del usuario','title'=>'Nombre.','id'=>'name','required'=>'required'])!!}
         </div>
     </div>
-  </div>
-  <div class="row">
-      <div class="col-sm-12">
-          <div class="form-group">
-            <label class="bmd-label-floating"><strong>Teléfono</strong></label>
-          <input type="text" id="phoneclient" required class="form-control"  name="phoneclient" title="Nombre del cliente">
-              <i class="mdi mdi-check-circle-outline"></i>
-
+    <div class="col-sm-4">
+        <div class="form-group">
+            {!!Form::label('last_name','Apellidos(*).')!!}
+    {!!Form::text('last_name',null,['class'=>'form-control','title'=>'Apellidos.','id'=>'lastname'])!!}
         </div>
     </div>
-  </div>
-  <div class="row">
-      <div class="col-sm-12">
-          <div class="form-group">
-            <label class="bmd-label-floating"><strong>Dirección</strong></label>
-          <input type="text" id="addressclient" required class="form-control"  name="addressclient" title="Nombre del cliente">
-              <i class="mdi mdi-check-circle-outline"></i>
-
+    <div class="col-sm-4">
+        <div class="form-group">
+            {!!Form::label('gender','Genero.')!!}
+    {!!Form::select('gender', ['M' => 'Masculino', 'F' => 'Femenino'], null, ['class'=>'form-control','placeholder' => 'Elige tu sexo...'])!!}
         </div>
     </div>
-  </div>
-  <div class="row">
-      <div class="col-sm-12">
-          <div class="form-group">
-            <label class="bmd-label-floating"><strong>Email</strong></label>
-          <input type="text" id="emailclient" required class="form-control"  name="emailclient" title="Correo del cliente">
-              <i class="mdi mdi-check-circle-outline"></i>
-
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group ">
+            {!!Form::label('nuip','Cédula(*).')!!}
+       {!!Form::text('nuip',null,['class'=>'form-control','title'=>'Cédula.'])!!}
         </div>
     </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="form-group">
-          {!!link_to('#',$title='Registrar', $attributes =['id'=>'Registroclient','class'=>'btn btn-success submit-btn btn-block','type'=>'submit'],$secure =null)!!}
-          <!--<button type="submit" class="btn btn-success submit-btn btn-block"><i class="far fa-save"></i></button>-->
-      </div>
+    <div class="col-sm-4">
+        <div class="form-group ">
+            {!! Form::label('email','Email(*).')!!}
+      {!!Form::email('email',null,['class'=>'form-control','Nombre del usuario','title'=>'Correo electronico.','id'=>'name','required'=>'required'])!!}
+        </div>
     </div>
-  </div>
-
-  <div class="clearfix"></div><!--Incluyo el formulario-->
-</form>
+    <div class="col-sm-4">
+        <div class="form-group ">
+            {!!Form::label('phone','Teléfono(*).')!!}
+    {!!Form::text('phone',null,['class'=>'form-control','title'=>'Teléfono.','id'=>'phone'])!!}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            {{ Form::label('file', 'Imagén') }}
+            <br>
+                {{Form::file('file',['class'=>'form-control'])}}
+            </br>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group ">
+            {!! Form::label('address','Dirección.')!!}
+    {!!Form::text('address',null,['class'=>'form-control','title'=>'Dirección.','id'=>'address','required'=>'required'])!!}
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group ">
+            {!!Form::label('date_birth','Fecha de cumpleaños(*).')!!}
+    {!!Form::date('date_birth',null,['class'=>'form-control','title'=>'Fecha de cumpleaños.','id'=>'date_birth'])!!}
+        </div>
+    </div>
+</div>
+<div class="form-group text-center">
+    {!!Form::button('
+    <i aria-hidden="true" class="fa fa-save">
+    </i>
+    ', array('type' => 'submit', 'class'=>'btn btn-success btn-lg btn-block'))!!}
+</div>

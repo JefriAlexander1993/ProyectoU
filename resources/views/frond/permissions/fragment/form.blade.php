@@ -1,37 +1,30 @@
-<form class="form-horizontal" method="POST" action="">
-  <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"></input>
-           {{ csrf_field() }}
-
-      <div class="row">
-        <div class="col-sm-12">
-            <div class="form-group">
-            <input type="text" required class="form-control"  placeholder="Ej: crear, editar, ver, eliminar" id="namepermission" name="namepermission" title="Nombre del rol">
-          </div>
-      </div>
-  </div>
-   <div class="row">
-        <div class="col-sm-12">
-            <div class="form-group">
-            <input type="text" id="display_namepermission" required class="form-control" placeholder="Ej: crear roles" name="display_namepermission" title="Apodo">
-          </div>
-      </div>
-  </div>
-  <div class="row">
-        <div class="col-sm-12">
-            <div class="form-group">
-
-            <input  id="descriptionpermission" type="text" required class="form-control" placeholder="El permiso: podrá crear,editar,ver,eliminar." name="descriptionpermission" title="Descripción">
-
-          </div>
-      </div>
-  </div>
-
-   <div class="row">
+<div class="row">
     <div class="col-sm-12">
         <div class="form-group">
-          {!!link_to('#',$title='Registrar', $attributes =['id'=>'Registropermission','class'=>'btn btn-success submit-btn btn-block','type'=>'submit'],$secure =null)!!}
-
+            {!! Form::label('name','Nombre')!!}
+                {!!Form::text('name',null,['class'=>'form-control','title'=>'Nombre del permiso.','id'=>'name','required'=>'required'])!!}
         </div>
     </div>
-  </div>
-</form>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            {!! Form::label('display_name','Apodo(*).')!!}
+                {!!Form::text('display_name',null,['class'=>'form-control','title'=>'Apodo del permiso.','id'=>'name','required'=>'required'])!!}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group ">
+            {!!Form::label('description','Descripción(*).')!!}
+       {!!Form::textarea('description',null,['class'=>'form-control', 'rows'=>"4",'title'=>'Descripción del permiso.'])!!}
+        </div>
+    </div>
+</div>
+<div class="form-group text-center">
+    {!!Form::button('
+    <i aria-hidden="true" class="fa fa-save">
+    </i>
+    ', array('type' => 'submit', 'class'=>'btn btn-success btn-lg btn-block'))!!}
+</div>

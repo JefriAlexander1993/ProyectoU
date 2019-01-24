@@ -1,334 +1,885 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Catalogo de productos</title>
-  <link href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet" />
-  <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/all.min.css')}}">
-  <link rel="stylesheet" href="{{asset('assets/css/fontawesome/css/fontawesome.min.css')}}">
-  <link rel="stylesheet" href="{{asset('css/document.css')}}">
-</head>
-<body>
-
-
-      @include('frond.store.partials.navbar')
-
-
-
-	<div class="row">
-  		 <div class="col-lg-2" style="height:100%;border: 1px solid" >
-          <aside class="col-12 p-0 bg-dark" >
-                  <nav class="navbar navbar-expand  flex-md-column flex-row align-items-start" >
-                      <div class="collapse navbar-collapse" style="width:100% ">
-                          <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
-                                
-                             <li class="nav-item  active" style="width:100%">
-                                  <a  class="nav-link pl-0 text-center " href="#pageSubmenu"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <span>Tecnologia</span>
-                                  </a>
-                              </li>
-                                    <ul class="collapse list-unstyled text-center"  id="pageSubmenu" style="width:100%">
-                                                  <li class="nav-item  active" style="width:100%">
-                                                        <a  class="nav-link pl-0 text-center " href="#pageSubmenu1"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <span>TV, Audio&Video:</span>
-                                                        </a>
-                                                  </li>
-                                            <ul class="collapse list-unstyled text-center"  id="pageSubmenu1">       
-                                                   <li class="nav-item " style ="color:#fff" >
-                                                        <a  class="nav-link pl-0" href=""><span>Tv</span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Conversores</span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Decodificadores</span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Audífonos</span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Micrófonos</span></a>
-                                                    </li>
-                                                     <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Proyectores</span></a>
-                                                    </li>
-                                                     <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Otros</span></a>
-                                                    </li>
-                                                     <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Parlante</span></a>
-                                                    </li>
-
-                                            </ul>   
-                             </ul>
-                                      <ul class="collapse list-unstyled text-center"  id="pageSubmenu" style="width:100%">
-                                                  <li class="nav-item  active" style="width:100%">
-                                                        <a  class="nav-link pl-0 text-center " href="#pageSubmenu2"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <span>Electrónica</span>
-                                                        </a>
-                                                  </li>
-                                            <ul class="collapse list-unstyled text-center"  id="pageSubmenu2">       
-                                                   <li class="nav-item " style ="color:#fff" >
-                                                        <a  class="nav-link pl-0" href=""><span>Armas Eléctricas</span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Baterías</span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Calculadoras </span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Lamparas</span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Drones</span></a>
-                                                    </li>
-                                                     <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Cargadores Portatiles</span></a>
-                                                    </li>
-                                         
-
-                                            </ul>   
-                             </ul>
-                                      <ul class="collapse list-unstyled text-center"  id="pageSubmenu" style="width:100%">
-                                                  <li class="nav-item  active" style="width:100%">
-                                                        <a  class="nav-link pl-0 text-center " href="#pageSubmenu3"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <span>Computación</span>
-                                                        </a>
-                                                  </li>
-
-
-                                            <ul class="collapse list-unstyled text-center"  id="pageSubmenu3">       
-                                                   <li class="nav-item " style ="color:#fff" >
-                                                        <a  class="nav-link pl-0" href=""><span>Memorias</span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Conversores</span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Tarjetas de sonido</span></a>
-                                                    </li>                                    
-                                            </ul>   
-                                      </ul>
-                                      <ul class="collapse list-unstyled text-center"  id="pageSubmenu" style="width:100%">
-                                                  <li class="nav-item  active" style="width:100%">
-                                                        <a  class="nav-link pl-0 text-center " href="#pageSubmenu4"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <span>Celulares</span>
-                                                        </a>
-                                                  </li>
-                                            <ul class="collapse list-unstyled text-center"  id="pageSubmenu4">   
-                                                    <li class="nav-item " style ="color:#fff" >
-                                                        <a  class="nav-link pl-0" href=""><span>Celulares</span></a>
-                                                    </li>    
-                                                    <li class="nav-item " style ="color:#fff" >
-                                                        <a  class="nav-link pl-0" href=""><span>Mandos&Joysticks</span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Cargadores</span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Tripodes</span></a>
-                                                    </li>                                    
-                                            </ul>   
-                                      </ul>
-                                            <ul class="collapse list-unstyled text-center"  id="pageSubmenu" style="width:100%">
-                                                  <li class="nav-item  active" style="width:100%">
-                                                        <a  class="nav-link pl-0 text-center " href="#pageSubmenu5"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <span>Camaras</span>
-                                                        </a>
-                                                  </li>
-                                            <ul class="collapse list-unstyled text-center"  id="pageSubmenu5">   
-                                                    <li class="nav-item " style ="color:#fff" >
-                                                        <a  class="nav-link pl-0" href=""><span>Accion Cam</span></a>
-                                                    </li>    
-                                                    <li class="nav-item " style ="color:#fff" >
-                                                        <a  class="nav-link pl-0" href=""><span>Camaras de Seguridad</span></a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Tripodes</span></a>
-                                                    </li>                                  
-                                            </ul> 
-                                            <li class="nav-item ">
-                                                        <a  class="nav-link  pl-0" href=""><span>Tablet</span></a>
-                                            </li>  
-                                         </ul>
-                                                      
-                                            <li class="nav-item  active" style="width:100%">
-                                                          <a  class="nav-link pl-0 text-center " href="#pageSubmenu6"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <span>Salud & Belleza</span>
-                                                          </a>
-                                            </li>
-                                            <ul class="collapse list-unstyled text-center"  id="pageSubmenu6" style="width:100%">    
-                                              <li class="nav-item  active">
-                                                    <a  class="nav-link pl-0 text-center " href="#pageSubmenu7"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <span>Salud</span>
-                                                    </a>
-                                              </li>
-                                              <ul class="collapse list-unstyled text-center"  id="pageSubmenu7">    
-                                                      <li class="nav-item " style ="color:#fff" >
-                                                          <a  class="nav-link pl-0" href=""><span>Basculas personales</span></a>
-                                                      </li>    
-                                                      <li class="nav-item " style ="color:#fff" >
-                                                          <a  class="nav-link pl-0" href=""><span>Maquinas Masajeadoras</span></a>
-                                                      </li>
-                                                      <li class="nav-item ">
-                                                          <a  class="nav-link  pl-0" href=""><span>Tensiometros</span></a>
-                                                      </li> 
-                                                      <li class="nav-item ">
-                                                          <a  class="nav-link  pl-0" href=""><span>Humidificadores</span></a>
-                                                      </li> 
-                                              </ul> 
-                                              <li class="nav-item  active">
-                                                    <a  class="nav-link pl-0 text-center " href="#pageSubmenu8"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <span>Belleza</span>
-                                                    </a>
-                                              </li>
-                                              <ul class="collapse list-unstyled text-center"  id="pageSubmenu8">    
-                                                      <li class="nav-item " style ="color:#fff" >
-                                                          <a  class="nav-link pl-0" href=""><span>Plancha & Cepillos</span></a>
-                                                      </li>    
-                                                      <li class="nav-item " style ="color:#fff" >
-                                                          <a  class="nav-link pl-0" href=""><span>Cuidado de la cara</span></a>
-                                                      </li>
-                                                      <li class="nav-item ">
-                                                          <a  class="nav-link  pl-0" href=""><span>Secadores</span></a>
-                                                      </li> 
-                                                      <li class="nav-item ">
-                                                          <a  class="nav-link  pl-0" href=""><span>Fajas & Fitness</span></a>
-                                                      </li> 
-                                              </ul> 
-                                             </ul> 
-                                             <li class="nav-item  active" style="width:100%">
-                                                    <a  class="nav-link pl-0 text-center " href="#pageSubmenu9"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" > <span>Moda & Accesorios</span>
-                                                    </a>
-                                              </li>
-                                             
-                                              <ul class="collapse list-unstyled text-center"  id="pageSubmenu9" >    
-                                                      <li class="nav-item " style ="color:#fff" >
-                                                          <a  class="nav-link pl-0" href=""><span>Relojes & Joyería</span></a>
-                                                      </li>    
-                                                      <li class="nav-item " style ="color:#fff" >
-                                                          <a  class="nav-link pl-0" href=""><span>Accesorios</span></a>
-                                                      </li>
-                                                      <li class="nav-item ">
-                                                          <a  class="nav-link  pl-0" href=""><span>Ropa Interior</span></a>
-                                                      </li> 
-                                                   
-                                              </ul> 
-                                              <li class="nav-item  active" style="width:100%">
-                                                    <a  class="nav-link pl-0 text-center " href="#pageSubmenu10"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" > <span>Juguetería</span>
-                                                    </a>
-                                              </li>
-                                             
-                                              <ul class="collapse list-unstyled text-center"  id="pageSubmenu10" >    
-                                                      <li class="nav-item "  >
-                                                          <a  class="nav-link pl-0" href=""><span>Peluches</span></a>
-                                                      </li>    
-                                                      <li class="nav-item "  >
-                                                          <a  class="nav-link pl-0" href=""><span>Muñecas</span></a>
-                                                      </li>
-                                                      <li class="nav-item ">
-                                                          <a  class="nav-link  pl-0" href=""><span>Juegos de Mesa</span></a>
-                                                      </li> 
-                                                       <li class="nav-item ">
-                                                          <a  class="nav-link  pl-0" href=""><span>Patines & Patinetas</span></a>
-                                                      </li> 
-                                                   
-                                              </ul>
-                                                <li class="nav-item  active" style="width:100%">
-                                                    <a  class="nav-link pl-0 text-center " href="#pageSubmenu11"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" > <span>Hogar & Cocina</span>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1" name="viewport">
+                <meta content="ie=edge" http-equiv="x-ua-compatible">
+                    <title>
+                        AdminLTE 3 | Starter
+                    </title>
+                    <!-- Font Awesome Icons -->
+                    <!-- Theme style -->
+                    <link href="{{ asset('css/adminLte/adminlte.min.css')}}" rel="stylesheet">
+                        <!-- Google Font: Source Sans Pro -->
+                        <link href="{{ asset('css/adminLte/fonts.css')}}" rel="stylesheet">
+                            <link href="{{ asset('css/fontawesome/css/all.min.css')}}" rel="stylesheet">
+                                <link href="{{ asset('css/fontawesome/css/fontawesome.min.css')}}" rel="stylesheet">
+                                    <meta content="{{ csrf_token() }}" name="csrf-token">
+                                    </meta>
+                                </link>
+                            </link>
+                        </link>
+                    </link>
+                </meta>
+            </meta>
+        </meta>
+    </head>
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            <!-- Navbar -->
+            @include('frond.store.partials.navbar')
+            <!-- /.navbar -->
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-dark elevation-4" style="background-color:#38338A">
+                <!-- Brand Logo -->
+                <a class="brand-link" href="{{ url('/')}}" style="color:#fff">
+                    <img alt="AdminLTE Logo" class="brand-image img-circle elevation-2" src="{{asset('img/AdminLTELogo.png')}}" style="opacity: .8">
+                        <span class="brand-text font-weight-light">
+                            <b>
+                                J y C PROGRAMMING
+                            </b>
+                        </span>
+                    </img>
+                </a>
+                <!-- Sidebar -->
+                <div class="sidebar" style="width:100%;height:100%  ">
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <img alt="User Image" class="img-circle elevation-2" src="{{asset('img/user2-160x160.jpg')}}">
+                            </img>
+                        </div>
+                        <div class="info">
+                            <a class="d-block" href="#" style="color:#fff">
+                                Administrador
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview" role="menu">
+                            <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                            <li class="nav-item has-treeview ">
+                                <a class="nav-link active" href="#">
+                                    <i class="fas fa-memory">
+                                    </i>
+                                    <p>
+                                        Técnologia
+                                        <i class="right fa fa-angle-left">
+                                        </i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview" role="menu">
+                                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                                        <li class="nav-item has-treeview ">
+                                            <a class="nav-link " href="#" style="color:#fff">
+                                                <i class="nav-icon fa fa-dashboard">
+                                                </i>
+                                                <p>
+                                                    Tv, Audio & Video
+                                                    <i class="right fa fa-angle-left">
+                                                    </i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link " href="#" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Tv
+                                                        </p>
                                                     </a>
                                                 </li>
-                                             
-                                              <ul class="collapse list-unstyled text-center"  id="pageSubmenu11" style="width:100%"> 
-                                                   <li class="nav-item  active" style="width:100%">
-                                                        <a  class="nav-link pl-0 text-center " href="#pageSubmenu12"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" > <span>Cocina</span>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="#" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Conversores
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="#" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Decodificadores
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Audífonos
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Micrófonos
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Proyectores
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Parlantes
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Otros
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <!----------------------------------------------------------------------------------->
+                                    <li class="nav-item has-treeview ">
+                                        <a class="nav-link " href="#" style="color:#fff">
+                                            <i class="nav-icon fa fa-dashboard">
+                                            </i>
+                                            <p>
+                                                Electronica
+                                                <i class="right fa fa-angle-left">
+                                                </i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link " href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Armas Eléctricas
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Baterías
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Calculadoras
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Lamparas
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Drones
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Cargadores Portatiles
+                                                    </p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!----------------------------------------------------------------------------------->
+                                    <li class="nav-item has-treeview ">
+                                        <a class="nav-link " href="#" style="color:#fff">
+                                            <i class="nav-icon fa fa-dashboard">
+                                            </i>
+                                            <p>
+                                                Computación
+                                                <i class="right fa fa-angle-left">
+                                                </i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link " href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Memorias
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Coversores
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Tarjetas de sonido
+                                                    </p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!----------------------------------------------------------------------------------->
+                                    <li class="nav-item has-treeview ">
+                                        <a class="nav-link " href="#" style="color:#fff">
+                                            <i class="nav-icon fa fa-dashboard">
+                                            </i>
+                                            <p>
+                                                Celulares
+                                                <i class="right fa fa-angle-left">
+                                                </i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link " href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Celulares
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Mandos & Joysticks
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Cargadores
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Tripodes
+                                                    </p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!----------------------------------------------------------------------------------->
+                                    <li class="nav-item has-treeview ">
+                                        <a class="nav-link " href="#" style="color:#fff">
+                                            <i class="nav-icon fa fa-dashboard">
+                                            </i>
+                                            <p>
+                                                Camaras
+                                                <i class="right fa fa-angle-left">
+                                                </i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link " href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Acción cam
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Camras de seguridad
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Tripodes
+                                                    </p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <li class="nav-item has-treeview menu-open">
+                                            <a class="nav-link" href="" style="color:#fff">
+                                                <i class="fa fa-circle-o nav-icon">
+                                                </i>
+                                                <p>
+                                                    Tablet
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </li>
+                                    <!----------------------------------------------------------------------------------->
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview" role="menu">
+                            <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                            <li class="nav-item has-treeview ">
+                                <a class="nav-link active" href="#" style="color:#fff">
+                                    <i class="fas fa-medkit">
+                                    </i>
+                                    <p>
+                                        Salud & Belleza
+                                        <i class="right fa fa-angle-left">
+                                        </i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview" role="menu">
+                                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                                        <li class="nav-item has-treeview ">
+                                            <a class="nav-link " href="#" style="color:#fff">
+                                                <i class="nav-icon fa fa-dashboard">
+                                                </i>
+                                                <p>
+                                                    Salud
+                                                    <i class="right fa fa-angle-left">
+                                                    </i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link " href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Basculas personales
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Maquinas Masajeadoras
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Tensiometros
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Humidificadores
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <!----------------------------------------------------------------------------------->
+                                    <li class="nav-item has-treeview ">
+                                        <a class="nav-link " href="#" style="color:#fff">
+                                            <i class="nav-icon fa fa-dashboard">
+                                            </i>
+                                            <p>
+                                                Belleza
+                                                <i class="right fa fa-angle-left">
+                                                </i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link " href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Plancha & Cepillos
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Cuidado de la cara
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Secadores
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        >Fajas & Fitness
+                                                    </p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!----------------------------------------------------------------------------------->
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview" role="menu">
+                            <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                            <li class="nav-item has-treeview ">
+                                <a class="nav-link active" href="#" style="color:#fff">
+                                    <i class="fas fa-tshirt">
+                                    </i>
+                                    <p>
+                                        Moda & Accesorios
+                                        <i class="right fa fa-angle-left">
+                                        </i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item has-treeview menu-open">
+                                        <a class="nav-link " href="" style="color:#fff">
+                                            <i class="fa fa-circle-o nav-icon">
+                                            </i>
+                                            <p>
+                                                Relojes & Joyería
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item has-treeview menu-open">
+                                        <a class="nav-link" href="" style="color:#fff">
+                                            <i class="fa fa-circle-o nav-icon">
+                                            </i>
+                                            <p>
+                                                Accesorios
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item has-treeview menu-open">
+                                        <a class="nav-link" href="" style="color:#fff">
+                                            <i class="fa fa-circle-o nav-icon">
+                                            </i>
+                                            <p>
+                                                Ropa interior
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!----------------------------------------------------------------------------------->
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview" role="menu">
+                            <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                            <li class="nav-item has-treeview ">
+                                <a class="nav-link active" href="#" style="color:#fff">
+                                    <i class="fas fa-truck-monster">
+                                    </i>
+                                    <p>
+                                        Juguetería
+                                        <i class="right fa fa-angle-left">
+                                        </i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item has-treeview menu-open">
+                                        <a class="nav-link " href="" style="color:#fff">
+                                            <i class="fa fa-circle-o nav-icon">
+                                            </i>
+                                            <p>
+                                                Peluches
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item has-treeview menu-open">
+                                        <a class="nav-link" href="" style="color:#fff">
+                                            <i class="fa fa-circle-o nav-icon">
+                                            </i>
+                                            <p>
+                                                Muñecas
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item has-treeview menu-open">
+                                        <a class="nav-link" href="" style="color:#fff">
+                                            <i class="fa fa-circle-o nav-icon">
+                                            </i>
+                                            <p>
+                                                Juegos de Mesa
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item has-treeview menu-open">
+                                        <a class="nav-link" href="" style="color:#fff">
+                                            <i class="fa fa-circle-o nav-icon">
+                                            </i>
+                                            <p>
+                                                Patines & Patinetas
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!----------------------------------------------------------------------------------->
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview" role="menu">
+                            <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                            <li class="nav-item has-treeview ">
+                                <a class="nav-link active" href="#" style="color:#fff">
+                                    <i class="fas fa-home">
+                                    </i>
+                                    <p>
+                                        Hogar & Cocina
+                                        <i class="right fa fa-angle-left">
+                                        </i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview" role="menu">
+                                        <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                                        <li class="nav-item has-treeview ">
+                                            <a class="nav-link " href="#" style="color:#fff">
+                                                <i class="nav-icon fa fa-dashboard">
+                                                </i>
+                                                <p>
+                                                    Hogar
+                                                    <i class="right fa fa-angle-left">
+                                                    </i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link " href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Basculas personales
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Maquinas Masajeadoras
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Tensiometros
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item has-treeview menu-open">
+                                                    <a class="nav-link" href="" style="color:#fff">
+                                                        <i class="fa fa-circle-o nav-icon">
+                                                        </i>
+                                                        <p>
+                                                            Humidificadores
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <!----------------------------------------------------------------------------------->
+                                    <li class="nav-item has-treeview ">
+                                        <a class="nav-link " href="#" style="color:#fff">
+                                            <i class="nav-icon fa fa-dashboard">
+                                            </i>
+                                            <p>
+                                                Cocina
+                                                <i class="right fa fa-angle-left">
+                                                </i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link " href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Plancha & Cepillos
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Cuidado de la cara
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Secadores
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item has-treeview menu-open">
+                                                <a class="nav-link" href="" style="color:#fff">
+                                                    <i class="fa fa-circle-o nav-icon">
+                                                    </i>
+                                                    <p>
+                                                        Fajas & Fitness
+                                                    </p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+        </div>
+    </body>
+</html>
+<!-- /.sidebar-menu -->
+<!-- /.sidebar -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <!-- /.content-header -->
+    <br>
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    Catalogo
+                                </h3>
+                                <div class="card-tools">
+                                    <button class="btn btn-tool" data-toggle="tooltip" data-widget="collapse" title="Collapse" type="button">
+                                        <i class="fa fa-minus">
+                                        </i>
+                                    </button>
+                                    <button class="btn btn-tool" data-toggle="tooltip" data-widget="remove" title="Remove" type="button">
+                                        <i class="fa fa-times">
+                                        </i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        @foreach($products as $product )
+                                        <div class="col-sm-4">
+                                            <div class="card text-center">
+                                                <div class="card-header ">
+                                                    <h4 class="card-title">
+                                                        <strong>
+                                                            {{$product->name}}
+                                                        </strong>
+                                                    </h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <img alt="card image cap" class="card-img-top " src="{{$product->file}}" style="height:100px;width:100px ">
+                                                        <p class="card-text">
+                                                            {{$product->description}}
+                                                        </p>
+                                                        <h4>
+                                                            {{number_format($product->sale_price,2)}}
+                                                        </h4>
+                                                        <a class="btn btn-sm btn-primary" href="{{ route('agregar-producto',$product->id)}}">
+                                                            ¿Cotizar?
                                                         </a>
-                                                   </li>
-                                                  <ul class="collapse list-unstyled text-center"  id="pageSubmenu12" >   
-                                                      <li class="nav-item "  >
-                                                          <a  class="nav-link pl-0" href=""><span>Peluches</span></a>
-                                                      </li>    
-                                                      <li class="nav-item "  >
-                                                          <a  class="nav-link pl-0" href=""><span>Muñecas</span></a>
-                                                      </li>
-                                                      <li class="nav-item ">
-                                                          <a  class="nav-link  pl-0" href=""><span>Juegos de Mesa</span></a>
-                                                      </li> 
-                                                       <li class="nav-item ">
-                                                          <a  class="nav-link  pl-0" href=""><span>Patines & Patinetas</span></a>
-                                                      </li> 
-                                                  </ul>    
-                                                   
-                                              </ul>
-
-
-
-
-
-                                      </ul> 
-                               </ul>
-                      </div>
-                  </nav>
-           </aside>
-  	   </div>
-		
-
-<!--lista de productos -->
-
-  <div class="col-lg-10" style="padding-left:70px;">
-  	<div class="row">
-
-      @foreach($products as $product ) 
-            <div class="col-lg-4" >
-              <div class="card text-center" style="width: 17rem; padding-left:1px;padding-bottom:1px ">
-                  <div  class="card-header card-header-primary">
-                          <h4 class="card-title">  {{$product->name}}</h4>     
-                  </div> 
-              <div class="card-body" > 
-                <img class="card-img-top " src="{{$product->file}}"  style="height:100px;width:100px " alt="Card image cap">
-                <p class="card-text">{{$product->description}}</p>
-                <h4>{{number_format($product->sale_price,2)}}</h4>
-                <a href="{{route('agregar-producto',$product->id)}}" type="button" class="btn btn-sm btn-primary">¿Cotizar?</a>
-                <a href="{{route('detalle-producto',$product->id)}}" type="button" class="btn btn-sm btn-primary"> Ver mas <a/>  
-              </div>
-              
-             </div>
+                                                        <a class="btn btn-sm btn-primary" href="{{ route('detalle-producto',$product->id)}}">
+                                                            Ver mas
+                                                            <a>
+                                                            </a>
+                                                        </a>
+                                                    </img>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer" style="display: block;">
+                            </div>
+                            <!-- /.card-footer-->
+                        </div>
+                    </div>
+                    <!-- /.col-md-6 -->
+                </div>
+                <!-- /.row -->
             </div>
-     
-      @endforeach
-  		
-  	</div>
-
-
-  </div>
-
-</div>	
-
-<!--inicia modal -->
-
-<div class="modal fade" id="modalInicio" tabindex="-1" role="dialog" aria-labelledby="modalInicioLabel" aria-hidden="true" style="margin-top:150px ">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <b><h5 class="modal-title " id="modalInicioLabel" style="color:black;font-weight: bold;">Ofertas Exclusivas</h5></b>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <h4 style="color: black" for="recipient-name" class="col-form-label" id="nombreU" >Registra tu correo lectronico y recibe nuestras ofertas.</h4>
-            <input type="text" class="form-control" id="recipient-name" placeholder="tu@correo.com">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <a href="" type="button" class="btn btn-warning" data-dismiss="modal" id="false">No, deseo promociones </a>
-        <a href="" type="button" class="btn btn-primary">Registrar</a>
-      </div>
+            <!-- /.container-fluid -->
+        </div>
+    </br>
+</div>
+<!-- /.content -->
+<!-- /.content-wrapper -->
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+        <h5>
+            Title
+        </h5>
+        <p>
+            Sidebar content
+        </p>
     </div>
-  </div>
+</aside>
+<!-- /.control-sidebar -->
+<!-- Main Footer -->
+<footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+        Anything you want
+    </div>
+    <!-- Default to the left -->
+    <strong>
+        Copyright © 2014-2018
+        <a href="ht tps://adminlte.io">
+            AdminLTE.io
+        </a>
+        .
+    </strong>
+    All rights reserved.
+</footer>
+<!-- ./wrapper -->
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<!--inicia modal -->
+<div aria-hidden="true" aria-labelledby="modalInicioLabel" class="modal fade" id="modalInicio" role="dialog" style="margin-top:150px " tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <b>
+                    <h5 class="modal-title " id="modalInicioLabel" style="color:black;font-weight: bold;">
+                        Ofertas Exclusivas
+                    </h5>
+                </b>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">
+                        ×
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <h4 class="col-form-label" for="recipient-name" id="nombreU" style="color: black">
+                            Registra tu correo lectronico y recibe nuestras ofertas.
+                        </h4>
+                        <input class="form-control" id="recipient-name" placeholder="tu@correo.com" type="text">
+                        </input>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-warning" data-dismiss="modal" href="" id="false">
+                    No, deseo promociones
+                </a>
+                <a class="btn btn-primary" href="">
+                    Registrar
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 <!--fin modal -->
-
-
-<script src="plugins/jquery/js/jquery-3.3.1.js"></script>
-<script type="" src="plugins/bootstrap/js/bootstrap.bundle.js"></script>
-<script type="" src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script type="" src="plugins/bootstrap/js/bootstrap.js"></script>
-<script src="{{asset('js/main.js')}}"></script>
-
-</body>
-</html>
+<script src="{{asset('js/adminLte/jquery.min.js')}}">
+</script>
+<!-- Bootstrap 4 -->
+<script src="{{asset('js/adminLte/bootstrap.bundle.min.js')}}">
+</script>
+<!-- AdminLTE App -->
+<script src="{{asset('js/adminLte/adminlte.min.js')}}">
+</script>

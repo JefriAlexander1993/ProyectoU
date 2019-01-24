@@ -1,98 +1,139 @@
-@extends('layouts.template')
+@extends('layouts.plantilla')
+
 @section('content')
-
-  <div class="container" >
-  <div class="row">
-  <div class="col-lg-4" >
-          <div class="card-body" >
-              <!-- Nav tabs -->
-                <div class="container" >
-                  <ul class="nav nav-tabs" role="tablist" style="padding-left:70px">
-                    <input type="hidden" name="_token" value="{{csrf_token()}}" id="token">
-                    <input type="hidden" value="" id="idrole" name="idrole">
-                    <li role="plantillas"><button href="#variables"  title="Crear rol" id="create-form"  name="crear-form" type="button" class="btn btn-success btn-sm" aria-controls="variables" role="tab" data-toggle="tab"><i class="fas fa-plus-square" ></i></button></li>
-                    <li role="plantillas" class="active"><a id="edit-form" title="Editar rol" class="btn btn-info btn-sm" href="#table" aria-controls="table" role="tab" data-toggle="tab"><i class="far fa-edit"></i></a></li>
-                    <li role="plantillas" class="active"><a id="show-form"title="Ver rol" class="btn btn-secundary btn-sm" href="#ver" aria-controls="table" role="tab" data-toggle="tab"><i class='fas fa-eye'></i></a></li>
-                 </ul>
-               </div>
-
-              <!-- Tab panes -->
-              <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="table" >
-                      <div id="editusers" class="card">
-                        <div  class="card-header card-header-info">
-                          <h4 class="card-title "><strong>Editar rol</strong></h4>
-
-                        </div>
-                        <div class="card-body">
-                          <div class="col-sm-12">
-                                    @include('frond.roles.fragment.formedit')
-                        </div>
-                      </div>
-                    </div>
-                </div>
-
-                <div role="tabpanel" class="tab-pane fade" id="variables">
-                  <div  class="card">
-                    <div  class="card-header card-header-success">
-                      <h4 class="card-title"><strong>Crear rol</strong></h4>
-
-                    </div>
-                      <div class="card-body">
-                        <div class="col-sm-12">
-                            @include('frond.roles.fragment.form')
-                      </div>
-                    </div>
-                  </div>
-            </div>
-            <div role="tabpanel" class="tab-pane fade in active" id="ver" >
-                  <div  class="card">
-                    <div  class="card-header card-header-primary">
-                      <h4 class="card-title">Información del rol</h4>
-
-                    </div>
-                    <div class="card-body" id="showrol" >
-                        <div class="col-sm-12">
-                                    @include('frond.roles.fragment.show')
-                        </div>
-                    </div>
-            </div>
-          </div>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header p-2">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active show" data-toggle="tab" href="#activity">
+                        Lista de roles
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#settings">
+                        Busqueda avanzada
+                    </a>
+                </li>
+            </ul>
         </div>
-      </div>
-  </div>
-
-
-<!--Lista de producto(Tabla).-->
-
-            <div class="col-lg-8">
-              <div class="card">
-                <div  class="card-header card-header-success">
-                  <h4 class="card-title "><strong>LISTA DE ROLES</strong> <a href="{{ url('/rolespdf') }}" class="btn btn-sm btn-danger" title="Exportar a pdf"><i class="far fa-file-pdf"></i> </a> <a href="{{ url('/rolesexcel') }}" class="btn btn-sm btn-warning" title="Exportar a excel"><i class="far fa-file-excel"></i> </a></h4>
-
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="tab-pane active show" id="activity">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header card-header-success">
+                                <h4 class="card-title ">
+                                    <a class="btn btn-success btn-sm pull-right" href="{{ route('roles.create')}}" title="Agregar rol">
+                                        <i class="fa fa-plus-square">
+                                        </i>
+                                    </a>
+                                    <a class="btn btn-sm btn-danger" href="{{ url('/rolespdf') }}" title="Exportar a pdf">
+                                        <i class="far fa-file-pdf">
+                                        </i>
+                                    </a>
+                                    <a class="btn btn-sm btn-success" href="{{ url('/rolesexcel') }}" title="Exportar a excel">
+                                        <i class="far fa-file-excel">
+                                        </i>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive ">
+                                    <table class="table table-striped ">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">
+                                                    Nombres
+                                                </th>
+                                                <th class="text-center">
+                                                    Apodo
+                                                </th>
+                                                <th class="text-center">
+                                                    Descripción
+                                                </th>
+                                                <th class="text-center" colspan="3">
+                                                    Acción
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        @foreach($roles as $role)
+                                        <tr>
+                                            <td class="text-center">
+                                                {{ $role->name }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ $role->display_name }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ $role->description }}
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-secundary btn-sm " href="{{ route('roles.show', $role->id)}}" title="Ver Usuario">
+                                                    <i aria-hidden="true" class="fa fa-eye">
+                                                    </i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-default btn-sm" href="{{ route('roles.edit', $role->id) }}">
+                                                    <i aria-hidden="true" class="far fa-edit " title="Editar roleo">
+                                                    </i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('roles.destroy', $role->id) }}" method="post">
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                        <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                                            <button class="btn btn-danger btn-sm" title="Eliminar roleo" type="submit">
+                                                                <i aria-hidden="true" class="far fa-trash-alt">
+                                                                </i>
+                                                            </button>
+                                                        </input>
+                                                    </input>
+                                                </form>
+                                            </td>
+                                            @endforeach
+                                        </tr>
+                                    </table>
+                                    <div class="text-center">
+                                        {!!$roles->render() !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table  id="roles" name="roles"  class="table  table-hover">
-                      <thead class=" text-primary">
-                            <tr>
-                                            <th class="text-center">Id</th>
-                                            <th class="text-center">Nombre</th>
-                                            <th class="text-center">Apodo</th>
-                                            <th class="text-center">Descripción</th>
-                                            <th class="text-center">Fecha de creación</th>
-                                            <th class="text-center">Acción</th>
-                             </tr>
-                     </thead>
-
-                    </table>
-                  </div>
+                <div class="tab-pane" id="settings">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <table class="table table-striped table-hover" id="roles" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                Id
+                                            </th>
+                                            <th class="text-center">
+                                                Nombre
+                                            </th>
+                                            <th class="text-center">
+                                                Apodo
+                                            </th>
+                                            <th class="text-center">
+                                                Descripción
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.nav-tabs-custom -->
                 </div>
-              </div>
             </div>
         </div>
+        <!------------------------------------------------------------------------------------------------------------>
     </div>
-
-
-
+</div>
 @endsection

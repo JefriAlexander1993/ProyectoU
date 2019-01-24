@@ -22,21 +22,19 @@ class PurchaseController extends Controller
     public function index()
     {
 
-        return  view('frond.purchases.index');
+        return  view('frond.purchases.index',['purchases'=>Purchase::orderBy('id','desc')->paginate('8')]);
     }
 
     public function create(){
 
-          $products = Product::pluck('name','code'); 
 
-         return  view('frond.purchases.create',compact('products'));
+         return  view('frond.purchases.create',['products'=>Product::pluck('name','code')]);
 
     }
 
     public function show($id){
 
-          $purchase =Purchase::find($id);
-              return  view('frond.purchases.show', compact("purchase"));
+              return  view('frond.purchases.show',['purchase'=>Purchase::find($id)]);
     }
 
 
@@ -75,15 +73,13 @@ class PurchaseController extends Controller
               $purchase_product->save();
         }
 
-    
-      return view('frond.purchases.index');
+     return redirect()->route('purchases.index')
+                             ->with('info','El cliente fue regstrado  exitosamente.');  
     }
 
     public function edit($id){
 
-
-          $purchase =Purchase::find($id);
-              return  view('frond.purchases.edit', compact("purchase"));
+              return  view('frond.purchases.edit', ['purchase'=>Purchase::find($id)]);
 
     }  
 
@@ -99,10 +95,10 @@ class PurchaseController extends Controller
      */
     public function update(Request $request,$id)
     {
-      $purchase= Permission::find($id);
-      $purchase->fill($request->all())->save();
-      return response()->json(["mensaje"=>"Actualizar"]);
-
+      $purchase= Permission::find($id)->update($request->all());
+    
+      return redirect()->route('purchases.index')
+                             ->with('info','La compra fue registrado  exitosamente.');  
     }
 
     /**
@@ -114,6 +110,7 @@ class PurchaseController extends Controller
     public function destroy($id)
     {
       $purchase= Purchase::findOrFail($id)->delete();
-      return response()->json(["mensaje"=>"Borrado"]);
+       return redirect()->route('purchases.index')
+                             ->with('info','La compra fue eliminada exitosamente.');  
     }
 }

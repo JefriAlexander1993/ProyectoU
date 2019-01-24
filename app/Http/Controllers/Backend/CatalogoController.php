@@ -8,16 +8,14 @@ class CatalogoController extends Controller
 {
      public function index()
     {
-    	$products=Product::all();
-
-    	return view('frond.catalogues.index',compact('products'));//['productoslist'=>$productoslist]); //->with('catalogo',$productoslist);
+    	
+    	return view('frond.catalogues.index',['products'=>Product::all()]);//['productoslist'=>$productoslist]); //->with('catalogo',$productoslist);
     }
 
     public function show($id){
 
-    	$products=Product::where('id',$id)->first();
     	
-    	return view('frond.catalogues.index',['products'=>$products] );
+    	return view('frond.catalogues.index',['products'=>Product::where('id',$id)->first()]);
     }
 
     

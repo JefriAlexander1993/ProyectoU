@@ -1,44 +1,51 @@
-
-<form id="formuser" class="form-horizontal" method="POST" action="">
-  <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"></input>
-           {{ csrf_field() }}
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="form-group">
-              <label class="bmd-label-floating"><strong>Nombres</strong></label>
-            <input type="text" required class="form-control" maxlength="20" id="idname" name="idname" title="Nombre del usuario">
-            </div>
-      </div>
-   </div>
-
-  <div class="row">
-      <div class="col-sm-12">
-          <div class="form-group">
-            <label class="bmd-label-floating"><strong>Email</strong></label>
-          <input type="email" id="idemail" required class="form-control"  name="idemail" title="Correo electronico">
-              <i class="mdi mdi-check-circle-outline"></i>
-
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group ">
+            {!! Form::label('name','Nombre(*).')!!}
+    {!!Form::text('name',null,['class'=>'form-control','Nombre del usuario','title'=>'Nombre.','id'=>'name','required'=>'required'])!!}
         </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-6">
+        <div class="form-group ">
+            {!! Form::label('email','Email(*).')!!}
+    {!!Form::email('email',null,['class'=>'form-control','Nombre del usuario','title'=>'Correo electronico.','id'=>'name','required'=>'required'])!!}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+            {!! Form::label('password','Contraseña(*).')!!}
+            <input class="form-control" id="password" name="password" required="" type="password">
+                @if ($errors->has('password'))
+                <span class="help-block">
+                    <strong>
+                        {{ $errors->first('password') }}
+                    </strong>
+                </span>
+                @endif
+            </input>
+        </div>
+    </div>
+    <div class="col-sm-4">
         <div class="form-group">
-       <label class="bmd-label-floating"><strong>Constraseña</strong></label>
-        <input  id="idpassword" name="idpassword" type="password" required class="form-control"  name="password" title="Contraseña">
+            {!! Form::label('password-confirm','Confirmar contraseña(*).')!!}
+            <input class="form-control" id="password-confirm" name="password_confirmation" required="" type="password">
+            </input>
         </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="form-group">
-          {!!link_to('#',$title='Registrar', $attributes =['id'=>'Registro','class'=>'btn btn-success submit-btn btn-block','type'=>'submit'],$secure =null)!!}
-          <!--<button type="submit" class="btn btn-success submit-btn btn-block"><i class="far fa-save"></i></button>-->
-      </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            {{ Form::label('file', 'Imagén') }}
+            <br>
+                {{Form::file('file',['class'=>'form-control'])}}
+            </br>
+        </div>
     </div>
-  </div>
-
-  <div class="clearfix"></div><!--Incluyo el formulario-->
-</form>
+</div>
+<div class="form-group text-center">
+    {!!Form::button('
+    <i aria-hidden="true" class="fa fa-save">
+    </i>
+    ', array('type' => 'submit', 'class'=>'btn btn-success btn-lg btn-block'))!!}
+</div>

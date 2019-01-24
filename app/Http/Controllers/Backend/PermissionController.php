@@ -22,7 +22,23 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return view('frond.permissions.index');
+        return view('frond.permissions.index',['permissions'=>Permission::orderBy('id','desc')->paginate('8')]);
+    }
+
+    public function create(){
+
+        return view('frond.permissions.create');
+
+    }
+    public function show($id){
+
+        return view('frond.permissions.show',['permission'=>Permission::findOrFail($id)]);
+
+    }
+    public function edit($id){
+
+            return view('frond.permissions.edit',['permission'=>Permission::findOrFail($id)]);
+
     }
 
         public function pdfPermission()
@@ -55,13 +71,11 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-      if($request->ajax()){
-       $permission =  Permission::create($request->all());
-       $permission->save();
-              return response()->json([
-                "mensaje"=>"Fue creado."
-              ]);
-      }
+  
+       $permission =  Permission::create($request->all())->save();
+            return redirect()->route('permissions.index')
+                             ->with('info','El permiso fue registrado  exitosamente.');  
+  
     }
 
     /**
@@ -73,9 +87,9 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $permission= Permission::find($id);
-        $permission->fill($request->all())->save();
-        return response()->json(["mensaje"=>"Actualizar"]);
+        $permission= Permission::find($id)->update($request->all());
+         return redirect()->route('permissions.index')
+                             ->with('info','El permiso fue actualizado exitosamente.');  
     }
 
     /**
@@ -86,7 +100,8 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-      $permission= Permission::findOrFail($id)->delete();
-      return response()->json(["mensaje"=>"Borrado"]);
+      $permission= Permission::find($id)->delete();
+       return redirect()->route('permissions.index')
+                             ->with('danger','El cliente fue eliminado  exitosamente.');  
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -62,14 +63,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $role_client = Role::where('name', 'ROL_CLIENTE')->first();
+      
+        $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $user->roles()->attach($role_client);
+
+
+        return $user;
+           
     }
     
-    public function redirectPath()
+ /*   public function redirectPath()
     
     {
 
@@ -82,4 +91,5 @@ class RegisterController extends Controller
 
              return  '/carrito/show';
     }
+    */
 }

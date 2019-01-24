@@ -31,6 +31,7 @@ class EntrustSetupTables extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')
                 ->onUpdate('cascade')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -55,7 +56,8 @@ class EntrustSetupTables extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')
                 ->onUpdate('cascade')->onDelete('cascade');
-             $table->timestamps();
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

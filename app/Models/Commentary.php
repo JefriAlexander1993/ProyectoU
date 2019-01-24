@@ -15,7 +15,7 @@ class Commentary extends Model
     protected $dates = ['deleted_at'];
 
          protected $fillable = [
-       		 'id','name','email', 'body','users_id',
+       		 'id','name','affair','email', 'body','users_id',
     ];
 
     public function user() {

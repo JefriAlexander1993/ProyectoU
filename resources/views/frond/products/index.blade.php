@@ -1,100 +1,153 @@
-@extends('layouts.template')
+@extends('layouts.plantilla')
 
 @section('content')
-    <br>
-    <div class="col-sm-12">
-      @include('frond.products.fragment.info') 
-      @include('frond.products.fragment.error') 
-    </div> 
-  <div class="container" >
-
-  <div class="row">
-
-  <div class="col-lg-5" >
-          <div class="card-body">
-              <!-- Nav tabs -->
-              <div class="container">
-                  <ul class="nav nav-tabs" role="tablist" style="padding-left:70px">
-                    <input type="hidden" value="" id="idproductedit" name="idproductedit"></input>
-                    <li role="plantillas"><button href="#variables"  title="Crear rol" id="create-form-rol"  name="crear-form" type="button" class="btn btn-success btn-sm" aria-controls="variables" role="tab" data-toggle="tab"><i class="fas fa-plus-square" ></i></button></li>
-                    <li role="plantillas" class="active"><a id="edit-form-rol" title="Editar rol" class="btn btn-info btn-sm" href="#table" aria-controls="table" role="tab" data-toggle="tab"><i class="far fa-edit"></i></a></li>
-                    <li role="plantillas" class="active"><a id="show-form-rol"title="Ver rol" class="btn btn-secundary btn-sm" href="#ver" aria-controls="table" role="tab" data-toggle="tab"><i class='fas fa-eye'></i></a></li>
-                 </ul>
-              </div>
-
-              <!-- Tab panes -->
-              <div class="tab-content" >
-                <div role="tabpanel" class="tab-pane fade in active" id="table" >
-                      <div id="editusers" class="card">
-                        <div  class="card-header card-header-info">
-                          <h4 class="card-title "><strong>Editar producto</strong></h4>
-
-                        </div>
-                        <div class="card-body">
-                    
-                                  @include('frond.products.fragment.formedit')
-                           
-                      </div>
-                    </div>
-
-                      </div>
-
-                <div role="tabpanel" class="tab-pane fade" id="variables">
-                  <div  class="card">
-                    <div  class="card-header card-header-success">
-                      <h4 class="card-title "><strong>Crear producto</strong></h4>
-
-                    </div>
-                      <div class="card-body" >
-                           {!!Form::open(['id'=>'formproduct', 'files' => true,'enctype' => 'multipart/form-data'])!!}
-                              @include('frond.products.fragment.form')
-                           {!!Form::close()!!}
-             
-                    </div>
-                  </div>
-            </div>
-            <div role="tabpanel" class="tab-pane fade in active" id="ver" >
-                  <div  class="card">
-                    <div  class="card-header card-header-primary">
-                      <h4 class="card-title">Información del producto</h4>
-
-                    </div>
-                    <div class="card-body" id="showrol" value="">
-                        @include('frond.products.fragment.show')
-                    </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-
-  <div class="col-lg-7">
-    <div class="card">
-          <div  class="card-header card-header-success">
-                <h4 class="card-title "><strong>LISTA DE PRODUCTOS</strong></h4>
-          </div>
-          <div class="card-body">
-                <div class="table-responsive">
-                                  <table id="products" class="table table-striped table-hover">
-                                          <thead>
-                                            <tr>
-                                       
-                                              <th>Codigo</th>
-                                              <th>Nombre</th>
-                                              <th>Descripción</th>
-                                              <th>Precio u</th>
-                                              <th>Precio v</th>
-                                              <th>Acción</th>
-                                            </tr>
-                                          </thead>
-                                  </table>
+<div class="card">
+    <div class="card-header">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#listproducts">
+                    Listado de productos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#search">
+                    Busqueda avanzada
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <div class="tab-content">
+            <div class="active tab-pane" id="listproducts">
+                <div class="card-header card-header-success">
+                    <h4 class="card-title ">
+                        <a class="btn btn-sm btn-success pull-right" href="{{ route('products.create')}}" title="Agregar producto">
+                            <i class="fa fa-plus-square">
+                            </i>
+                        </a>
+                        <a class="btn btn-sm btn-danger" href="{{ url('/productspdf') }}" title="Exportar a pdf">
+                            <i class="far fa-file-pdf">
+                            </i>
+                        </a>
+                        <a class="btn btn-sm btn-success" href="{{ url('/productsexcel') }}" title="Exportar a excel">
+                            <i class="far fa-file-excel">
+                            </i>
+                        </a>
+                    </h4>
                 </div>
-
-          </div>
-     </div>
-  </div>
+                <!-- Post -->
+                <div class="post">
+                    <table class="table table-striped ">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    Codigo
+                                </th>
+                                <th class="text-center">
+                                    Marca
+                                </th>
+                                <th class="text-center">
+                                    Descripción
+                                </th>
+                                <th class="text-center">
+                                    Precio u
+                                </th>
+                                <th class="text-center">
+                                    Precio v
+                                </th>
+                                <th class="text-center">
+                                    Cantidad
+                                </th>
+                                <th class="text-center" colspan="3">
+                                    Acción
+                                </th>
+                            </tr>
+                        </thead>
+                        @foreach($products as $product)
+                        <tr>
+                            <td class="text-center">
+                                {{ $product->code }}
+                            </td>
+                            <td class="text-center">
+                                {{ $product->name }}
+                            </td>
+                            <td class="text-center">
+                                {{ $product->description }}
+                            </td>
+                            <td class="text-center">
+                                {{ $product->unit_price }}
+                            </td>
+                            <td class="text-center">
+                                {{ $product->sale_price }}
+                            </td>
+                            <td class="text-center">
+                                {{ $product->quantity }}
+                            </td>
+                            <td>
+                                <a class="btn btn-secundary btn-sm " href="{{ route('products.show', $product->id)}}" title="Ver Usuario">
+                                    <i aria-hidden="true" class="fa fa-eye">
+                                    </i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-default btn-sm" href="{{ route('products.edit', $product->id) }}">
+                                    <i aria-hidden="true" class="far fa-edit " title="Editar producto">
+                                    </i>
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                        <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                            <button class="btn btn-danger btn-sm" title="Eliminar producto" type="submit">
+                                                <i aria-hidden="true" class="far fa-trash-alt">
+                                                </i>
+                                            </button>
+                                        </input>
+                                    </input>
+                                </form>
+                            </td>
+                            @endforeach
+                        </tr>
+                    </table>
+                    <div class="text-center">
+                        {!!$products->render() !!}
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="search">
+                <table class="table table-striped table-hover" id="products">
+                    <thead>
+                        <tr>
+                            <th>
+                                Codigo
+                            </th>
+                            <th>
+                                Nombre
+                            </th>
+                            <th>
+                                Descripción
+                            </th>
+                            <th>
+                                Precio unitario
+                            </th>
+                            <th>
+                                Precio venta
+                            </th>
+                            <th>
+                                Cantidad
+                            </th>
+                            <th>
+                                Stockmin
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.tab-pane -->
 </div>
-</div>
-       
-
+<!-- /.tab-content -->
 @endsection

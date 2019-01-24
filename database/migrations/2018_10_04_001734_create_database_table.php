@@ -14,32 +14,34 @@ class CreateDatabaseTable extends Migration
      */
     public function up()
     {
-           /*-------------------------PRODUCTS-----------------------------------------*/
+
+
+    Schema::create('categories', function (Blueprint $table) {
+
+        $table->increments('id');
+        $table->string('name')->unique();
+        $table->string('characteristics')->nullable();
+        $table->timestamps();
+        $table->softDeletes();
+    });
+
+
+
+     /*-------------------------PRODUCTS-----------------------------------------*/
 
      Schema::create('products', function (Blueprint $table) {
                  $table->increments('id');
                  $table->string('code')->unique();
                  $table->string('name');
-                 $table->date('date')->nullable();
                  $table->mediumtext('description')->nullable();
                  $table->float('unit_price');
                  $table->float('sale_price');
                  $table->integer('quantity')->default(0);
                  $table->integer('stockmin')->default(0);
                  $table->string('file',128)->nullable();
-                 $table->softDeletes();
-                 $table->timestamps();
-
-        });
-
-        /*-------------------------TYPES-----------------------------------------*/
-
-     Schema::create('types', function (Blueprint $table) {
-                 $table->increments('id');
-                 $table->string('name')->unique();
-                 $table->string('characteristics')->nullable();
-                 $table->integer('product_id')->unsigned();
-                 $table->foreign('product_id')->references('id')->on('products');
+                 $table->integer('category_id')->unsigned()->nullable();
+                $table->foreign('category_id')->references('id')->on('categories');
+        
                  $table->softDeletes();
                  $table->timestamps();
 
@@ -50,6 +52,7 @@ class CreateDatabaseTable extends Migration
   Schema::create('comments', function (Blueprint $table) {
                  $table->increments('id');
                  $table->string('name');
+                 $table->string('affair');
                  $table->string('email')->unique();
                  $table->mediumtext('body');
                  $table->integer('user_id')->unsigned()->nullable();
@@ -77,7 +80,7 @@ class CreateDatabaseTable extends Migration
 
 
      /*-------------------------Commentary-----------------------------------------*/
-  Schema::create('quotations', function (Blueprint $table) {
+  Schema::create('quotes', function (Blueprint $table) {
                  $table->increments('id');
                  $table->string('name');
                  $table->string('email');
@@ -87,28 +90,28 @@ class CreateDatabaseTable extends Migration
 
         });
 
-  Schema::create('users_quotations', function (Blueprint $table) {
+  Schema::create('users_quotes', function (Blueprint $table) {
                       $table->increments('id');
                       $table->float('costTotal');
                       $table->integer('user_id')->unsigned();
-                      $table->integer('quotation_id')->unsigned();
+                      $table->integer('quotes_id')->unsigned();
                       $table->foreign('user_id')->references('id')->on('users')
                           ->onUpdate('cascade')->onDelete('cascade');
-                      $table->foreign('quotation_id')->references('id')->on('quotations')
+                      $table->foreign('quotes_id')->references('id')->on('quotes')
                           ->onUpdate('cascade')->onDelete('cascade');
                       $table->softDeletes();
                       $table->timestamps();
 
               });
 
-    Schema::create('products_quotations', function (Blueprint $table) {
+    Schema::create('products_quotes', function (Blueprint $table) {
                             $table->increments('id');
                             $table->float('costTotal');
                             $table->integer('product_id')->unsigned();
-                            $table->integer('quotation_id')->unsigned();
+                            $table->integer('quotes_id')->unsigned();
                             $table->foreign('product_id')->references('id')->on('products')
                                 ->onUpdate('cascade')->onDelete('cascade');
-                            $table->foreign('quotation_id')->references('id')->on('quotations')
+                            $table->foreign('quotes_id')->references('id')->on('quotes')
                                 ->onUpdate('cascade')->onDelete('cascade');
                             $table->softDeletes();
                             $table->timestamps();
@@ -116,21 +119,6 @@ class CreateDatabaseTable extends Migration
     });
 
 
-
-
-    /*--------------------------CLIENTES------------------------------------*/
-        Schema::create('clients', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('nuip')->unique();
-            $table->string('name');
-            $table->string('phone');
-            $table->string('address')->nullable();
-            $table->string('email',160)->nullable();
-            $table->string('purchase')->nullable();
-            $table->softDeletes();
-            $table->timestamps();
-
-        });
 
            /*--------------------------COMPRAS------------------------------------*/
 
@@ -202,13 +190,13 @@ class CreateDatabaseTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {   Schema::dropIfExists('categories');
         Schema::dropIfExists('products');
         Schema::dropIfExists('users_comments');
         Schema::dropIfExists('brandss');
         Schema::dropIfExists('sizes');
         Schema::dropIfExists('comments');
-        Schema::dropIfExists('quotations');
+        Schema::dropIfExists('quotes');
         Schema::dropIfExists('proveedores');
         Schema::dropIfExists('clients');
         Schema::dropIfExists('purchases');

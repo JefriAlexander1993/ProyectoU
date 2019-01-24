@@ -128,7 +128,6 @@ function  totalizePurchase(id) {
         var totalPurchase = 0;
         var fila = $("#tbl-purchases > tbody > tr").each(function(index, element) {
            var idfila = element.id.replace("fila", "#subtotal"); /*Debe ser este*/
-   
             totalPurchase += parseInt($(idfila).val());
             
         });

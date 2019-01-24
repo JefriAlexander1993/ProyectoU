@@ -1,26 +1,30 @@
-
-@extends('layouts.template')
+@extends('layouts.plantilla')
 
 @section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 ">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3>
+                        <strong>
+                            CREAR COMPRA.
+                        </strong>
+                        <a class="btn btn-default btn-sm pull-right" href="{{ route('purchases.index')}}" title="Listado de todos las compras.">
+                            <i class="fa fa-list-ol">
+                            </i>
+                        </a>
+                    </h3>
+                </div>
+                <div class="card-body">
+                    {!! Form::open(['route'=>'purchases.store', 'files' => true]) !!}
 
-<div class="card">
-    <div  class="card-header card-header-warning">
-                          <h4 class="card-title "><strong>Crear una nueva compra.</strong>&nbsp;&nbsp;<a href="{{route('purchases.index')}}" class="btn btn-default btn-sm "><i class="fa fa-list-alt" aria-hidden="true"></i></a></h4>
+                      @include('frond.purchases.fragment.form')
 
-                        </div>
-<div class="card-body">
-<div class="col-md-12" >
-
-{!!Form::open(['route'=>'purchases.store'])!!}<!--Se le pasa, la variable del metodo-->
-
-                          @include('frond.purchases.fragment.form') <!--Incluyo el formulario-->
-
-{!!Form::close()!!}
-
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
-
-
 @endsection

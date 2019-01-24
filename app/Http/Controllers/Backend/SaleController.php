@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
-use App\Sale;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -16,9 +16,26 @@ class SaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('frond.sales.index');
+    public function index(){
+
+        return view('frond.sales.index',['sales'=>Sale::orderBy('id','desc')->paginate('8')]);
+    }
+
+    public function create(){
+
+        return view('frond.sales.create');
+
+    }
+
+    public function edit($id){
+
+        return view('frond.sales.edit',['sale'=>Sale::findOrFail($id)]);
+
+    }
+    public function show($id){
+
+        return view('frond.sales.show',['sale'=>Sale::findOrFail($id)]);
+
     }
 
 
@@ -29,16 +46,14 @@ class SaleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-      if($request->ajax()){
-       $sale =  Sale::create($request->all());
-       $sale->save();
-              return response()->json([
-                "mensaje"=>"Fue creado."
-              ]);
+    public function store(Request $request) {
+
+       $sale =  Sale::create($request->all())->save();
+         return redirect()->route('sales.index')
+                                 ->with('info','El venta fue registrada  exitosamente.');  
+      
       }
-    }
+    
 
 
 
@@ -49,11 +64,11 @@ class SaleController extends Controller
      * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-      $sale= Sale::find($id);
-      $sale->fill($request->all())->save();
-      return response()->json(["mensaje"=>"Actualizar"]);
+    public function update(Request $request, $id){
+
+         $sale= Sale::find($id)->update($request->all());
+               return redirect()->route('sales.index')
+                             ->with('info','La venta fue actualizado exitosamente.');  
     }
 
     /**
@@ -65,6 +80,8 @@ class SaleController extends Controller
     public function destroy($id)
     {
       $sale= Sale::findOrFail($id)->delete();
-      return response()->json(["mensaje"=>"Borrado"]);
+          return redirect()->route('sales.index')
+                           ->with('danger','La venta fue eliminada exitosamente.');  
+      
     }
 }

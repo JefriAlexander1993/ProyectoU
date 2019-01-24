@@ -30,11 +30,11 @@ class LoginController extends Controller
 
    // Cantidad de intentos
 
-   // public $maxAttempts =3;
+   public $maxAttempts =3;
 
 
     //Duración de bloqueo
-    //public $decayMinutes=30;    
+    public $decayMinutes=30;    
 
     /**
      * Create a new controller instance.
@@ -47,7 +47,7 @@ class LoginController extends Controller
     }
 
 
-    public function redirectPath()
+    /*public function redirectPath()
     
     {
 
@@ -59,6 +59,6 @@ class LoginController extends Controller
         }
 
              return  '/carrito/show';
-    }
+    }*/
 
 }

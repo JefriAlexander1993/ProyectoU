@@ -22,16 +22,32 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('frond.roles.index');
+        return view('frond.roles.index',['roles'=>Role::orderBy('id','desc')->paginate('8')]);
+    }
+
+    public function create(){
+
+        return view('frond.roles.edit');
+
+    }
+    public function edit($id){
+
+        return view('frond.roles.edit',['role'=>Role::findOrFail($id)]);
+
+    }
+
+    public function show($id){
+
+        return view('frond.roles.show',['role'=>Role::findOrFail($id)]);
+
     }
 
     
     public function pdfRole()
     {        
        
-        $roles = Role::all(); 
 
-        $pdf = PDF::loadView('informe.roles_list',compact('roles'));
+        $pdf = PDF::loadView('informe.roles_list',['roles'=>Role::all()]);
 
         return $pdf->download('lists_roles.pdf');
 
@@ -47,10 +63,6 @@ class RoleController extends Controller
 
 
 
-
-
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -60,19 +72,9 @@ class RoleController extends Controller
     public function store(Request $request)
     {
 
-      if($request->ajax()){
-        $role = new Role;
-        $role->name = $request->name;
-        $role->display_name = $request->display_name;
-        $role->description = $request->description;
-
-        $role->save();
-
-              return response()->json([
-                "mensaje"=>"Fue creado."
-              ]);
-      }
-
+        $role=  Role::create($request->all())->save();
+           return redirect()->route('roless.index')
+                             ->with('info','El rol fue registrada  exitosamente.');  
     }
 
     /**
@@ -84,9 +86,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $role= Role::find($id);
-        $role->fill($request->all())->save();
-        return response()->json(["mensaje"=>"Actualizar"]);
+      $role= Role::find($id)->update($request->all());
+           return redirect()->route('quotations.index')
+                             ->with('info','El rol fue actualizado exitosamente.');  
     }
 
     /**
@@ -98,6 +100,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
       $role= Role::findOrFail($id)->delete();
-      return response()->json(["mensaje"=>"Borrado"]);
+      return redirect()->route('quotations.index')
+                             ->with('danger','El rol fue eliminado exitosamente.'); 
     }
 }

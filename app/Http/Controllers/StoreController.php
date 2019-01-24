@@ -8,14 +8,13 @@ class StoreController extends Controller
 {
     //
     public function index(){
-    	$productoslist=Product::all();
-    	return view('frond.store.index',compact('productoslist'));
+
+    	return view('frond.store.index',['productoslist'=>Product::all()]);
     }
 
     public function show($id){
-
-    	$productos=Product::where('id',$id)->first();
-    	return view('frond.store.show',compact('productos'));
+    	
+    	return view('frond.store.show',['product'=>Product::find($id)]);
 
 
 

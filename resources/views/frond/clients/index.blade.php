@@ -1,101 +1,103 @@
-
-@extends('layouts.template')
+@extends('layouts.plantilla')
 
 @section('content')
-  <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"></input>
-  <input type="hidden" value="" id="idclientedit" name="idclientedit"></input>
-  <div class="container" >
-  <div class="row">
-  <div class="col-lg-4" >
-          <div class="card-body" >
-              <!-- Nav tabs -->
-                <div class="container" >
-                  <ul class="nav nav-tabs" role="tablist" style="padding-left:70px">
-                    <li role="plantillas"><button href="#variables"  title="Crear usuario" id="create-form"  name="crear-form" type="button" class="btn btn-success btn-sm" aria-controls="variables" role="tab" data-toggle="tab"><i class="fas fa-plus-square" ></i></button></li>
-                    <li role="plantillas" class="active"><a id="edit-form" title="Editar usuario" class="btn btn-info btn-sm" href="#table" aria-controls="table" role="tab" data-toggle="tab"><i class="far fa-edit"></i></a></li>
-                    <li role="plantillas" class="active"><a id="show-form"title="Ver usuario" class="btn btn-secundary btn-sm" href="#ver" aria-controls="table" role="tab" data-toggle="tab"><i class='fas fa-eye'></i></a></li>
-                 </ul>
-               </div>
-
-              <!-- Tab panes -->
-              <div class="tab-content" >
-                <div role="tabpanel" class="tab-pane fade in active" id="table" >
-                      <div id="editusers" class="card">
-                        <div  class="card-header card-header-info">
-                          <h4 class="card-title "><strong>Editar cliente</strong></h4>
-
-                        </div>
-                        <div class="card-body">
-                          <div class="col-sm-12">
-                            @include('frond.clients.fragment.formedit')
-                        </div>
-                      </div>
-                    </div>
-
-                      </div>
-
-                <div role="tabpanel" class="tab-pane fade" id="variables">
-                  <div  class="card">
-                    <div  class="card-header card-header-success">
-                      <h4 class="card-title "><strong>Crear cliente</strong></h4>
-
-                    </div>
-                      <div class="card-body">
-                        <div class="col-sm-12">
-                              @include('frond.clients.fragment.form')
-                      </div>
-                    </div>
-                  </div>
+<br>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header card-header-success">
+                <h4 class="card-title ">
+                    <strong>
+                        LISTA DE CLIENTES
+                    </strong>
+                    <a class="btn btn-success btn-sm pull-right" href="{{ route('clients.create')}}" title="Agregar clientes">
+                        <i class="fa fa-plus-square">
+                        </i>
+                    </a>
+                    <a class="btn btn-sm btn-danger" href="{{ url('/clientspdf') }}" title="Exportar a pdf">
+                        <i class="far fa-file-pdf">
+                        </i>
+                    </a>
+                    <a class="btn btn-sm btn-success" href="{{ url('/clientssesexcel') }}" title="Exportar a excel">
+                        <i class="far fa-file-excel">
+                        </i>
+                    </a>
+                </h4>
             </div>
-            <div role="tabpanel" class="tab-pane fade in active" id="ver" >
-                  <div  class="card">
-                    <div  class="card-header card-header-primary">
-                      <h4 class="card-title">Información del cliente</h4>
-
-                    </div>
-
-                    <div class="card-body" id="showclient" value="">
-                        @include('frond.clients.fragment.show')
-                    </div>
-            </div>
-          </div>
-        </div>
-      </div>
-</div>
-
-
-<!--Lista de producto(Tabla).-->
-
-            <div class="col-lg-8">
-              <div class="card">
-                <div  class="card-header card-header-success">
-                  <h4 class="card-title "><strong>LISTA DE CLIENTES</strong> <a href="{{ url('/clientspdf') }}" class="btn btn-sm btn-danger" title="Exportar a pdf"><i class="far fa-file-pdf"></i> </a> <a href="{{ url('/clientsexcel') }}" class="btn btn-sm btn-warning" title="Exportar a excel"><i class="far fa-file-excel"></i> </a></h4>
-
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-
-                    <table id="clients" class="table table-striped table-hover">
-                            <thead class=" text-primary">
-                              <tr>
-                                <th class="text-center">Id</th>
-                                <th class="text-center">Nuip</th>
-                                <th class="text-center">Nombres</th>
-                                <th class="text-center">Teléfono</th>
-                                <th class="text-center">Dirección</th>
-                                <th class="text-center">Correo</th>
-                                <th class="text-center">Acciones</th>
-
-                              </tr>
-                            </thead>
-
+            <div class="card-body">
+                <div class="table-responsive ">
+                    <table class="table table-striped ">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    Nuip
+                                </th>
+                                <th class="text-center">
+                                    Nombre
+                                </th>
+                                <th class="text-center">
+                                    Teléfono
+                                </th>
+                                <th class="text-center">
+                                    Dirección
+                                </th>
+                                <th class="text-center">
+                                    Email
+                                </th>
+                                <th class="text-center" colspan="3">
+                                    Acción
+                                </th>
+                            </tr>
+                        </thead>
+                        @foreach($clients as $client)
+                        <tr>
+                            <td class="text-center">
+                                {{ $client->nuip }}
+                            </td>
+                            <td class="text-center">
+                                {{ $client->name }}
+                            </td>
+                            <td class="text-center">
+                                {{ $client->phone }}
+                            </td>
+                            <td class="text-center">
+                                {{ $client->address }}
+                            </td>
+                            <td class="text-center">
+                                {{ $client->email }}
+                            </td>
+                            <td>
+                                <a class="btn btn-secundary btn-sm " href="{{ route('clients.show', $client->id)}}" title="Ver Usuario">
+                                    <i aria-hidden="true" class="fa fa-eye">
+                                    </i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-default btn-sm" href="{{ route('clients.edit', $client->id) }}">
+                                    <i aria-hidden="true" class="far fa-edit " title="Editar cliento">
+                                    </i>
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{{ route('clients.destroy', $client->id) }}" method="post">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                        <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                            <button class="btn btn-danger btn-sm" title="Eliminar clientw" type="submit">
+                                                <i aria-hidden="true" class="far fa-trash-alt">
+                                                </i>
+                                            </button>
+                                        </input>
+                                    </input>
+                                </form>
+                            </td>
+                            @endforeach
+                        </tr>
                     </table>
-
-                  </div>
+                    <div class="text-center">
+                        {!!$clients->render() !!}
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-
+    </div>
+</br>
 @endsection

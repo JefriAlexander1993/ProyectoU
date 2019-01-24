@@ -9,8 +9,7 @@ class PrincipalController extends Controller
     //
     public function index()
     {
-    	$products=Product::all();
-    	return view('frond.pagePrincipal.index',compact('products'));
+    	return view('frond.pagePrincipal.index',['products'=>Product::all()]);
     }
 
     

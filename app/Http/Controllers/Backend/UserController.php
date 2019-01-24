@@ -1,19 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\User;
-use PDF;
+
 use App\Exports\UsersExport;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\File;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class UserController extends Controller
 {
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,28 +24,42 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('frond.users.index');
+        return view('frond.users.index', ['users' => User::orderBy('id', 'desc')->paginate('8')]);
     }
 
+    public function create()
+    {
+
+        return view('frond.users.create');
+
+    }
+    public function edit($id)
+    {
+
+        return view('frond.users.edit', ['user' => User::findOrFail($id)]);
+
+    }
+    public function show($id)
+    {
+
+        return view('frond.users.show', ['user' => User::findOrFail($id)]);
+
+    }
 
     public function pdfUser()
-    {        
-       
+    {
 
-        $users = User::all(); 
-
-        $pdf = PDF::loadView('informe.users_list',compact('users'));
+        $pdf = PDF::loadView('informe.users_list', ['users' => User::all()]);
 
         return $pdf->download('lists_users.pdf');
 
     }
-       
+
     public function excelUser()
-    {        
+    {
 
         return Excel::download(new UsersExport, 'lists_users.xlsx');
 
-    
     }
 
     /**
@@ -53,21 +70,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-         //$user = User::create($request->all());
-      if($request->ajax()){
-            $user = new User;
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = bcrypt($request->password);
-            $user->save();
-              return response()->json([
-                "mensaje"=>"El usuario fue creado."
-              ]);
-      }
+        $user           = new User;
+        $user->name     = $request->name;
+        $user->email    = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->file     = $request->file;
+        $user->save();
+
+        if ($request->file('file')) {
+
+            $photo = Storage::disk('public')->put('images', $request->file('file'));
+            $user->fill(['file' => asset($photo)])->save();
+
+            return redirect()->route('users.index')
+                ->with('info', 'El usuario fue registrado exitosamente.');
+
+        } else {
+            return redirect()->route('users.create')
+                ->with('danger', 'Error en el momento de enviar la imagen.');
+
+        }
 
     }
-
-
 
     /**
      * Update the specified resource in storage.
@@ -78,9 +102,25 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-          $user= User::find($id);
-          $user->fill($request->all())->save();
-            return response()->json(["mensaje"=>"Actualizar"]);
+        $user           = User::find($id);
+        $user->name     = $request->name;
+        $user->email    = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->file     = $request->file;
+        $user->save();
+
+        if ($request->file('file')) {
+
+            $photo = Storage::disk('public')->put('images', $request->file('file'));
+            $user->fill(['file' => asset($photo)])->save();
+
+            return redirect()->route('users.index')
+                ->with('info', 'El usuario fue actualizado exitosamente.');
+        } else {
+            return redirect()->route('users.edit')
+                ->with('danger', 'Error en el momento de enviar la imagen.');
+
+        }
 
     }
 
@@ -92,7 +132,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user= User::findOrFail($id)->delete();
-        return response()->json(["mensaje"=>"Borrado"]);
+        $user = User::findOrFail($id)->delete();
+        return redirect()->route('frond.users.index')
+            ->with('info', 'El usuario fue eliminado exitosamente.');
     }
 }

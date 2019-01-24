@@ -25,3 +25,13 @@ html, body {
 
     color:#000;
 }
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+td {
+    width: 100%;
+    margin: 0 auto;
+}

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
-use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 use PDF;
 use App\Exports\ClientsExport;
@@ -20,16 +20,30 @@ class ClientController extends Controller
     public function index()
     {
    
-        return view('frond.clients.index');
+        return view('frond.clients.index',['clients'=>User::orderBy('id','desc')->paginate('8')]);
     }
 
-    public function pdfClient()
+    public function create(){
+
+        return view('frond.clients.create');
+
+    }
+
+    public function show($id){
+
+        return view('frond.clients.show',['client'=>User::findOrFail($id)]);
+
+    }
+
+    public function edit($id){
+
+        return view('frond.clients.edit',['client'=>User::findOrFail($id)]);
+
+    }
+    
+    public function pdfClient() /*Debe haber una consulta teniendo en cuenta el rol*/
     {        
-       
-
-        $clients = Client::all(); 
-
-        $pdf = PDF::loadView('informe.clients_list',compact('clients'));
+        $pdf = PDF::loadView('informe.clients_list',['clients' => User::all()]);
 
         return $pdf->download('lists_clients.pdf');
 
@@ -51,14 +65,24 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-      if($request->ajax()){
-       $client =  Client::create($request->all());
-       $client->save();
-              return response()->json([
-                "mensaje"=>"Fue creado."
-              ]);
-                        }
+                        
+          $client =  User::create($request->all())->save();   
 
+            if($request->file('file')){
+
+                $photo = Storage::disk('public')->put('images', $request->file('file'));
+                $client->fill(['file'=>asset($photo)])->save();
+
+                            return redirect()->route('clients.index')
+                             ->with('info','El usuario fue registrado exitosamente.');  
+
+            }else{
+                        return redirect()->route('clients.create')
+                             ->with('danger','Error en el momento de enviar la imagen.');  
+                           
+            }  
+               
+        
     }
 
 
@@ -71,10 +95,21 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $client= Client::find($id);
-      $client->fill($request->all())->save();
-      return response()->json(["mensaje"=>"Actualizar"]);
-
+        $client= User::find($id)->update($request->all());
+            
+            if($request->file('file')){
+                    
+                $photo = Storage::disk('public')->put('images', $request->file('file'));
+                     $client->fill(['file'=>asset($photo)])->save();
+                   
+                      return redirect()->route('clients.index')
+                             ->with('info','El usuario fue actualizado exitosamente.');  
+            }else{
+                        return redirect()->route('clients.create')
+                             ->with('danger','Error en el momento de enviar la imagen.');  
+                     
+                    }
+       
     }
 
     /**
@@ -85,7 +120,9 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-      $client= Client::findOrFail($id)->delete();
-      return response()->json(["mensaje"=>"Borrado"]);
+      $client= User::findOrFail($id)->delete();
+            return redirect()->route('clients.index')
+                             ->with('info','El cliente fue eliminado exitosamente.');
+     
     }
 }

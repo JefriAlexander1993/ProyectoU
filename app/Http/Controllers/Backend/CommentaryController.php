@@ -18,9 +18,26 @@ class CommentaryController extends Controller
      */
     public function index()
     {
-      return view('frond.commentaries.index');
+      return view('frond.commentaries.index',['commentaries'=>Commentary::orderBy('id','desc')->paginate('8')]);
     }
 
+    public function create(){
+
+        return view('frond.commentaries.create');
+
+
+    }
+
+    public function edit($id){
+        return view('frond.commentaries.edit',['commentary'=>Commentary::findOrFail($id)]);
+
+
+    }
+    public function show($id){
+
+        return view('frond.commentaries.show',['commentary'=>Commentary::findOrFail($id)]);
+
+    }
 
 
     /**
@@ -31,24 +48,17 @@ class CommentaryController extends Controller
      */
     public function store(Request $request)
     {
-      if($request->ajax()){
-       $commentary =  Commentary::create($request->all());
-       $commentary->save();
-              return response()->json([
-                "mensaje"=>"Fue creado."
-              ]);
-      }
+       $commentary =  Commentary::create($request->all())->save();
+             return redirect()->route('commentaries.index')
+                             ->with('info','El comentario fue registrado  exitosamente.');
+       
     }
 
 
     public function pdfCommentary()
     {        
-       
 
-        $commentaries = Commentary::all(); 
-
-
-        $pdf = PDF::loadView('informe.commentaries_list',['commentaries'=>$commentaries]);
+        $pdf = PDF::loadView('informe.commentaries_list',['commentaries'=>Commentary::all()]);
 
         return $pdf->download('lists_commentaries.pdf');
 
@@ -72,9 +82,10 @@ class CommentaryController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $commentary= Permission::find($id);
-      $commentary->fill($request->all())->save();
-      return response()->json(["mensaje"=>"Actualizar"]);
+      $commentary= Permission::find($id)->update($request->all());
+       return redirect()->route('commentaries.index')
+                             ->with('info','El comentario fue actualizado  exitosamente.');
+      
     }
 
     /**
@@ -86,6 +97,7 @@ class CommentaryController extends Controller
     public function destroy($id)
     {
       $commentary= Commentary::findOrFail($id)->delete();
-      return response()->json(["mensaje"=>"Borrado"]);
+           return redirect()->route('commentaries.index')
+                             ->with('info','El comentario fue eliminado  exitosamente.');
     }
 }

@@ -1,34 +1,34 @@
-<form class="contact-form">
-<input type="hidden" name="_token" value="{{csrf_token()}}" id="token"></input>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="form-group">
-        <label class="bmd-label-floating"><strong>Nombre y apellidos</strong></label>
-        <input type="text" id="namecomment" class="form-control">
-      </div>
-    </div>
-  </div>
-    <div class="row">
-    <div class="col-md-12">
-      <div class="form-group">
-        <label class="bmd-label-floating"><strong>Email</strong></label>
-        <input type="email" id="emailcomment" class="form-control">
-      </div>
-    </div>
-  </div>
 <div class="row">
-  <div class="col-md-12">
-    <div class="form-group">
-      <label for="exampleMessage" class="bmd-label-floating"><strong>Mesaje</strong></label>
-      <textarea type="text" class="form-control" rows="4" id="bodycomment"></textarea>
+    <div class="col-sm-4">
+        <div class="form-group ">
+            {!! Form::label('name','Nombres y apellidos(*).')!!}
+    {!!Form::text('name',null,['class'=>'form-control','Nombre del usuario','title'=>'Nombre.','id'=>'name','required'=>'required'])!!}
+        </div>
     </div>
-  </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            {!!Form::label('email','Correo(*).')!!}
+    {!!Form::email('email',null,['class'=>'form-control','title'=>'Apellidos.','id'=>'lastname'])!!}
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            {!!Form::label('affair','Asunto.')!!}
+    {!!Form::text('affair', null, ['class'=>'form-control','placeholder' => 'Cotización...'])!!}
+        </div>
+    </div>
 </div>
-  <div class="row">
-    <div class="col-md-6 ml-auto mr-auto text-center">
-        {!!link_to('#',$title='Enviar', $attributes =['id'=>'Registrocomment','class'=>'btn btn-success submit-btn btn-block','type'=>'submit'],$secure =null)!!}
-
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group ">
+            {!!Form::label('body','Mensaje(*).')!!}
+       {!!Form::textarea('body',null,['class'=>'form-control','title'=>'Mensaje.', 'rows'=>"4" ])!!}
+        </div>
     </div>
-  </div>
-</form>
+</div>
+<div class="form-group text-center">
+    {!!Form::button('
+    <i aria-hidden="true" class="fa fa-save">
+    </i>
+    ', array('type' => 'submit', 'class'=>'btn btn-success btn-lg btn-block'))!!}
+</div>

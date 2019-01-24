@@ -25,14 +25,27 @@ class QuotationController extends Controller
     public function store(Request $request)
     {
       
+       $quotation=  Quotation::create($request->all())->save();
+           return redirect()->route('quotations.index')
+                             ->with('info','La cotización fue registrada  exitosamente.');  
+    
+    }
 
-      if($request->ajax()){
-       $permission =  Quotation::create($request->all());
-       $permission->save();
-              return response()->json([
-                "mensaje"=>"Fue creado."
-              ]);
-      }
+    public function create(){
+
+        return view('frond.quotations.create');
+
+    }
+
+    public function edit($id){
+
+        return view('frond.quotations.edit',['quotation'=>Quotation::findOrFail($id)]);
+
+    }
+    public function show($id){
+
+       return view('frond.quotations.show',['quotation'=>Quotation::findOrFail($id)]);
+
     }
 
 
@@ -46,9 +59,9 @@ class QuotationController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $quotation= Quotation::find($id);
-      $quotation->fill($request->all())->save();
-      return response()->json(["mensaje"=>"Actualizar"]);
+      $quotation= Quotation::find($id)->update($request->all());
+      return redirect()->route('quotations.index')
+                             ->with('info','La cotización fue actualizada exitosamente.');  
     }
 
     /**
@@ -60,6 +73,7 @@ class QuotationController extends Controller
     public function destroy(Quotation $quotation)
     {
       $quotation= Quotation::findOrFail($id)->delete();
-      return response()->json(["mensaje"=>"Borrado"]);
+      return redirect()->route('quotations.index')
+                             ->with('danger','La cotización fue eliminada exitosamente.');  
     }
 }

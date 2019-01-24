@@ -18,38 +18,53 @@ class UserRoleController extends Controller
     public function index()
     {
 
-      $id_user = User::pluck('name','id');
-      $id_role = Role::pluck('name','id');
 
-      return view('frond.users_roles.index',compact('id_user','id_role'));
+      return view('frond.users_roles.index',['users_roles'=>Role_user::orderBy('id','desc')->paginate('8')]);
+    }
+
+    public function create(){
+
+        return view('frond.users_roles.create',['id_user'=>User::pluck('name','id'),'id_role'=>Role::pluck('name','id')]);
+
+    }
+    
+    public function edit($id){
+
+        return view('frond.users_roles.edit',['users_role'=>Role_user::findOrFail($id),'id_user'=>User::pluck('name','id'),'id_role'=>Role::pluck('name','id')]);
+
+    }
+
+    public function show($id){
+
+        return view('frond.users_roles.show',['users_role'=>Role_user::findOrFail($id)]);
+
     }
 
     public function store(Request $request)
       {
 
-          if($request->ajax()){
-           $role_user = new Role_user;
-           $role_user->user_id= $request->user_id;
-           $role_user->role_id= $request->role_id;
-           $role_user->save();
-                  return response()->json([
-                    "mensaje"=>"Fue creado."
-                  ]);
-          }
+           $role_user = Role_user::create($request->all());
 
+             return redirect()->route('frond.users_roles.index')
+                             ->with('info','El rol fue asignado a un usuario fue exitosamente registrado.'); 
+        
+        
       }
     public function update($id, Request $request)
         {
-            $role_user= Role_user::find($id);
-            $role_user->fill($request->all())->save();
-            return response()->json(["mensaje"=>"Actualizar"]);
+            $role_user= Role_user::find($id)->update($request->all());
+               return redirect()->route('frond.users_roles.index')
+                             ->with('info','El rol fue asignado a un usuario exitosamente actualizado.'); 
+         
+        
 
         }
 
     public function destroy($id)
         {
           $role= Role_user::findOrFail($id)->delete();
-          return response()->json(["mensaje"=>"Borrado"]);
+             return redirect()->route('frond.users_roles.index')
+                             ->with('info','El rol fue asignado a un usuario exitosamente eliminado.'); 
 
         }
 

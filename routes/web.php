@@ -14,11 +14,12 @@
 
 /*Route::get('/', function () {
     return view('frond.catalogo.index');
-});*/
+});
 
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
     Route::get('/home');
-});
+});*/
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
@@ -100,13 +101,14 @@ Route::Resource('users', 'Backend\UserController');
 
 Route::Resource('commentaries', 'Backend\CommentaryController');
 Route::Resource('quotations', 'Backend\QuotationController');
+Route::Resource('categories', 'Backend\CategoryController');
 
 // users-roles-permissions
 
 Route::Resource('roles', 'Backend\RoleController');
 Route::Resource('permissions', 'Backend\PermissionController');
 Route::Resource('users_roles', 'Backend\UserRoleController');
-Route::Resource('role_permissions', 'Backend\RolePermissionController');
+Route::Resource('permissions_roles', 'Backend\RolePermissionController');
 
 //pdf clients
 Route::get('/clientspdf', 'Backend\ClientController@pdfClient',function(){
